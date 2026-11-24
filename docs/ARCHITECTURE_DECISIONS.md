@@ -28,3 +28,7 @@ Audit: audit_logs for auth events, role changes, content edits, admin actions.
 6. Auth mistakes: mature libraries, tests per role and route.
 7. Version drift: pin and commit lockfiles.
 8. Free-plan hosting cold starts: documented; health checks.
+
+ADR-011 Tailwind v4 CSS-first configuration (tokens in src/design/theme.css, no tailwind.config.js). Reason: tokens live in one CSS file shared by light and dark themes.
+ADR-012 Python dependencies installed wheel-only (--only-binary=:all:) and frozen to requirements.lock. Reason: no source compiles on low-memory machines; reproducible installs.
+ADR-013 Request ID middleware and a single error envelope from the first endpoint. Reason: every later endpoint inherits consistent errors and traceable logs.

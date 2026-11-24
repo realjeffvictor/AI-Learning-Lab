@@ -17,3 +17,9 @@ health; auth (register, login, refresh, logout); users/me; courses, modules, les
 (with immediate score + concept results); recommendations; projects and project-submissions; ai (tutor, code, debug,
 architecture, testing, docs, review); competencies; achievements and certificates; notifications; admin and instructor
 (content CRUD, enrollments, analytics, users).
+
+## Implemented endpoints
+
+### Phase 1
+GET /api/v1/health: 200 {"status": "ok", "service": str, "version": str, "environment": str, "timestamp": ISO 8601 UTC}
+Every response carries X-Request-ID. Errors use the envelope above.
