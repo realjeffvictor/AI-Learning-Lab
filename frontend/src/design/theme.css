@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* Design tokens: docs/DESIGN_SYSTEM.md ("Lab Notebook meets Terminal"). */
+:root {
+  --paper: #f6f3ec;
+  --surface: #ffffff;
+  --surface-sunk: #ece8de;
+  --ink: #1c1b17;
+  --ink-muted: #5e5a4f;
+  --rule: #d9d3c4;
+  --signal: #d9480f;
+  --signal-ink: #ffffff;
+  --ok: #2f7d4f;
+  --warn: #b7791f;
+  --danger: #b3261e;
+  --info: #2a6f8f;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14130f;
+    --surface: #1b1a16;
+    --surface-sunk: #100f0c;
+    --ink: #ece8dc;
+    --ink-muted: #a29d8e;
+    --rule: #2c2a23;
+    --signal: #ff7a3d;
+    --signal-ink: #1a0a00;
+    --ok: #5bc184;
+    --warn: #e0a93b;
+    --danger: #f2786f;
+    --info: #6fb4d4;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #14130f;
+  --surface: #1b1a16;
+  --surface-sunk: #100f0c;
+  --ink: #ece8dc;
+  --ink-muted: #a29d8e;
+  --rule: #2c2a23;
+  --signal: #ff7a3d;
+  --signal-ink: #1a0a00;
+  --ok: #5bc184;
+  --warn: #e0a93b;
+  --danger: #f2786f;
+  --info: #6fb4d4;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-sunk: var(--surface-sunk);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-rule: var(--rule);
+  --color-signal: var(--signal);
+  --color-signal-ink: var(--signal-ink);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", monospace;
+  --font-serif: "Source Serif 4 Variable", Georgia, serif;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+}
+
+@layer base {
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.5;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
