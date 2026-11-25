@@ -9,4 +9,5 @@ class HealthResponse(BaseModel):
     service: str
     version: str
     environment: str
+    database: Literal["ok", "unavailable", "not_configured"]
     timestamp: datetime
