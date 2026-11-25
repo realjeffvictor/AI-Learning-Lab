@@ -1,3 +1,4 @@
+import json
 from collections.abc import Callable, Iterator
 from pathlib import Path
 from typing import Any
@@ -9,11 +10,57 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from sqlalchemy import Engine, create_engine, text
 from sqlalchemy.engine import make_url
+from sqlalchemy.orm import Session
 
 from app.core.config import Settings, get_settings
 from app.main import create_app
+from app.services.curriculum_loader import load_curriculum
+from app.services.curriculum_seed import SeedReport, seed_curriculum
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
+
+SAMPLE_CONCEPTS = [
+    {"slug": "logic", "name": "Logic", "category": "A", "description": "Reasoning step by step."},
+    {"slug": "loops", "name": "Loops", "category": "A", "description": "Repeating work."},
+    {"slug": "prompting", "name": "Prompting", "category": "B", "description": "Directing AI."},
+]
+
+SAMPLE_ALPHA = {
+    "slug": "alpha",
+    "title": "Alpha",
+    "summary": "First stage",
+    "kind": "stage",
+    "stage_number": 1,
+    "modules": [
+        {
+            "slug": "intro",
+            "title": "Intro",
+            "summary": "Start here",
+            "lessons": [
+                {"slug": "one", "title": "One", "summary": "First", "minutes": 5, "principles": ["U"],
+                 "concepts": ["logic", "loops"], "objectives": ["Do a thing"]},
+                {"slug": "two", "title": "Two", "summary": "Second", "minutes": 6, "principles": ["U", "V"],
+                 "concepts": ["logic"], "objectives": []},
+                {"slug": "three", "title": "Three"},
+            ],
+        },
+        {"slug": "empty", "title": "Empty", "lessons": []},
+    ],
+}
+
+SAMPLE_BETA = {"slug": "beta", "title": "Beta", "summary": "A track", "kind": "track", "modules": []}
+
+
+def write_sample_curriculum(root: Path) -> None:
+    (root / "concepts.json").write_text(json.dumps(SAMPLE_CONCEPTS))
+    alpha = root / "courses" / "01-alpha"
+    (alpha / "intro").mkdir(parents=True)
+    (alpha / "course.json").write_text(json.dumps(SAMPLE_ALPHA))
+    (alpha / "intro" / "one.md").write_text("## One\n\nFirst lesson body.\n")
+    (alpha / "intro" / "two.md").write_text("## Two\n\nSecond lesson body.\n")
+    beta = root / "courses" / "02-beta"
+    beta.mkdir(parents=True)
+    (beta / "course.json").write_text(json.dumps(SAMPLE_BETA))
 
 
 @pytest.fixture(scope="session")
@@ -41,7 +88,7 @@ def settings(test_database_url: str) -> Settings:
 
 @pytest.fixture(scope="session")
 def db_engine(test_database_url: str) -> Iterator[Engine]:
-    """Test database at migration head. Downgrade then upgrade also proves the migration is reversible."""
+    """Test database at migration head. Downgrade then upgrade also proves the migrations are reversible."""
     config = Config(str(BACKEND_DIR / "alembic.ini"))
     config.set_main_option("sqlalchemy.url", test_database_url)
     command.downgrade(config, "base")
@@ -53,8 +100,11 @@ def db_engine(test_database_url: str) -> Iterator[Engine]:
 
 @pytest.fixture(autouse=True)
 def _clean_tables(db_engine: Engine) -> None:
+    # CASCADE also empties enrollments, progress, competencies, modules, lessons and lesson_concepts.
     with db_engine.begin() as connection:
-        connection.execute(text("TRUNCATE TABLE audit_logs, refresh_tokens, user_profiles, users CASCADE"))
+        connection.execute(
+            text("TRUNCATE TABLE audit_logs, refresh_tokens, user_profiles, users, courses, concepts CASCADE")
+        )
 
 
 @pytest.fixture
@@ -95,3 +145,21 @@ def make_user(client: TestClient, set_role: Callable[[str, str], None]) -> Calla
         }
 
     return _make
+
+
+@pytest.fixture
+def curriculum_root(tmp_path: Path) -> Path:
+    write_sample_curriculum(tmp_path)
+    return tmp_path
+
+
+@pytest.fixture
+def seed(db_engine: Engine, curriculum_root: Path) -> Callable[[], SeedReport]:
+    def _run() -> SeedReport:
+        data = load_curriculum(curriculum_root)
+        with Session(db_engine) as session:
+            report = seed_curriculum(session, data)
+            session.commit()
+        return report
+
+    return _run
