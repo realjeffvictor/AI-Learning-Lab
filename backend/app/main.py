@@ -1,11 +1,24 @@
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.v1.router import api_router
 from app.core.config import Settings, get_settings
+from app.core.database import create_db_engine, create_session_factory
 from app.core.errors import register_error_handlers
 from app.core.logging import configure_logging
 from app.core.middleware import RequestContextMiddleware
+from app.core.security import PasswordService
+from app.core.throttle import LoginThrottle
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    yield
+    if app.state.engine is not None:
+        app.state.engine.dispose()
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:
@@ -18,8 +31,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         docs_url="/docs" if settings.docs_enabled else None,
         redoc_url=None,
         openapi_url="/openapi.json" if settings.docs_enabled else None,
+        lifespan=lifespan,
     )
     app.state.settings = settings
+    if settings.database_url:
+        app.state.engine = create_db_engine(settings.database_url)
+        app.state.session_factory = create_session_factory(app.state.engine)
+    else:
+        app.state.engine = None
+        app.state.session_factory = None
+    app.state.passwords = PasswordService.from_settings(settings)
+    app.state.login_throttle = LoginThrottle(settings.login_max_failures, settings.login_window_seconds)
 
     # Middleware added last is outermost: CORS wraps everything so error responses carry CORS headers too.
     app.add_middleware(RequestContextMiddleware)
@@ -28,7 +50,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         allow_origins=settings.cors_origin_list,
         allow_credentials=True,
         allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-        allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+        allow_headers=["Authorization", "Content-Type", "X-Request-ID", "X-CSRF-Protection"],
         expose_headers=["X-Request-ID"],
     )
 
@@ -37,4 +59,6 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     return app
 
 
-app = create_app()
+_settings = get_settings()
+_settings.assert_production_ready()
+app = create_app(_settings)
