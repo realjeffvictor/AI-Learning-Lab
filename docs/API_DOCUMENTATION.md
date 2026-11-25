@@ -23,3 +23,17 @@ architecture, testing, docs, review); competencies; achievements and certificate
 ### Phase 1
 GET /api/v1/health: 200 {"status": "ok", "service": str, "version": str, "environment": str, "timestamp": ISO 8601 UTC}
 Every response carries X-Request-ID. Errors use the envelope above.
+
+### Phase 2
+Auth model: access JWT in Authorization: Bearer (15 min, no role claim); refresh token in HttpOnly cookie ail_refresh (path /api/v1/auth).
+POST /auth/refresh and /auth/logout also require header X-CSRF-Protection: 1.
+
+POST /auth/register {email, password (10 to 128 chars), display_name} -> 201 {access_token, token_type, expires_in, user}; 409 email_taken
+POST /auth/login {email, password} -> 200 same body; 401 invalid_credentials; 403 account_disabled; 429 too_many_attempts (+ Retry-After)
+POST /auth/refresh -> 200 same body (rotates the cookie); 401 invalid_refresh_token; 403 csrf_failed
+POST /auth/logout -> 204 (revokes the token family, clears the cookie)
+GET /users/me -> 200 user
+PATCH /users/me/profile {display_name?, bio?, experience_level?} -> 200 user
+GET /users?page=&page_size= (admin) -> 200 {items, page, page_size, total}
+PATCH /users/{id} {role?, is_active?} (admin) -> 200 user; 400 cannot_modify_self; 404 user_not_found
+GET /health now also returns "database": ok | unavailable | not_configured.

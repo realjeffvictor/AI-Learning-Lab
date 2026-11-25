@@ -64,3 +64,8 @@ erDiagram
 - submissions index(user_id, exercise_id, created_at desc); ai_messages index(conversation_id, created_at).
 - CHECK constraints on score ranges (0 to 100), assistance mode enum (1 to 5), status enums.
 - Passwords stored only as hashes; never in logs or audit payloads.
+
+## Implemented in Phase 2 (migration 0001)
+users, user_profiles (PK = user_id, one-to-one), refresh_tokens (sha256 hash only, family_id for reuse detection),
+audit_logs (JSONB details, actor SET NULL on user delete). Naming convention is defined in app/models/base.py.
+CHECK constraints enforce role, lowercase email and experience level in the database itself.

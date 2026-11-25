@@ -32,3 +32,10 @@ Audit: audit_logs for auth events, role changes, content edits, admin actions.
 ADR-011 Tailwind v4 CSS-first configuration (tokens in src/design/theme.css, no tailwind.config.js). Reason: tokens live in one CSS file shared by light and dark themes.
 ADR-012 Python dependencies installed wheel-only (--only-binary=:all:) and frozen to requirements.lock. Reason: no source compiles on low-memory machines; reproducible installs.
 ADR-013 Request ID middleware and a single error envelope from the first endpoint. Reason: every later endpoint inherits consistent errors and traceable logs.
+
+ADR-014 Synchronous SQLAlchemy 2.0 with psycopg 3 and a small pool. Reason: simpler, lower memory; FastAPI runs sync routes in a threadpool.
+ADR-015 Refresh-token rotation with family revocation on reuse and a 10 second grace window. Reason: detects stolen tokens while tolerating two tabs refreshing at once. Reuse is audited only when a revocation actually happened.
+ADR-016 Access tokens carry no role; every request reads the user from the database. Reason: demotion and deactivation take effect immediately.
+ADR-017 First admin is created by CLI, never by the API. Reason: no self-service path to admin.
+ADR-018 Login throttling is in-process for now. Reason: adequate for a single worker; replaced by shared rate limiting in Phase 8.
+ADR-019 CSRF defence for cookie endpoints is SameSite plus a required custom header, enforced with the CORS allowlist.
