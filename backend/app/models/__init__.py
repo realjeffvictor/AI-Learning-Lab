@@ -1,3 +1,4 @@
+from app.models.assessment import Exercise, ExerciseConcept, Resource, Submission, SubmissionConceptResult
 from app.models.audit_log import AuditLog
 from app.models.base import Base
 from app.models.curriculum import (
@@ -20,12 +21,17 @@ __all__ = [
     "Course",
     "EXPERIENCE_LEVELS",
     "Enrollment",
+    "Exercise",
+    "ExerciseConcept",
     "Lesson",
     "LessonConcept",
     "LessonProgress",
     "Module",
     "ROLES",
     "RefreshToken",
+    "Resource",
+    "Submission",
+    "SubmissionConceptResult",
     "User",
     "UserCompetency",
     "UserProfile",
