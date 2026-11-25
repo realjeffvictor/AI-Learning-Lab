@@ -1,0 +1,17 @@
+{
+  "slug": "apis-and-external-systems",
+  "title": "APIs and External Systems",
+  "summary": "Understand how software talks to other software: HTTP, REST, authentication, webhooks and databases.",
+  "kind": "stage",
+  "stage_number": 3,
+  "modules": [
+    {"slug": "understanding-apis", "title": "Understanding APIs", "lessons": []},
+    {"slug": "http-and-https", "title": "HTTP and HTTPS", "lessons": []},
+    {"slug": "rest-api-architecture", "title": "REST API architecture", "lessons": []},
+    {"slug": "http-methods-and-status-codes", "title": "HTTP methods and status codes", "lessons": []},
+    {"slug": "python-requests-and-api-consumption", "title": "Python requests and API consumption", "lessons": []},
+    {"slug": "authentication-and-api-keys", "title": "Authentication and API keys", "lessons": []},
+    {"slug": "webhooks-and-event-driven-systems", "title": "Webhooks and event-driven systems", "lessons": []},
+    {"slug": "database-integration", "title": "Database integration", "lessons": []}
+  ]
+}

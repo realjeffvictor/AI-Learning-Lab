@@ -1,0 +1,16 @@
+{
+  "slug": "data-manipulation",
+  "title": "Data Manipulation",
+  "summary": "Load, clean, transform and analyse structured data with CSV, JSON, NumPy and Pandas.",
+  "kind": "stage",
+  "stage_number": 2,
+  "modules": [
+    {"slug": "structured-data-fundamentals", "title": "Structured data fundamentals", "lessons": []},
+    {"slug": "csv-and-json", "title": "CSV and JSON", "lessons": []},
+    {"slug": "file-processing", "title": "File processing", "lessons": []},
+    {"slug": "numpy", "title": "NumPy", "lessons": []},
+    {"slug": "pandas", "title": "Pandas", "lessons": []},
+    {"slug": "data-cleaning-and-transformation", "title": "Data cleaning and transformation", "lessons": []},
+    {"slug": "data-analysis-and-visualization", "title": "Data analysis and visualization", "lessons": []}
+  ]
+}

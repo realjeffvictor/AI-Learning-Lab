@@ -1,0 +1,33 @@
+{
+  "slug": "ai-assisted-software-engineering",
+  "title": "AI-Assisted Software Engineering",
+  "summary": "The horizontal track that runs alongside every stage: direct AI well, and keep ownership of what you build.",
+  "kind": "track",
+  "modules": [
+    {
+      "slug": "understanding-the-ai-era-developer",
+      "title": "Understanding the AI-era developer",
+      "summary": "How the work of a developer changes with AI, and what does not change.",
+      "lessons": [
+        {
+          "slug": "the-five-principles", "title": "The five principles",
+          "summary": "Understand, Direct, Build, Verify, Own: the habits that make AI a multiplier instead of a crutch.",
+          "minutes": 10, "principles": ["U", "D", "B", "V", "O"],
+          "concepts": ["ai-era-developer-mindset", "reviewing-ai-code", "prompting-for-development"],
+          "objectives": ["Name the five principles and what each asks of you", "Explain why AI output must be verified", "Describe the three categories of technical competence"]
+        }
+      ]
+    },
+    {"slug": "working-with-ai-coding-assistants", "title": "Working with AI coding assistants", "lessons": []},
+    {"slug": "prompting-for-software-development", "title": "Prompting for software development", "lessons": []},
+    {"slug": "reading-and-understanding-ai-generated-code", "title": "Reading and understanding AI-generated code", "lessons": []},
+    {"slug": "ai-assisted-debugging", "title": "AI-assisted debugging", "lessons": []},
+    {"slug": "ai-assisted-software-design", "title": "AI-assisted software design", "lessons": []},
+    {"slug": "ai-assisted-system-architecture", "title": "AI-assisted system architecture", "lessons": []},
+    {"slug": "ai-assisted-testing", "title": "AI-assisted testing", "lessons": []},
+    {"slug": "ai-assisted-documentation", "title": "AI-assisted documentation", "lessons": []},
+    {"slug": "code-review-and-quality-control", "title": "Code review and quality control", "lessons": []},
+    {"slug": "git-and-collaborative-development", "title": "Git and collaborative development", "lessons": []},
+    {"slug": "building-and-maintaining-complete-systems", "title": "Building and maintaining complete systems", "lessons": []}
+  ]
+}

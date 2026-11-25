@@ -1,0 +1,51 @@
+{
+  "slug": "python-fundamentals",
+  "title": "Python Fundamentals",
+  "summary": "Learn to think in steps and express them in Python: values, control flow, functions, objects and files.",
+  "kind": "stage",
+  "stage_number": 1,
+  "modules": [
+    {
+      "slug": "introduction-to-programming-and-python",
+      "title": "Introduction to programming and Python",
+      "summary": "What programming is, and how a Python program runs.",
+      "lessons": [
+        {
+          "slug": "what-is-programming", "title": "What is programming?",
+          "summary": "Programs are exact instructions. Learn to turn a problem into steps before touching syntax.",
+          "minutes": 8, "principles": ["U"], "concepts": ["programming-logic", "algorithms"],
+          "objectives": ["Explain what a program is", "Break a small problem into ordered steps", "Trace an algorithm by hand"]
+        },
+        {
+          "slug": "your-first-python-program", "title": "Your first Python program",
+          "summary": "Write and read a few lines of Python, and see what common mistakes look like.",
+          "minutes": 10, "principles": ["U", "D", "V"], "concepts": ["python-syntax", "debugging"],
+          "objectives": ["Use print to display text and numbers", "Explain what a comment is", "Recognise a SyntaxError and a NameError"]
+        },
+        {"slug": "reading-error-messages", "title": "Reading error messages"}
+      ]
+    },
+    {
+      "slug": "variables-and-data-types",
+      "title": "Variables and data types",
+      "summary": "Names, values and the basic kinds of data.",
+      "lessons": [
+        {
+          "slug": "variables-and-names", "title": "Variables and names",
+          "summary": "A variable is a name attached to a value. Learn assignment, reassignment and the four basic types.",
+          "minutes": 12, "principles": ["U", "V"], "concepts": ["variables-data-types", "data-flow-state"],
+          "objectives": ["Create and reassign variables", "Name the four basic types and check one with type()", "Explain why adding a string to a number fails"]
+        },
+        {"slug": "numbers-strings-and-booleans", "title": "Numbers, strings and booleans"}
+      ]
+    },
+    {"slug": "operators-and-expressions", "title": "Operators and expressions", "lessons": []},
+    {"slug": "strings-and-string-manipulation", "title": "Strings and string manipulation", "lessons": []},
+    {"slug": "lists-tuples-sets-and-dictionaries", "title": "Lists, tuples, sets and dictionaries", "lessons": []},
+    {"slug": "conditional-statements", "title": "Conditional statements", "lessons": []},
+    {"slug": "loops-and-iteration", "title": "Loops and iteration", "lessons": []},
+    {"slug": "functions-and-parameters", "title": "Functions and parameters", "lessons": []},
+    {"slug": "object-oriented-programming", "title": "Object-oriented programming", "lessons": []},
+    {"slug": "files-exceptions-modules-and-packages", "title": "Files, exceptions, modules and packages", "lessons": []}
+  ]
+}

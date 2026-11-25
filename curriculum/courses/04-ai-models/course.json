@@ -1,0 +1,20 @@
+{
+  "slug": "ai-models",
+  "title": "AI Models",
+  "summary": "From machine learning basics to language models, prompting, embeddings, retrieval and agents.",
+  "kind": "stage",
+  "stage_number": 4,
+  "modules": [
+    {"slug": "artificial-intelligence-fundamentals", "title": "Artificial intelligence fundamentals", "lessons": []},
+    {"slug": "machine-learning-fundamentals", "title": "Machine learning fundamentals", "lessons": []},
+    {"slug": "neural-networks", "title": "Neural networks", "lessons": []},
+    {"slug": "large-language-models", "title": "Large language models", "lessons": []},
+    {"slug": "tokens-and-context-windows", "title": "Tokens and context windows", "lessons": []},
+    {"slug": "prompt-engineering", "title": "Prompt engineering", "lessons": []},
+    {"slug": "ai-model-api-integration", "title": "AI model API integration", "lessons": []},
+    {"slug": "structured-outputs-and-function-calling", "title": "Structured outputs and function calling", "lessons": []},
+    {"slug": "embeddings-and-vector-databases", "title": "Embeddings and vector databases", "lessons": []},
+    {"slug": "retrieval-augmented-generation", "title": "Retrieval-Augmented Generation", "lessons": []},
+    {"slug": "ai-agents-fundamentals-and-evaluation", "title": "AI agents fundamentals and evaluation", "lessons": []}
+  ]
+}

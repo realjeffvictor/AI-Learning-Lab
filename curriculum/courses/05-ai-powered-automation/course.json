@@ -1,0 +1,17 @@
+{
+  "slug": "ai-powered-automation",
+  "title": "AI-Powered Automation",
+  "summary": "Design, build, deploy and monitor automated workflows, including multi-step AI workflows with human approval.",
+  "kind": "stage",
+  "stage_number": 5,
+  "modules": [
+    {"slug": "automation-fundamentals", "title": "Automation fundamentals", "lessons": []},
+    {"slug": "workflow-design", "title": "Workflow design", "lessons": []},
+    {"slug": "python-automation", "title": "Python automation", "lessons": []},
+    {"slug": "n8n-and-workflow-automation", "title": "n8n and workflow automation", "lessons": []},
+    {"slug": "ai-agents-and-tools", "title": "AI agents and tools", "lessons": []},
+    {"slug": "multi-step-ai-workflows", "title": "Multi-step AI workflows", "lessons": []},
+    {"slug": "human-approval-and-error-handling", "title": "Human approval and error handling", "lessons": []},
+    {"slug": "deployment-and-monitoring", "title": "Deployment and monitoring", "lessons": []}
+  ]
+}
