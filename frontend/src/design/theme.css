@@ -96,3 +96,38 @@
     }
   }
 }
+
+/* Lesson prose: the reading column of the lesson page. */
+.lesson-prose {
+  max-width: 42rem;
+  font-family: "Source Serif 4 Variable", Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.lesson-prose h2 { margin: 2rem 0 0.5rem; font-size: 1.375rem; line-height: 1.25; font-weight: 600; }
+.lesson-prose h3 { margin: 1.5rem 0 0.5rem; font-size: 1.125rem; font-weight: 600; }
+.lesson-prose p { margin: 0 0 1rem; }
+.lesson-prose ul, .lesson-prose ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+.lesson-prose ul { list-style: disc; }
+.lesson-prose ol { list-style: decimal; }
+.lesson-prose li { margin: 0.25rem 0; }
+.lesson-prose strong { font-weight: 600; }
+.lesson-prose a { color: var(--signal); text-decoration: underline; text-underline-offset: 3px; }
+.lesson-prose blockquote { margin: 0 0 1rem; padding-left: 1rem; border-left: 2px solid var(--signal); color: var(--ink-muted); }
+.lesson-prose pre {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  background: var(--surface-sunk);
+  border-left: 2px solid var(--rule);
+  font-family: "JetBrains Mono Variable", ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.lesson-prose :not(pre) > code {
+  background: var(--surface-sunk);
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
+  font-family: "JetBrains Mono Variable", ui-monospace, monospace;
+  font-size: 0.875em;
+}

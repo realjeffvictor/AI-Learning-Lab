@@ -16,9 +16,15 @@ export function AppShell() {
           <Link to="/dashboard" className="py-3 font-serif text-lg">
             AI Learning Lab
           </Link>
-          <nav aria-label="Main" className="flex gap-5">
+          <nav aria-label="Main" className="flex flex-wrap gap-5">
             <NavLink to="/dashboard" className={linkClass}>
               Dashboard
+            </NavLink>
+            <NavLink to="/courses" className={linkClass}>
+              Curriculum
+            </NavLink>
+            <NavLink to="/progress" className={linkClass}>
+              Progress
             </NavLink>
             <NavLink to="/profile" className={linkClass}>
               Profile
