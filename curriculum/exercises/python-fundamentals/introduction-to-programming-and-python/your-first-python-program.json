@@ -1,0 +1,49 @@
+[
+  {
+    "slug": "print-a-greeting",
+    "title": "Print a greeting",
+    "kind": "code",
+    "instructions": "Write a program that prints exactly these two lines:\n\n```text\nHello, Python\n42\n```\n\nLet Python calculate the second line (use `40 + 2`) instead of typing the answer.",
+    "concepts": ["python-syntax"],
+    "pass_score": 100,
+    "starter_code": "# Write your code below this line\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "output", "description": "Prints Hello, Python and then 42", "type": "stdout", "expected_stdout": "Hello, Python\n42"}
+    ]
+  },
+  {
+    "slug": "first-program-check",
+    "title": "First program check",
+    "kind": "quiz",
+    "instructions": "Three quick questions about what you just read.",
+    "concepts": ["python-syntax", "debugging"],
+    "pass_score": 70,
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What does print(\"2 + 2\") display?",
+        "options": ["4", "2 + 2", "An error", "Nothing"],
+        "answer": 1,
+        "explanation": "The quotation marks make it text, so Python prints it unchanged. print(2 + 2) would print 4.",
+        "concept": "python-syntax"
+      },
+      {
+        "id": "q2",
+        "prompt": "What does Print(\"hi\") (capital P) raise?",
+        "options": ["SyntaxError", "NameError", "TypeError", "Nothing, it works"],
+        "answer": 1,
+        "explanation": "Python is case sensitive, so Print is a different, undefined name: NameError.",
+        "concept": "debugging"
+      },
+      {
+        "id": "q3",
+        "prompt": "What is a comment in Python?",
+        "options": ["A line Python ignores, written for humans", "A line that prints text", "A kind of error", "A function"],
+        "answer": 0,
+        "explanation": "Everything after # on a line is ignored by Python. Comments are notes for people.",
+        "concept": "python-syntax"
+      }
+    ]
+  }
+]

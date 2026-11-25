@@ -1,0 +1,70 @@
+[
+  {
+    "slug": "compute-the-total",
+    "title": "Compute the total",
+    "kind": "code",
+    "instructions": "Create three variables: `price` set to 20, `quantity` set to 3, and `total` equal to `price` multiplied by `quantity`. Then print `total`.",
+    "concepts": ["variables-data-types", "data-flow-state"],
+    "pass_score": 100,
+    "starter_code": "# Create price, quantity and total, then print total\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "price", "description": "price is 20", "type": "return", "call": "price", "expected": 20, "concept": "variables-data-types"},
+      {"id": "quantity", "description": "quantity is 3", "type": "return", "call": "quantity", "expected": 3, "concept": "variables-data-types"},
+      {"id": "total", "description": "total is 60", "type": "return", "call": "total", "expected": 60, "concept": "data-flow-state"},
+      {"id": "printed", "description": "the program prints 60", "type": "stdout", "expected_stdout": "60", "concept": "data-flow-state"}
+    ]
+  },
+  {
+    "slug": "variables-check",
+    "title": "Variables check",
+    "kind": "quiz",
+    "instructions": "Four questions on names, values and types.",
+    "concepts": ["variables-data-types", "data-flow-state"],
+    "pass_score": 70,
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "After x = 5, then x = x + 1, what does print(x) show?",
+        "options": ["5", "6", "x + 1", "An error"],
+        "answer": 1,
+        "explanation": "Python works out the right side (5 + 1) first, then attaches x to the result.",
+        "concept": "data-flow-state"
+      },
+      {
+        "id": "q2",
+        "prompt": "What is the type of 3.0?",
+        "options": ["int", "str", "float", "bool"],
+        "answer": 2,
+        "explanation": "A number with a decimal part is a float, even when the decimal part is zero.",
+        "concept": "variables-data-types"
+      },
+      {
+        "id": "q3",
+        "prompt": "What happens when Python runs print(\"5\" + 3)?",
+        "options": ["Prints 8", "Prints 53", "Raises a TypeError", "Prints 5 3"],
+        "answer": 2,
+        "explanation": "\"5\" is text and 3 is a number. Python will not guess which kind of addition you meant.",
+        "concept": "variables-data-types"
+      },
+      {
+        "id": "q4",
+        "prompt": "Which of these is a valid Python variable name?",
+        "options": ["2nd_place", "total_price", "my-value", "class name"],
+        "answer": 1,
+        "explanation": "Names use letters, digits and underscores, and cannot start with a digit or contain spaces or hyphens.",
+        "concept": "variables-data-types"
+      }
+    ]
+  },
+  {
+    "slug": "reassignment-order",
+    "title": "Reassignment order",
+    "kind": "puzzle",
+    "instructions": "Order the lines so the program prints 2.",
+    "concepts": ["data-flow-state", "variables-data-types"],
+    "pass_score": 100,
+    "puzzle_type": "order",
+    "lines": ["count = 1", "count = count + 1", "print(count)"]
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "principles-check",
+    "title": "Principles check",
+    "kind": "quiz",
+    "instructions": "Four questions on the five principles.",
+    "concepts": ["ai-era-developer-mindset", "reviewing-ai-code", "prompting-for-development"],
+    "pass_score": 70,
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Which principle means giving the AI a clear goal, relevant context and your constraints?",
+        "options": ["Understand", "Direct", "Verify", "Own"],
+        "answer": 1,
+        "explanation": "Direct is about instructions. A precise request gets something you can use.",
+        "concept": "prompting-for-development"
+      },
+      {
+        "id": "q2",
+        "prompt": "An assistant gives you average(numbers) = sum(numbers) / len(numbers). It fails on an empty list. Which principle would have caught it?",
+        "options": ["Build", "Direct", "Verify", "Understand only"],
+        "answer": 2,
+        "explanation": "Verify means reading, running and testing generated code, including edge cases like an empty list.",
+        "concept": "reviewing-ai-code"
+      },
+      {
+        "id": "q3",
+        "prompt": "If you could not maintain a system without the AI, which principle are you missing?",
+        "options": ["Build", "Verify", "Direct", "Own"],
+        "answer": 3,
+        "explanation": "Own means you understand the system, can change it, and are accountable for it.",
+        "concept": "ai-era-developer-mindset"
+      },
+      {
+        "id": "q4",
+        "prompt": "Choosing between two architectures for a project belongs to which kind of competence?",
+        "options": ["Deep technical understanding", "AI-assisted implementation", "Engineering judgment", "None of these"],
+        "answer": 2,
+        "explanation": "Weighing alternatives and trade-offs is engineering judgment.",
+        "concept": "ai-era-developer-mindset"
+      }
+    ]
+  }
+]

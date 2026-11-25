@@ -1,0 +1,64 @@
+[
+  {
+    "slug": "programming-basics-check",
+    "title": "Programming basics check",
+    "kind": "quiz",
+    "instructions": "Answer all four questions. You need 70 to pass, and you can retry as often as you like.",
+    "concepts": ["programming-logic", "algorithms"],
+    "pass_score": 70,
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "What does a computer do with the instructions in a program?",
+        "options": ["Guesses the intent behind vague ones", "Follows them exactly, in order", "Skips the ones it dislikes", "Rewrites them to be more efficient"],
+        "answer": 1,
+        "explanation": "A computer does exactly what the instructions say, in order. Vague or wrong instructions produce wrong results.",
+        "concept": "programming-logic"
+      },
+      {
+        "id": "q2",
+        "prompt": "In the largest-number algorithm, what do you do with the first number?",
+        "options": ["Ignore it", "Remember it as the biggest seen so far", "Add it to the last number", "Delete it from the list"],
+        "answer": 1,
+        "explanation": "You start by remembering the first number as the biggest so far, then compare every other number against it.",
+        "concept": "algorithms"
+      },
+      {
+        "id": "q3",
+        "prompt": "Which statement about algorithms and coding is correct?",
+        "options": [
+          "The steps are the algorithm; translating them into a language is coding",
+          "Typing is the algorithm; the steps are coding",
+          "They mean the same thing",
+          "Algorithms only exist in Python"
+        ],
+        "answer": 0,
+        "explanation": "The thinking (the steps) comes first. Coding is the translation of those steps into a language.",
+        "concept": "programming-logic"
+      },
+      {
+        "id": "q4",
+        "prompt": "Following the algorithm on [3, 9, 4], what is the biggest-so-far after looking at 4?",
+        "options": ["3", "4", "9", "16"],
+        "answer": 2,
+        "explanation": "It starts at 3, becomes 9 when 9 is seen, and stays 9 because 4 is not bigger.",
+        "concept": "algorithms"
+      }
+    ]
+  },
+  {
+    "slug": "order-the-steps",
+    "title": "Order the steps",
+    "kind": "puzzle",
+    "instructions": "Put the steps of the largest-number algorithm in the correct order using the arrow buttons.",
+    "concepts": ["programming-logic", "algorithms"],
+    "pass_score": 100,
+    "puzzle_type": "order",
+    "lines": [
+      "Remember the first number as the biggest so far",
+      "Look at the next number",
+      "If it is bigger, remember it instead",
+      "When the numbers run out, report the one you remembered"
+    ]
+  }
+]

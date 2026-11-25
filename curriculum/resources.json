@@ -1,0 +1,10 @@
+[
+  {"title": "Python tutorial: An informal introduction", "url": "https://docs.python.org/3/tutorial/introduction.html", "kind": "docs", "concept": "variables-data-types", "level": "beginner", "is_open_source": true},
+  {"title": "Python tutorial: Using the Python interpreter", "url": "https://docs.python.org/3/tutorial/interpreter.html", "kind": "docs", "concept": "python-syntax", "level": "beginner", "is_open_source": true},
+  {"title": "Python tutorial: Errors and exceptions", "url": "https://docs.python.org/3/tutorial/errors.html", "kind": "docs", "concept": "debugging", "level": "beginner", "is_open_source": true},
+  {"title": "CS50's Introduction to Programming with Python", "url": "https://cs50.harvard.edu/python/", "kind": "course", "concept": "programming-logic", "level": "beginner", "is_open_source": true},
+  {"title": "CS50's Introduction to Computer Science", "url": "https://cs50.harvard.edu/x/", "kind": "course", "concept": "algorithms", "level": "beginner", "is_open_source": true},
+  {"title": "Python for Everybody", "url": "https://www.py4e.com/", "kind": "course", "concept": "data-flow-state", "level": "beginner", "is_open_source": true},
+  {"title": "Prompt engineering overview (Claude documentation)", "url": "https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview", "kind": "docs", "concept": "prompting-for-development", "level": "intermediate", "is_open_source": false},
+  {"title": "CS50 on YouTube (channel page)", "url": "https://www.youtube.com/@cs50", "kind": "youtube", "concept": "programming-logic", "level": "beginner", "is_open_source": false}
+]
