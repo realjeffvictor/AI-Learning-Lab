@@ -19,6 +19,17 @@ _STATUS_CODES = {
 }
 
 
+class AppError(Exception):
+    """A deliberate, client-visible failure raised by services and dependencies."""
+
+    def __init__(self, status_code: int, code: str, message: str, headers: dict[str, str] | None = None) -> None:
+        super().__init__(message)
+        self.status_code = status_code
+        self.code = code
+        self.message = message
+        self.headers = headers
+
+
 def _envelope(
     request: Request,
     status_code: int,
@@ -38,12 +49,17 @@ def _envelope(
     return JSONResponse(status_code=status_code, content=body, headers=headers)
 
 
+async def app_error_handler(request: Request, exc: AppError) -> JSONResponse:
+    return _envelope(request, exc.status_code, exc.code, exc.message, headers=exc.headers)
+
+
 async def http_exception_handler(request: Request, exc: StarletteHTTPException) -> JSONResponse:
     code = _STATUS_CODES.get(exc.status_code, f"http_{exc.status_code}")
     return _envelope(request, exc.status_code, code, str(exc.detail), headers=exc.headers)
 
 
 async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
+    # Only loc/msg/type are returned: never echo the submitted input (it may contain a password).
     details = [{"loc": list(e["loc"]), "msg": e["msg"], "type": e["type"]} for e in exc.errors()]
     return _envelope(request, 422, "validation_error", "Request validation failed.", details)
 
@@ -55,6 +71,7 @@ async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONR
 
 
 def register_error_handlers(app: FastAPI) -> None:
+    app.add_exception_handler(AppError, app_error_handler)
     app.add_exception_handler(StarletteHTTPException, http_exception_handler)
     app.add_exception_handler(RequestValidationError, validation_exception_handler)
     app.add_exception_handler(Exception, unhandled_exception_handler)
