@@ -114,11 +114,13 @@ class AuthService:
             age = (now - token.revoked_at).total_seconds()
             if age > self.settings.refresh_reuse_grace_seconds:
                 # A rotated or logged-out token came back late: assume theft and end the whole session family.
-                refresh_token_repository.revoke_family(self.session, token.family_id, now)
-                audit_repository.record(
-                    self.session, "auth.refresh_reuse_detected", actor_user_id=token.user_id, ip_address=ip
-                )
-                self.session.commit()
+                # Log it only when this call actually revoked something, so repeated replays cannot flood the audit log.
+                revoked = refresh_token_repository.revoke_family(self.session, token.family_id, now)
+                if revoked:
+                    audit_repository.record(
+                        self.session, "auth.refresh_reuse_detected", actor_user_id=token.user_id, ip_address=ip
+                    )
+                    self.session.commit()
             raise _invalid_refresh()
 
         if token.expires_at <= now:

@@ -18,12 +18,14 @@ def get_by_hash(session: Session, token_hash: str, for_update: bool = False) -> 
     return session.scalar(statement)
 
 
-def revoke_family(session: Session, family_id: uuid.UUID, now: datetime) -> None:
-    session.execute(
+def revoke_family(session: Session, family_id: uuid.UUID, now: datetime) -> int:
+    """Revoke every live token in the family. Returns how many were actually revoked."""
+    result = session.execute(
         update(RefreshToken)
         .where(RefreshToken.family_id == family_id, RefreshToken.revoked_at.is_(None))
         .values(revoked_at=now)
     )
+    return result.rowcount
 
 
 def revoke_all_for_user(session: Session, user_id: uuid.UUID, now: datetime) -> None:
