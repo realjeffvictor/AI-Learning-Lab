@@ -37,3 +37,13 @@ PATCH /users/me/profile {display_name?, bio?, experience_level?} -> 200 user
 GET /users?page=&page_size= (admin) -> 200 {items, page, page_size, total}
 PATCH /users/{id} {role?, is_active?} (admin) -> 200 user; 400 cannot_modify_self; 404 user_not_found
 GET /health now also returns "database": ok | unavailable | not_configured.
+
+### Phase 3 (all require a Bearer access token)
+GET /courses -> [CourseSummary] (counts of published, planned and completed lessons, enrolled flag)
+GET /courses/{course_slug} -> CourseDetail (modules, lessons, per-lesson progress); 404 course_not_found
+GET /courses/{course_slug}/modules/{module_slug}/lessons/{lesson_slug} -> LessonDetail (content_md is null for planned lessons, previous/next links); 404 lesson_not_found
+POST /courses/{course_slug}/enrollment -> 200 {course_slug, enrolled_at} (idempotent)
+GET /progress/summary -> {lessons_completed, time_spent_seconds, courses, competencies, up_next}
+POST /progress/lessons/{lesson_id}/start -> progress (also enrols); 409 lesson_unavailable for planned lessons
+POST /progress/lessons/{lesson_id}/time {seconds 1..120} -> progress; 409 progress_not_started. Credit is capped by elapsed wall-clock time.
+POST /progress/lessons/{lesson_id}/complete -> progress (idempotent; concept exposure counted once)

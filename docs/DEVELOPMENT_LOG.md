@@ -34,3 +34,16 @@
   behind a proxy the client IP needs forwarded-header handling at deployment; production cross-site cookies need
   COOKIE_SAMESITE=none with HTTPS (decided in Phase 8); no frontend component tests until Phase 8.
 - Pending: user confirmation that Phase 2 works end to end.
+
+## Phase 3: Curriculum and Learning Engine (2026-11-25)
+- Phase 2 status: 69 backend tests and 7 frontend tests pass; browser sign-in was still unconfirmed when Phase 3 was requested.
+- Completed: migration 0002 (concepts, courses, modules, lessons, lesson_concepts, enrollments, lesson_progress, user_competencies);
+  curriculum files (34 concepts, 5 stage courses plus the AI-assisted engineering track, every module from the spec);
+  loader with validation and an idempotent seed command; courses, lessons, enrollment and progress APIs;
+  server-verified learning time; concept exposure tracking; frontend curriculum, course, module, lesson, progress pages and a new dashboard.
+- Content honesty: only 4 lessons are written (what is programming, your first Python program, variables and names, the five principles).
+  All other lessons and modules are listed as Planned. Availability is derived from the existence of the lesson Markdown file.
+- Dependencies added: react-markdown (frontend). No new Python packages.
+- Known limitations: no instructor editing yet (Phase 7); lessons contain static code, runnable editors arrive in Phase 4;
+  competency data is exposure only, not skill level; planned lessons cannot be started; completing a lesson cannot be undone.
+- Pending: user confirmation that Phase 3 works end to end.

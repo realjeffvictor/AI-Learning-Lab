@@ -69,3 +69,11 @@ erDiagram
 users, user_profiles (PK = user_id, one-to-one), refresh_tokens (sha256 hash only, family_id for reuse detection),
 audit_logs (JSONB details, actor SET NULL on user delete). Naming convention is defined in app/models/base.py.
 CHECK constraints enforce role, lowercase email and experience level in the database itself.
+
+## Implemented in Phase 3 (migration 0002)
+concepts, courses (kind stage|track, stage_number), modules, lessons (status published|planned, content_md, JSONB objectives and principles),
+lesson_concepts, enrollments, lesson_progress, user_competencies.
+Integrity rules in the database: a lesson is published if and only if it has content; a progress row is completed if and only if it has completed_at;
+stage courses have a stage_number and tracks do not. Curriculum rows referenced by learner data use ON DELETE RESTRICT.
+Deviations from the Phase 0 design: lesson_concepts replaces polymorphic content_concepts (exercise concepts get their own table in Phase 4);
+position columns are indexed, not unique, so content can be reordered during a seed.

@@ -5,7 +5,7 @@ An AI-era software engineering learning platform: Python, Data, APIs, AI Models,
 with a horizontal AI-Assisted Software Engineering track.
 
 ## Status
-Phases 0 and 1 confirmed. Phase 2 (authentication) built. See docs/DEVELOPMENT_ROADMAP.md.
+Phases 0 and 1 confirmed. Phase 2 (authentication) tested. Phase 3 (curriculum engine) built. See docs/DEVELOPMENT_ROADMAP.md.
 
 ## Requirements
 Python 3.11+, Node 20+, git. PostgreSQL is needed from Phase 2.
@@ -43,3 +43,13 @@ DESIGN_SYSTEM.md, DEVELOPMENT_ROADMAP.md, DEVELOPMENT_LOG.md, ARCHITECTURE_DECIS
     cd backend && .venv/bin/alembic upgrade head
     cd backend && .venv/bin/python -m app.cli create-admin --email you@example.com --display-name "Your Name"
 Backend tests need the ailab_test database that setup_db.sh creates.
+
+## Phase 3: curriculum
+Curriculum content lives in curriculum/ as JSON and Markdown. A lesson is published only if its .md file exists.
+
+    cd backend && .venv/bin/alembic upgrade head
+    cd backend && .venv/bin/python -m app.seed --check    # validate only
+    cd backend && .venv/bin/python -m app.seed            # load into the database (safe to re-run)
+
+Add a lesson: list it in the course's course.json, add concept slugs from concepts.json, put the text in
+curriculum/courses/<course>/<module-slug>/<lesson-slug>.md, then run the seed command.

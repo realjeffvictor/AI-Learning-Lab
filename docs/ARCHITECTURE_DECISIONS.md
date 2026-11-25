@@ -39,3 +39,9 @@ ADR-016 Access tokens carry no role; every request reads the user from the datab
 ADR-017 First admin is created by CLI, never by the API. Reason: no self-service path to admin.
 ADR-018 Login throttling is in-process for now. Reason: adequate for a single worker; replaced by shared rate limiting in Phase 8.
 ADR-019 CSRF defence for cookie endpoints is SameSite plus a required custom header, enforced with the CORS allowlist.
+
+ADR-020 Curriculum is stored as files (JSON plus Markdown) and loaded into PostgreSQL by an idempotent seed. Reason: content is reviewable in git and added without code changes. The seed never deletes; missing content is reported as an orphan.
+ADR-021 Lesson availability is derived from the existence of the lesson Markdown file. Reason: the platform cannot show a lesson as available that has not been written.
+ADR-022 Learning time is credited by the server, capped by elapsed wall-clock time since the previous heartbeat plus 5 seconds. Reason: client-reported time alone is trivially inflated.
+ADR-023 Completing a lesson records concept exposure, not skill level. Reason: finishing a lesson is weak evidence of competence; levels will come from graded work.
+ADR-024 Starting a lesson enrols the learner in its course. Reason: removes a pointless extra step; the explicit enroll button remains for adding a course without starting it.
