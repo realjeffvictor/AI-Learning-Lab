@@ -5,7 +5,7 @@ An AI-era software engineering learning platform: Python, Data, APIs, AI Models,
 with a horizontal AI-Assisted Software Engineering track.
 
 ## Status
-Phases 0 and 1 confirmed. Phase 2 (authentication) tested. Phase 3 (curriculum engine) tested. Phase 4 (playground and exercises) tested. Phase 5 (AI assistants) tested. Phase 6 (projects and review) tested. Phase 7 (administration) built. See docs/DEVELOPMENT_ROADMAP.md.
+Phases 0 and 1 confirmed. Phase 2 (authentication) tested. Phase 3 (curriculum engine) tested. Phase 4 (playground and exercises) tested. Phase 5 (AI assistants) tested. Phase 6 (projects and review) tested. Phase 7 (administration) tested. Phase 8 (security, certificates, deployment) built. See docs/DEVELOPMENT_ROADMAP.md.
 
 ## Requirements
 Python 3.11+, Node 20+, git. PostgreSQL is needed from Phase 2.
@@ -80,3 +80,7 @@ so test the flow with two accounts: a learner who submits and an admin or instru
 Instructors and admins get a Manage area at /manage: dashboard, students, enrollment management, and editing of lessons, exercises and project briefs.
 Content edited in the app is flagged and the seed command will not overwrite it (it prints a warning instead).
 Only admins can change roles or deactivate accounts (/admin/users). Learners get notifications for reviews and enrollments.
+
+## Phase 8: security, certificates and deployment
+Read docs/SECURITY_CHECKLIST.md, docs/DEPLOYMENT.md, docs/TESTING.md and docs/MAINTENANCE.md.
+Useful scripts: scripts/backup_db.sh, scripts/restore_drill.sh, scripts/make_vercel_json.sh, scripts/smoke_prod.sh. Render blueprint: render.yaml.
