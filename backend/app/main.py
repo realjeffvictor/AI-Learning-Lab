@@ -11,7 +11,7 @@ from app.core.config import Settings, get_settings
 from app.core.database import create_db_engine, create_session_factory
 from app.core.errors import register_error_handlers
 from app.core.logging import configure_logging
-from app.core.middleware import RequestContextMiddleware
+from app.core.middleware import RequestContextMiddleware, SecurityHeadersMiddleware
 from app.core.security import PasswordService
 from app.core.throttle import LoginThrottle
 
@@ -26,9 +26,23 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         close()
 
 
+def _init_error_monitoring(settings: Settings) -> None:
+    if not settings.sentry_dsn:
+        return
+    import sentry_sdk  # imported lazily: the package is only needed when a DSN is configured
+
+    sentry_sdk.init(
+        dsn=settings.sentry_dsn,
+        environment=settings.environment,
+        send_default_pii=False,
+        traces_sample_rate=0.0,
+    )
+
+
 def create_app(settings: Settings | None = None, ai_provider: AIProvider | None = None) -> FastAPI:
     settings = settings or get_settings()
     configure_logging(settings.log_level)
+    _init_error_monitoring(settings)
 
     app = FastAPI(
         title=settings.app_name,
@@ -72,6 +86,7 @@ def create_app(settings: Settings | None = None, ai_provider: AIProvider | None 
         expose_headers=["X-Request-ID"],
     )
 
+    app.add_middleware(SecurityHeadersMiddleware, production=settings.environment == "production")
     register_error_handlers(app)
     app.include_router(api_router, prefix=settings.api_prefix)
     return app

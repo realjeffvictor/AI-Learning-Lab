@@ -8,3 +8,4 @@ psycopg[binary]
 argon2-cffi
 pyjwt
 httpx
+sentry-sdk

@@ -35,3 +35,23 @@ class RequestContextMiddleware(BaseHTTPMiddleware):
             },
         )
         return response
+
+
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    """Adds defensive headers to every response. HSTS and a strict CSP are only sent in production."""
+
+    def __init__(self, app, production: bool = False) -> None:
+        super().__init__(app)
+        self._production = production
+
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
+        response = await call_next(request)
+        headers = response.headers
+        headers.setdefault("X-Content-Type-Options", "nosniff")
+        headers.setdefault("X-Frame-Options", "DENY")
+        headers.setdefault("Referrer-Policy", "no-referrer")
+        headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+        if self._production:
+            headers.setdefault("Strict-Transport-Security", "max-age=31536000; includeSubDomains")
+            headers.setdefault("Content-Security-Policy", "default-src 'none'; frame-ancestors 'none'")
+        return response

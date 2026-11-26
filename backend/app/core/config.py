@@ -2,7 +2,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from pydantic import SecretStr
+from pydantic import SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parents[2]
@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=BACKEND_DIR / ".env", env_file_encoding="utf-8", extra="ignore")
 
     app_name: str = "AI Learning Lab API"
-    app_version: str = "0.5.0"
+    app_version: str = "0.8.0"
     environment: str = "development"
     api_prefix: str = "/api/v1"
     log_level: str = "INFO"
@@ -52,6 +52,27 @@ class Settings(BaseSettings):
     ai_daily_request_limit: int = 40
     ai_daily_token_limit: int = 100_000
 
+    # Shared (database-backed) rate limits. Set RATE_LIMIT_ENABLED=false only for debugging.
+    rate_limit_enabled: bool = True
+    rl_register_per_hour: int = 10
+    rl_login_per_15min: int = 30
+    rl_refresh_per_15min: int = 120
+    rl_verify_per_minute: int = 30
+    rl_submit_per_hour: int = 120
+    rl_ai_per_minute: int = 10
+
+    # Optional error monitoring. Leave empty to disable.
+    sentry_dsn: str = ""
+
+    @field_validator("database_url")
+    @classmethod
+    def _normalise_database_url(cls, value: str) -> str:
+        """Managed hosts hand out postgres:// or postgresql:// URLs; SQLAlchemy needs the psycopg driver named."""
+        for prefix in ("postgres://", "postgresql://"):
+            if value.startswith(prefix):
+                return "postgresql+psycopg://" + value[len(prefix):]
+        return value
+
     @property
     def cors_origin_list(self) -> list[str]:
         return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
@@ -79,6 +100,8 @@ class Settings(BaseSettings):
             problems.append("DATABASE_URL is required")
         if not self.cookie_secure:
             problems.append("COOKIE_SECURE must be true")
+        if any(origin.startswith("http://") for origin in self.cors_origin_list):
+            problems.append("CORS_ORIGINS must contain https:// origins only (set CORS_ORIGINS)")
         if problems:
             raise RuntimeError("Invalid production configuration: " + "; ".join(problems))
 
