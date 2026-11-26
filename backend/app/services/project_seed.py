@@ -43,6 +43,10 @@ def seed_projects(session: Session, projects: tuple[ProjectData, ...]) -> Projec
             "requirements": [{"id": rid, "text": text} for rid, text in item.requirements],
         }
         existing = session.scalar(select(Project).where(Project.course_id == course_id, Project.slug == item.slug))
+        if existing is not None and existing.managed_in_app:
+            wanted.add((course_id, item.slug))
+            report.orphans.append(f"project {item.slug} (edited in the app; the file was not applied)")
+            continue
         changed = False
         if existing is None:
             project = Project(course_id=course_id, slug=item.slug, **values)

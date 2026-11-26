@@ -53,6 +53,10 @@ def seed_exercises(session: Session, bundle: ExerciseBundle) -> ExerciseSeedRepo
             "pass_score": item.pass_score,
         }
         existing = session.scalar(select(Exercise).where(Exercise.lesson_id == lesson_id, Exercise.slug == item.slug))
+        if existing is not None and existing.managed_in_app:
+            wanted.add((lesson_id, item.slug))
+            report.orphans.append(f"exercise {item.slug} (edited in the app; the file was not applied)")
+            continue
         changed = False
         if existing is None:
             exercise = Exercise(lesson_id=lesson_id, slug=item.slug, **values)

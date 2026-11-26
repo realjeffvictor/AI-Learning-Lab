@@ -90,6 +90,12 @@ def seed_curriculum(session: Session, data: CurriculumData) -> SeedReport:
                 l.slug: l for l in session.scalars(select(Lesson).where(Lesson.module_id == module_obj.id))
             }
             for lesson_position, lesson in enumerate(module.lessons, start=1):
+                kept = existing_lessons.get(lesson.slug)
+                if kept is not None and kept.managed_in_app:
+                    report.orphans.append(
+                        f"lesson {course.slug}/{module.slug}/{lesson.slug} (edited in the app; the file was not applied)"
+                    )
+                    continue
                 lesson_obj, state = _upsert(
                     session, report, "lessons", existing_lessons.get(lesson.slug), Lesson,
                     {"module_id": module_obj.id, "slug": lesson.slug},
