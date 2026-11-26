@@ -72,3 +72,11 @@ ADR-044 Exercise definitions edited in the app go through the same loader valida
 ADR-045 Staff (instructor and admin) share content, student and analytics permissions. Only admins change roles or deactivate accounts. Reason: instructors teach; account security stays with admins. Per-instructor content ownership is deferred.
 ADR-046 Published lessons cannot be emptied, and exercises with submissions cannot be deleted. Reason: learner progress and history must never dangle.
 ADR-047 Notifications are rows polled by the client every 60 seconds. Reason: no websocket or queue infrastructure is justified yet; email and push can be added behind the same notification_service.create.
+
+ADR-048 Rate limits are stored in PostgreSQL (one row per counted request, pruned opportunistically). Reason: shared across processes and restarts without adding Redis. It is a brake rather than an exact meter, and costs one write per limited request.
+ADR-049 Production deployment is same-origin: Vercel proxies /api to Render. Reason: first-party cookies avoid cross-site cookie blocking and CORS. Trade-off: a proxy hop and possible timeouts on long AI calls; the fallback is direct calls with SameSite=None.
+ADR-050 The web app CSP ships report-only first. Reason: Monaco and Pyodide could not be tested against an enforced policy; breaking the playground silently would be worse than a delay.
+ADR-051 Certificates require lessons, server-graded exercises and reviewer-approved projects. Code exercises are excluded and courses without a project cannot issue. Reason: certificates must rest on evidence that cannot be self-reported. A certificate stores snapshots so later content edits do not change it.
+ADR-052 Public verification exposes only name, course and date, is rate limited and uses an unguessable code. Reason: employers can check a certificate without learner accounts or email exposure.
+ADR-053 An automatic authorization matrix test walks every route. Reason: a forgotten dependency on a new endpoint is the most likely authorization bug.
+ADR-054 Error monitoring is optional and lazy: sentry-sdk is installed but only initialised when SENTRY_DSN is set, with no personal data sent. Reason: no cost or privacy impact until the operator opts in.
