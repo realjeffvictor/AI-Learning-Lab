@@ -1,4 +1,4 @@
-"""Load the curriculum/ folder (lessons, exercises, resources) into the database. Usage (from backend/):
+"""Load the curriculum/ folder (lessons, exercises, resources, projects) into the database. Usage (from backend/):
     .venv/bin/python -m app.seed            validate, then write (safe to re-run)
     .venv/bin/python -m app.seed --check    validate only, no database needed
 """
@@ -12,6 +12,8 @@ from app.services.curriculum_loader import CurriculumError, load_curriculum
 from app.services.curriculum_seed import seed_curriculum
 from app.services.exercise_loader import load_exercises
 from app.services.exercise_seed import seed_exercises
+from app.services.project_loader import load_projects
+from app.services.project_seed import seed_projects
 
 DEFAULT_DIR = Path(__file__).resolve().parents[2] / "curriculum"
 
@@ -26,6 +28,7 @@ def main(argv: list[str] | None = None) -> int:
         root = Path(args.dir)
         data = load_curriculum(root)
         bundle = load_exercises(root, data)
+        projects = load_projects(root, data)
     except CurriculumError as exc:
         print(f"Curriculum error: {exc}")
         return 1
@@ -38,6 +41,7 @@ def main(argv: list[str] | None = None) -> int:
         f"({published} written, {len(lessons) - published} planned)."
     )
     print(f"Exercises valid: {len(bundle.exercises)} exercises, {len(bundle.resources)} resources.")
+    print(f"Projects valid: {len(projects)} projects.")
     if args.check:
         return 0
 
@@ -50,6 +54,7 @@ def main(argv: list[str] | None = None) -> int:
         with create_session_factory(engine)() as session:
             report = seed_curriculum(session, data)
             exercise_report = seed_exercises(session, bundle)
+            project_report = seed_projects(session, projects)
             session.commit()
     except CurriculumError as exc:
         print(f"Curriculum error: {exc}")
@@ -57,9 +62,9 @@ def main(argv: list[str] | None = None) -> int:
     finally:
         engine.dispose()
 
-    print(f"Created: {report.created} {exercise_report.created}")
-    print(f"Updated: {report.updated} {exercise_report.updated}")
-    for orphan in [*report.orphans, *exercise_report.orphans]:
+    print(f"Created: {report.created} {exercise_report.created} {project_report.created}")
+    print(f"Updated: {report.updated} {exercise_report.updated} {project_report.updated}")
+    for orphan in [*report.orphans, *exercise_report.orphans, *project_report.orphans]:
         print(f"Warning: in the database but not in the files (kept): {orphan}")
     return 0
 
