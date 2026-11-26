@@ -5,6 +5,7 @@ import { useProgressSummary } from "../features/curriculum/hooks";
 import { ProgressTrace } from "../features/curriculum/ProgressTrace";
 import { MasterySection } from "../features/exercises/MasterySection";
 import { StudyPlanSection } from "../features/ai/StudyPlanSection";
+import { CertificatesSection } from "../features/certificates/CertificatesSection";
 import { AchievementsSection } from "../features/projects/AchievementsSection";
 import type { Competency } from "../features/curriculum/types";
 import { formatDuration } from "../lib/format";
@@ -48,6 +49,7 @@ export function ProgressPage() {
         ))}
       </ul>
 
+      <CertificatesSection />
       <AchievementsSection />
 
       <StudyPlanSection />

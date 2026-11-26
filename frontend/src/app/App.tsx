@@ -26,6 +26,7 @@ import { ProjectEditorPage } from "../routes/ProjectEditorPage";
 import { ProjectPage } from "../routes/ProjectPage";
 import { ProjectsPage } from "../routes/ProjectsPage";
 import { RegisterPage } from "../routes/RegisterPage";
+import { VerifyCertificatePage } from "../routes/VerifyCertificatePage";
 import { ReviewDetailPage } from "../routes/ReviewDetailPage";
 import { ReviewQueuePage } from "../routes/ReviewQueuePage";
 
@@ -35,6 +36,7 @@ export function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/verify/:code" element={<VerifyCertificatePage />} />
       <Route
         element={
           <RequireAuth>
