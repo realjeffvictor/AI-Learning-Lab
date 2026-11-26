@@ -20,7 +20,7 @@ PUZZLE = {"lines": ["a", "b", "c", "d"]}
 def test_quiz_scores_and_tallies_concepts():
     result = grading.grade_quiz(QUIZ, ["x", "y"], {"answers": {"q1": 1, "q2": 0}})
     assert result.score == 50
-    assert result.concept_stats == {"x": [1, 1], "y": [0, 1]}
+    assert result.concept_stats == {"x": [1, 2], "y": [0, 1]}
     assert [f.correct for f in result.feedback] == [True, False]
     assert result.feedback[1].correct_index == 2
 
@@ -38,8 +38,7 @@ def test_code_scores_from_reported_results():
     answer = {"code": "x = 1", "results": [{"id": "t1", "passed": True}, {"id": "t2", "passed": False}]}
     result = grading.grade_code(CODE, ["x", "y"], answer)
     assert result.score == 50
-    assert result.concept_stats == {"x": [1, 1], "x2": [0, 0]} or result.concept_stats["x"] == [1, 1]
-    assert result.concept_stats["x"] == [1, 1] and result.concept_stats["y"] == [0, 1]
+    assert result.concept_stats == {"x": [1, 2], "y": [0, 1]}
 
 
 @pytest.mark.parametrize(
