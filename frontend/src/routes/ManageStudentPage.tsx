@@ -17,8 +17,10 @@ export function ManageStudentPage() {
     enabled: Boolean(userId),
   });
   const change = useMutation({
-    mutationFn: ({ slug, enroll }: { slug: string; enroll: boolean }) =>
-      enroll ? enrollStudent(userId as string, slug) : unenrollStudent(userId as string, slug),
+    mutationFn: async ({ slug, enroll }: { slug: string; enroll: boolean }): Promise<void> => {
+      if (enroll) await enrollStudent(userId as string, slug);
+      else await unenrollStudent(userId as string, slug);
+    },
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["manage"] }),
   });
 
