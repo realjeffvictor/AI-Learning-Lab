@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from typing import Any
 
-from sqlalchemy import CheckConstraint, DateTime, ForeignKey, Index, Integer, String, Text, UniqueConstraint, text
+from sqlalchemy import Boolean, CheckConstraint, DateTime, ForeignKey, Index, Integer, String, Text, UniqueConstraint, false, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -27,6 +27,7 @@ class Project(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     position: Mapped[int] = mapped_column(Integer)
     brief_md: Mapped[str] = mapped_column(Text)
     requirements: Mapped[list[dict[str, str]]] = mapped_column(JSONB)
+    managed_in_app: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
 
 
 class ProjectConcept(Base):

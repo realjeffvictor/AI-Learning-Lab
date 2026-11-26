@@ -27,6 +27,7 @@ class Exercise(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     instructions_md: Mapped[str] = mapped_column(Text)
     definition: Mapped[dict[str, Any]] = mapped_column(JSONB)
     pass_score: Mapped[int] = mapped_column(Integer, default=70, server_default="70")
+    managed_in_app: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
 
 
 class ExerciseConcept(Base):

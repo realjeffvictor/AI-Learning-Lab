@@ -12,6 +12,7 @@ from app.models.curriculum import (
     Module,
     UserCompetency,
 )
+from app.models.ops import Notification
 from app.models.project import Project, ProjectConcept, ProjectReview, ProjectSubmission, UserAchievement
 from app.models.refresh_token import RefreshToken
 from app.models.user import EXPERIENCE_LEVELS, ROLES, User, UserProfile
@@ -32,6 +33,7 @@ __all__ = [
     "LessonConcept",
     "LessonProgress",
     "Module",
+    "Notification",
     "Project",
     "ProjectConcept",
     "ProjectReview",

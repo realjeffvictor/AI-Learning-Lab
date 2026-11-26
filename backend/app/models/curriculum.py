@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import CheckConstraint, DateTime, ForeignKey, Index, Integer, String, Text, UniqueConstraint, text
+from sqlalchemy import Boolean, CheckConstraint, DateTime, ForeignKey, Index, Integer, String, Text, UniqueConstraint, false, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -86,6 +86,7 @@ class Lesson(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     content_md: Mapped[str | None] = mapped_column(Text)
     objectives: Mapped[list[str]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"))
     principles: Mapped[list[str]] = mapped_column(JSONB, default=list, server_default=text("'[]'::jsonb"))
+    managed_in_app: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
 
     module: Mapped[Module] = relationship(back_populates="lessons")
 
