@@ -21,11 +21,12 @@ ADMIN_ONLY = [("GET", "/api/v1/users"), ("PATCH", "/api/v1/users/{user_id}")]
 
 def _routes():
     found = []
-    for route in main_app.routes:
-        if isinstance(route, APIRoute) and route.path.startswith("/api/v1"):
-            for method in sorted(route.methods - {"HEAD", "OPTIONS"}):
-                found.append((method, route.path))
-    return found
+    for path, operations in main_app.openapi()["paths"].items():
+        if path.startswith("/api/v1"):
+            for method in operations:
+                if method.lower() in {"get", "post", "put", "patch", "delete"}:
+                    found.append((method.upper(), path))
+    return sorted(found)
 
 
 ROUTES = _routes()
