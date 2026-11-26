@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.ai.provider import AIProvider
 from app.api.deps import get_current_user, get_db
+from app.api.rate_limit import user_rate_limit
 from app.core.config import Settings
 from app.core.deps import get_app_settings
 from app.models import User
@@ -19,6 +20,8 @@ from app.schemas.ai import (
 from app.services import ai_service
 
 router = APIRouter(prefix="/ai", tags=["ai"])
+
+ai_limit = user_rate_limit("ai", "rl_ai_per_minute", 60)
 
 
 def get_provider(request: Request) -> AIProvider | None:
@@ -35,7 +38,7 @@ def read_status(
     return ai_service.get_status(db, settings, provider, user.id)
 
 
-@router.post("/chat", response_model=ChatResponse)
+@router.post("/chat", response_model=ChatResponse, dependencies=[Depends(ai_limit)])
 def post_chat(
     payload: ChatRequest,
     user: User = Depends(get_current_user),
@@ -46,7 +49,7 @@ def post_chat(
     return ai_service.chat(db, settings, provider, user, payload)
 
 
-@router.post("/study-plan", response_model=StudyPlanResponse)
+@router.post("/study-plan", response_model=StudyPlanResponse, dependencies=[Depends(ai_limit)])
 def post_study_plan(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),

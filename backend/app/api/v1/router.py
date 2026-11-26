@@ -4,6 +4,7 @@ from app.api.v1 import (
     achievements,
     ai,
     auth,
+    certificates,
     courses,
     exercises,
     health,
@@ -28,3 +29,4 @@ api_router.include_router(reviews.router)
 api_router.include_router(achievements.router)
 api_router.include_router(manage.router)
 api_router.include_router(notifications.router)
+api_router.include_router(certificates.router)

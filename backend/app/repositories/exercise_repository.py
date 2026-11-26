@@ -95,12 +95,20 @@ def list_submissions(session: Session, user_id: uuid.UUID, exercise_id: uuid.UUI
 
 def mastery(session: Session, user_id: uuid.UUID):
     """Per-concept totals using only each exercise's latest attempt, so retries cannot inflate the numbers."""
-    latest = (
-        select(Submission.id)
+    ranked = (
+        select(
+            Submission.id.label("submission_id"),
+            func.row_number()
+            .over(
+                partition_by=Submission.exercise_id,
+                order_by=(Submission.created_at.desc(), Submission.id.desc()),
+            )
+            .label("rank"),
+        )
         .where(Submission.user_id == user_id)
-        .distinct(Submission.exercise_id)
-        .order_by(Submission.exercise_id, Submission.created_at.desc())
+        .subquery()
     )
+    latest = select(ranked.c.submission_id).where(ranked.c.rank == 1)
     return session.execute(
         select(
             Concept.slug,
