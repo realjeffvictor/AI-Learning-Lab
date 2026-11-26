@@ -100,3 +100,12 @@
   app-created lessons are listed in the seed warnings on every run; notifications are polled every 60 seconds (no push); no email notifications;
   analytics are live queries without caching, which is fine at this scale.
 - Pending: user confirmation that Phase 7 works end to end (both roles).
+
+## Phase 8: Security, Testing and Deployment (2026-11-26)
+- Phase 7 status: built and tested (288 backend, 35 frontend). Phases 4 to 6 frontend files were missing after their scripts stopped early and were restored with a repair script.
+- Completed: migration 0007 (rate_limit_hits, certificates); shared database-backed rate limiting; security headers; production configuration checks and database URL normalisation;
+  optional Sentry error monitoring; certificates with public verification; authorization matrix test over every route; hardening tests; replaced the deprecated DISTINCT ON mastery query with a window function;
+  backup, restore drill, smoke check and Vercel config scripts; Render blueprint; security, deployment, testing and maintenance documents.
+- Known limitations: see docs/SECURITY_CHECKLIST.md (IP spoofing behind proxies, report-only CSP, no password reset, MFA, account export or deletion, no frontend component or end-to-end tests).
+  Deployment was written from documentation and has not been exercised on Render or Vercel by the author.
+- Pending: user confirmation that Phase 8 works locally, then a first real deployment.
