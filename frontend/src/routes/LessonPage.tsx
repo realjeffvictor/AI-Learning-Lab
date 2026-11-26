@@ -10,6 +10,8 @@ import { LessonMarkdown } from "../features/curriculum/LessonMarkdown";
 import { PrincipleGlyphs } from "../features/curriculum/PrincipleGlyphs";
 import type { CourseDetail } from "../features/curriculum/types";
 import { useLessonTimer } from "../features/curriculum/useLessonTimer";
+import { ExerciseSection } from "../features/exercises/ExerciseSection";
+import { AssistantSection } from "../features/ai/AssistantSection";
 import { formatDuration } from "../lib/format";
 
 function Outline({ course, currentSlug, moduleSlug }: { course: CourseDetail; currentSlug: string; moduleSlug: string }) {
@@ -114,6 +116,9 @@ export function LessonPage() {
             </p>
           )}
         </div>
+
+        <ExerciseSection lessonId={lessonId} />
+        <AssistantSection lessonId={lessonId} />
 
         <div className="mt-12 flex flex-wrap justify-between gap-4 border-t border-rule pt-4 text-sm">
           {data.previous ? (
