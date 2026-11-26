@@ -15,6 +15,7 @@ from app.models.curriculum import (
 from app.models.ops import Notification
 from app.models.project import Project, ProjectConcept, ProjectReview, ProjectSubmission, UserAchievement
 from app.models.refresh_token import RefreshToken
+from app.models.security import Certificate, RateLimitHit
 from app.models.user import EXPERIENCE_LEVELS, ROLES, User, UserProfile
 
 __all__ = [
@@ -23,6 +24,7 @@ __all__ = [
     "AIUsageCounter",
     "AuditLog",
     "Base",
+    "Certificate",
     "Concept",
     "Course",
     "EXPERIENCE_LEVELS",
@@ -39,6 +41,7 @@ __all__ = [
     "ProjectReview",
     "ProjectSubmission",
     "ROLES",
+    "RateLimitHit",
     "RefreshToken",
     "Resource",
     "Submission",
