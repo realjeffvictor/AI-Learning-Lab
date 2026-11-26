@@ -97,3 +97,6 @@ the achievements catalog is code, not a table. Submissions use ON DELETE RESTRIC
 ## Implemented in Phase 7 (migration 0006)
 notifications (user_id CASCADE, kind, title, body, link, read_at; index on user_id + created_at); managed_in_app boolean on lessons, exercises and projects.
 Role-level analytics are computed from existing tables, so no analytics tables were added.
+
+## Implemented in Phase 8 (migration 0007)
+rate_limit_hits (bucket, key, created_at; index on all three; pruned opportunistically), certificates (one per user and course, unique public code, snapshot of holder name, course title and criteria; user CASCADE, course RESTRICT).
