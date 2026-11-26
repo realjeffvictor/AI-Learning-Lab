@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { ErrorNote, Loading } from "../components/StateMessage";
 import { useProgressSummary } from "../features/curriculum/hooks";
 import { ProgressTrace } from "../features/curriculum/ProgressTrace";
+import { MasterySection } from "../features/exercises/MasterySection";
+import { StudyPlanSection } from "../features/ai/StudyPlanSection";
+import { AchievementsSection } from "../features/projects/AchievementsSection";
 import type { Competency } from "../features/curriculum/types";
 import { formatDuration } from "../lib/format";
 
@@ -44,6 +47,11 @@ export function ProgressPage() {
           </li>
         ))}
       </ul>
+
+      <AchievementsSection />
+
+      <StudyPlanSection />
+      <MasterySection />
 
       <h2 className="mb-1 mt-10 font-mono text-xs uppercase tracking-widest text-ink-muted">Concept exposure</h2>
       <p className="max-w-2xl text-sm text-ink-muted">
