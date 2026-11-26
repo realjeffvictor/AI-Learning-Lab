@@ -7,7 +7,7 @@ from app.core.project_rules import MIN_APPROVAL_SCORE
 from app.models import ProjectReview, User
 from app.repositories import audit_repository, project_repository
 from app.schemas.project import QueueItem, QueuePage, ReviewDetail, ReviewRequest
-from app.services import achievement_service, project_service
+from app.services import achievement_service, notification_service, project_service
 
 
 def queue(session: Session, page: int, page_size: int) -> QueuePage:
@@ -86,6 +86,7 @@ def review(
         ip_address=ip,
         details={"submission_id": str(submission.id), "outcome": request.outcome},
     )
+    notification_service.notify_review(session, submission, request.outcome)
     achievement_service.sync(session, submission.user_id)
     session.commit()
     return get_detail(session, submission.id)
