@@ -103,7 +103,7 @@ def _clean_tables(db_engine: Engine) -> None:
     # CASCADE also empties enrollments, progress, competencies, modules, lessons and lesson_concepts.
     with db_engine.begin() as connection:
         connection.execute(
-            text("TRUNCATE TABLE audit_logs, refresh_tokens, user_profiles, users, courses, concepts CASCADE")
+            text("TRUNCATE TABLE audit_logs, refresh_tokens, user_profiles, users, courses, concepts, rate_limit_hits, certificates CASCADE")
         )
 
 
