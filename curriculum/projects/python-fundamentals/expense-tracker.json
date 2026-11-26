@@ -1,0 +1,14 @@
+{
+  "title": "Personal expense tracker",
+  "summary": "Build a small command-line program that records expenses, saves them to a file and reports totals by category.",
+  "kind": "build",
+  "concepts": ["variables-data-types", "data-structures", "functions", "files-exceptions", "debugging"],
+  "requirements": [
+    {"id": "add-expense", "text": "The user can add an expense with an amount, a category and a note."},
+    {"id": "list-and-totals", "text": "The program can list all expenses and show the total for each category."},
+    {"id": "saves-to-file", "text": "Expenses are saved to a file and loaded again when the program starts."},
+    {"id": "handles-bad-input", "text": "Invalid input, such as a non-numeric amount, shows a clear message and does not crash the program."},
+    {"id": "uses-functions", "text": "The code is organised into functions, and each function has a short docstring."},
+    {"id": "has-readme", "text": "The README explains how to run the program and shows one example session."}
+  ]
+}

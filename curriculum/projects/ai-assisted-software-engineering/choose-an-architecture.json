@@ -1,0 +1,14 @@
+{
+  "title": "Choose an architecture",
+  "summary": "A small team needs a note-taking web app. Compare at least two architectures and write a decision record that you could defend in a design review.",
+  "kind": "architecture",
+  "concepts": ["system-architecture", "tradeoff-analysis", "technology-selection", "client-server"],
+  "requirements": [
+    {"id": "context", "text": "You stated the context and the constraints in your own words."},
+    {"id": "options", "text": "You described at least two realistic architecture options."},
+    {"id": "tradeoffs", "text": "You compared the options on cost, complexity, risk and fit for this team."},
+    {"id": "decision", "text": "You made a clear decision and explained why you chose it."},
+    {"id": "consequences", "text": "You listed the consequences and risks of your decision."},
+    {"id": "revisit", "text": "You said how you would verify the decision works, and what would make you revisit it."}
+  ]
+}

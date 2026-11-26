@@ -1,0 +1,13 @@
+{
+  "title": "Review AI-generated code",
+  "summary": "An assistant produced three small functions. Review them like a senior engineer: find the problems, explain them and say how you would fix and test them.",
+  "kind": "code_review",
+  "concepts": ["reviewing-ai-code", "security-awareness", "ai-era-developer-mindset", "root-cause-diagnosis"],
+  "requirements": [
+    {"id": "found-problems", "text": "You identified at least three different problems in the code."},
+    {"id": "explained-impact", "text": "For each problem you explained what goes wrong, and under what input or situation."},
+    {"id": "proposed-fixes", "text": "For each problem you described a fix in your own words."},
+    {"id": "test-plan", "text": "You described how you would test each fix, including at least one edge case."},
+    {"id": "ai-instruction", "text": "You wrote the instruction you would give an AI assistant to fix the code, with context and constraints."}
+  ]
+}
