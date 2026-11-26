@@ -4,6 +4,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.ai.openai_provider import OpenAIProvider
+from app.ai.provider import AIProvider
 from app.api.v1.router import api_router
 from app.core.config import Settings, get_settings
 from app.core.database import create_db_engine, create_session_factory
@@ -19,9 +21,12 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     yield
     if app.state.engine is not None:
         app.state.engine.dispose()
+    close = getattr(app.state.ai_provider, "close", None)
+    if callable(close):
+        close()
 
 
-def create_app(settings: Settings | None = None) -> FastAPI:
+def create_app(settings: Settings | None = None, ai_provider: AIProvider | None = None) -> FastAPI:
     settings = settings or get_settings()
     configure_logging(settings.log_level)
 
@@ -42,6 +47,19 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         app.state.session_factory = None
     app.state.passwords = PasswordService.from_settings(settings)
     app.state.login_throttle = LoginThrottle(settings.login_max_failures, settings.login_window_seconds)
+
+    # None means the AI assistants are switched off (no key configured).
+    if ai_provider is not None:
+        app.state.ai_provider = ai_provider
+    elif settings.ai_configured:
+        app.state.ai_provider = OpenAIProvider(
+            api_key=settings.openai_api_key.get_secret_value().strip(),
+            model=settings.openai_model,
+            base_url=settings.openai_base_url,
+            timeout_seconds=settings.ai_timeout_seconds,
+        )
+    else:
+        app.state.ai_provider = None
 
     # Middleware added last is outermost: CORS wraps everything so error responses carry CORS headers too.
     app.add_middleware(RequestContextMiddleware)
