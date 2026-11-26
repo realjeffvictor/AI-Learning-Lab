@@ -87,3 +87,9 @@ GET|POST /manage/lessons/{lesson_id}/exercises (409 lesson_unavailable|slug_take
 GET|PUT|DELETE /manage/exercises/{id} (DELETE: 409 has_submissions)
 GET|PUT /manage/projects/{id}
 Any signed-in user: GET /notifications, GET /notifications/unread-count, POST /notifications/{id}/read, POST /notifications/read-all (all filtered by owner).
+
+### Phase 8
+Rate limiting: register, login and refresh are limited per client IP; exercise submission, AI chat, study plan and certificate issue per user; certificate verification per IP. Exceeding a limit returns 429 {"error": {"code": "rate_limited"}} with a Retry-After header.
+GET /certificates -> per course: requirements (lessons, exercises, projects with done/total), eligible, message, certificate or null
+POST /certificates/{course_slug} -> 200 certificate (idempotent); 409 not_eligible, 404 course_not_found
+GET /certificates/verify/{code} (public) -> {valid, holder_name, course_title, issued_at}; 404 c
