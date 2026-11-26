@@ -1,6 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
 import { Button } from "../../components/Button";
+import { fetchUnreadCount } from "../notifications/api";
 import { useAuth } from "./AuthContext";
 
 const linkClass = ({ isActive }: { isActive: boolean }) =>
@@ -8,7 +10,15 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 
 export function AppShell() {
   const { user, logout } = useAuth();
+  const unread = useQuery({
+    queryKey: ["notifications", "unread"],
+    queryFn: ({ signal }) => fetchUnreadCount(signal),
+    refetchInterval: 60_000,
+    enabled: Boolean(user),
+  });
   if (!user) return null;
+  const isStaff = user.role === "instructor" || user.role === "admin";
+  const count = unread.data?.unread_count ?? 0;
   return (
     <div className="min-h-screen">
       <header className="border-b border-rule bg-surface">
@@ -17,30 +27,24 @@ export function AppShell() {
             AI Learning Lab
           </Link>
           <nav aria-label="Main" className="flex flex-wrap gap-5">
-            <NavLink to="/dashboard" className={linkClass}>
-              Dashboard
-            </NavLink>
-            <NavLink to="/courses" className={linkClass}>
-              Curriculum
-            </NavLink>
-            <NavLink to="/progress" className={linkClass}>
-              Progress
-            </NavLink>
-            <NavLink to="/profile" className={linkClass}>
-              Profile
-            </NavLink>
-            {user.role === "admin" && (
-              <NavLink to="/admin/users" className={linkClass}>
-                Users
-              </NavLink>
-            )}
+            <NavLink to="/dashboard" className={linkClass}>Dashboard</NavLink>
+            <NavLink to="/courses" className={linkClass}>Curriculum</NavLink>
+            <NavLink to="/projects" className={linkClass}>Projects</NavLink>
+            <NavLink to="/progress" className={linkClass}>Progress</NavLink>
+            <NavLink to="/playground" className={linkClass}>Playground</NavLink>
+            <NavLink to="/assistant" className={linkClass}>Assistant</NavLink>
+            <NavLink to="/profile" className={linkClass}>Profile</NavLink>
+            {isStaff && <NavLink to="/manage" end className={linkClass}>Manage</NavLink>}
+            {isStaff && <NavLink to="/reviews" className={linkClass}>Reviews</NavLink>}
+            {user.role === "admin" && <NavLink to="/admin/users" className={linkClass}>Users</NavLink>}
           </nav>
           <div className="ml-auto flex items-center gap-3 py-2 text-sm">
+            <Link to="/notifications" className="font-mono text-xs hover:text-signal" aria-label={`Notifications, ${count} unread`}>
+              Notifications{count > 0 ? ` (${count})` : ""}
+            </Link>
             <span className="font-mono text-xs uppercase tracking-widest text-ink-muted">{user.role}</span>
             <span>{user.profile.display_name}</span>
-            <Button variant="secondary" onClick={() => void logout()}>
-              Sign out
-            </Button>
+            <Button variant="secondary" onClick={() => void logout()}>Sign out</Button>
           </div>
         </div>
       </header>
