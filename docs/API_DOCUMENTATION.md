@@ -47,3 +47,43 @@ GET /progress/summary -> {lessons_completed, time_spent_seconds, courses, compet
 POST /progress/lessons/{lesson_id}/start -> progress (also enrols); 409 lesson_unavailable for planned lessons
 POST /progress/lessons/{lesson_id}/time {seconds 1..120} -> progress; 409 progress_not_started. Credit is capped by elapsed wall-clock time.
 POST /progress/lessons/{lesson_id}/complete -> progress (idempotent; concept exposure counted once)
+
+### Phase 4 (all require a Bearer access token)
+GET /lessons/{lesson_id}/exercises -> [ExercisePublic] (answers, explanations and puzzle order are never included); 404 lesson_not_found; [] for planned lessons
+POST /exercises/{exercise_id}/submissions {answer} -> 201 {score, passed, pass_score, attempt_number, feedback, concept_results, recommendations}; 422 invalid_answer; 404 exercise_not_found
+  quiz answer: {"answers": {question_id: option_index}}; puzzle answer: {"order": [item_id, ...]}; code answer: {"code": str, "results": [{"id", "passed"}]} (results are reported by the browser)
+GET /exercises/{exercise_id}/submissions -> latest 20 attempts, newest first
+GET /assessments/mastery -> per-concept correct and total, using the latest attempt at each exercise
+
+### Phase 5 (all require a Bearer access token)
+GET /ai/status -> {enabled, model, usage}
+POST /ai/chat {assistant, mode, message (1..4000), conversation_id?, lesson_id?, exercise_id?, code? (max 8000)} -> {conversation_id, assistant, mode, reply, usage}
+  assistant: tutor|code|debug|architecture|testing|docs|review. mode: independent|hint|pair|generate|review. The review assistant always runs in review mode.
+  Errors: 403 ai_disabled_in_mode, 503 ai_not_configured, 429 ai_daily_limit, 502 ai_provider_error, 404 lesson_not_found|exercise_not_found|conversation_not_found, 409 conversation_mismatch
+POST /ai/study-plan -> {reply, weak_concepts, recommendations, usage}; the reply never contains URLs
+GET /ai/conversations -> latest 20; GET /ai/conversations/{id} -> messages; DELETE /ai/conversations/{id} -> 204. All filtered by owner.
+
+### Phase 6 (all require a Bearer access token)
+GET /projects -> [ProjectSummary] with the caller's status (not_started|draft|submitted|approved|changes_requested)
+GET /projects/{course_slug}/{project_slug} -> ProjectDetail (brief, requirements, own submission, review history); 404 project_not_found
+PUT /projects/{project_id}/submission {repo_url?, documentation_md?, reflection_md?, requirement_checks?} -> SubmissionRead (partial update; creates the draft)
+  422 validation_error (bad GitHub link), 422 invalid_requirement, 422 repo_not_applicable, 409 submission_locked
+POST /projects/{project_id}/submission/submit -> SubmissionRead; 409 no_draft, 409 submission_locked, 422 submission_incomplete (message lists what is missing)
+GET /achievements -> 7 achievements with earned and earned_at (also records newly earned ones; repeating it changes nothing)
+
+Staff only (instructor or admin; students get 403):
+GET /reviews/queue?page=&page_size= -> submitted work, oldest first
+GET /reviews/submissions/{submission_id} -> ReviewDetail; drafts return 404
+POST /reviews/submissions/{submission_id} {outcome, rubric_scores {understanding, implementation, verification, ownership: 1..4}, feedback (10+ chars)} -> ReviewDetail
+  403 cannot_review_own, 409 not_awaiting_review, 422 rubric_too_low (approval needs 2+ on every criterion), 404 submission_not_found
+
+### Phase 7
+Staff only (instructor or admin; others get 403) under /manage:
+GET /manage/overview; GET /manage/students?page&page_size&q&role; GET /manage/students/{user_id}
+PUT|DELETE /manage/students/{user_id}/enrollments/{course_slug} (PUT is idempotent and notifies the learner; DELETE keeps progress)
+GET /manage/content; GET /manage/concepts
+GET|PUT /manage/lessons/{id}; POST /manage/modules/{module_id}/lessons (409 slug_taken, 422 invalid_slug|unknown_concept|cannot_unpublish)
+GET|POST /manage/lessons/{lesson_id}/exercises (409 lesson_unavailable|slug_taken, 422 invalid_definition|unknown_concept)
+GET|PUT|DELETE /manage/exercises/{id} (DELETE: 409 has_submissions)
+GET|PUT /manage/projects/{id}
+Any signed-in user: GET /notifications, GET /notifications/unread-count, POST /notifications/{id}/read, POST /notifications/read-all (all filtered by owner).

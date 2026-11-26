@@ -77,3 +77,23 @@ Integrity rules in the database: a lesson is published if and only if it has con
 stage courses have a stage_number and tracks do not. Curriculum rows referenced by learner data use ON DELETE RESTRICT.
 Deviations from the Phase 0 design: lesson_concepts replaces polymorphic content_concepts (exercise concepts get their own table in Phase 4);
 position columns are indexed, not unique, so content can be reordered during a seed.
+
+## Implemented in Phase 4 (migration 0003)
+exercises (kind code|quiz|puzzle, JSONB definition including answers, pass_score), exercise_concepts, submissions (JSONB answer, score 0 to 100),
+submission_concept_results (correct <= total), resources (curated links, unique url, kind youtube|article|docs|course|repo).
+Submissions use ON DELETE RESTRICT on exercises so learner history is never lost by deleting content. The recommendations table from Phase 0 is not
+needed yet: recommendations are computed from submission_concept_results, lesson_concepts and resources at submit time.
+
+## Implemented in Phase 5 (migration 0004)
+ai_conversations (assistant, title, optional lesson_id and exercise_id with ON DELETE SET NULL), ai_messages (role, mode, content; created_at set by the service so a message and its reply sort correctly),
+ai_usage_counters (primary key user_id + UTC day; requests, tokens_in, tokens_out). Deferred from the Phase 0 list: ai_assistance_sessions, ai_interactions, code_artifacts, code_reviews, architecture_decisions.
+
+## Implemented in Phase 6 (migration 0005)
+projects (kind build|architecture|code_review, brief_md, JSONB requirements), project_concepts, project_submissions (one per user and project; status draft|submitted|approved|changes_requested;
+CHECK that every non-draft row has submitted_at), project_reviews (one row per review, JSONB rubric_scores, reviewer SET NULL on delete), user_achievements (only earned rows; the catalog is in code).
+Deviations from Phase 0: project_reviews replaces separate code_reviews and architecture_decisions tables (all project kinds share one review flow);
+the achievements catalog is code, not a table. Submissions use ON DELETE RESTRICT on projects so learner work is never lost by deleting content.
+
+## Implemented in Phase 7 (migration 0006)
+notifications (user_id CASCADE, kind, title, body, link, read_at; index on user_id + created_at); managed_in_app boolean on lessons, exercises and projects.
+Role-level analytics are computed from existing tables, so no analytics tables were added.
