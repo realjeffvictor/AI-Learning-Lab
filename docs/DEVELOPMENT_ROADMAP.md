@@ -9,7 +9,7 @@
 | 4 | Monaco + Pyodide worker, exercises, quizzes, puzzles/games, scoring, concept results, recommendations v1 | Confirmed (tests pass) |
 | 5 | AI providers, tutor, 5 modes, assistants, usage limits, AI-driven recommendations | Confirmed (tests pass) |
 | 6 | Projects, submissions, evaluations, achievements, certificates | Confirmed (tests pass) |
-| 7 | Instructor/admin tools, analytics, notifications, enrollment mgmt | Built, awaiting confirmation |
-| 8 | Security hardening, test suites, rate limiting, logging, backups, deployment | Pending |
+| 7 | Instructor/admin tools, analytics, notifications, enrollment mgmt | Confirmed (tests pass) |
+| 8 | Security hardening, test suites, rate limiting, logging, backups, deployment | Built, awaiting confirmation |
 
 Rule: a phase starts only after the previous phase is confirmed working.
