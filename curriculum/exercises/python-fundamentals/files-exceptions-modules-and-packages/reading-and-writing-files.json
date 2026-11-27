@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "files-check",
+    "title": "Files check",
+    "kind": "quiz",
+    "instructions": "Five questions on reading and writing files.",
+    "concepts": ["files-exceptions"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does opening an existing file with mode 'w' do?", "options": ["Adds to the end", "Erases the existing content first", "Raises an error", "Opens it read-only"], "answer": 1, "explanation": "Mode 'w' creates the file or empties it. Use 'a' to add to the end.", "concept": "files-exceptions"},
+      {"id": "q2", "prompt": "Why is `with open(...) as f:` preferred?", "options": ["It is faster", "It closes the file for you, even if an error happens", "It makes the file read-only", "It creates a backup"], "answer": 1, "explanation": "The with block guarantees the file is closed when the block ends.", "concept": "files-exceptions"},
+      {"id": "q3", "prompt": "Looping over a file gives lines like 'alpha\\n'. What does line.strip() give?", "options": ["'alpha\\n'", "'alpha'", "'\\n'", "An error"], "answer": 1, "explanation": "strip removes the whitespace at both ends, including the newline.", "concept": "files-exceptions"},
+      {"id": "q4", "prompt": "What happens when you open a file that does not exist in the default read mode?", "options": ["An empty file is created", "A FileNotFoundError", "It returns None", "Python waits until it exists"], "answer": 1, "explanation": "Reading needs an existing file. Only the write and append modes create one.", "concept": "files-exceptions"},
+      {"id": "q5", "prompt": "Does f.write('hello') add a new line after the text?", "options": ["Yes, always", "No, you add \\n yourself", "Only in append mode", "Only on Windows"], "answer": 1, "explanation": "write adds exactly what you give it. Include \\n where you want a line break.", "concept": "files-exceptions"}
+    ]
+  },
+  {
+    "slug": "notes-file",
+    "title": "Write and read a notes file",
+    "kind": "code",
+    "instructions": "Use the file `/tmp/notes.txt`.\n\n1. Write the three lines `alpha`, `beta` and `gamma` to it (mode `\"w\"`), one per line.\n2. Append a fourth line, `delta` (mode `\"a\"`).\n3. Read the file back with a **for loop** and create `lines`: a list of the lines with the line endings removed.\n4. Create `count`: how many lines there are.\n5. Print `count`.\n\nUse `with` every time.",
+    "concepts": ["files-exceptions", "loops"],
+    "pass_score": 100,
+    "starter_code": "# Write, append and read /tmp/notes.txt, then print count\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "lines", "description": "lines is ['alpha', 'beta', 'gamma', 'delta']", "type": "return", "call": "lines", "expected": ["alpha", "beta", "gamma", "delta"]},
+      {"id": "count", "description": "count is 4", "type": "return", "call": "count", "expected": 4},
+      {"id": "printed", "description": "the program prints 4", "type": "stdout", "expected_stdout": "4"}
+    ]
+  }
+]

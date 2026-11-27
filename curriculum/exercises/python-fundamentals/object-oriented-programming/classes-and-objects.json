@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "classes-check",
+    "title": "Classes and objects check",
+    "kind": "quiz",
+    "instructions": "Five questions on classes, objects and methods.",
+    "concepts": ["oop"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What is `self` inside a method?", "options": ["The class itself", "The particular object the method was called on", "A reserved word that does nothing", "The name of the file"], "answer": 1, "explanation": "self is the object the method was called on. Python passes it automatically.", "concept": "oop"},
+      {"id": "q2", "prompt": "When does __init__ run?", "options": ["When the object is created", "When the object is printed", "When the program ends", "Only when you call it yourself"], "answer": 0, "explanation": "Python calls __init__ automatically each time you create an object, so it sets up the starting data.", "concept": "oop"},
+      {"id": "q3", "prompt": "After a = Account('Ada', 100), b = Account('Linus') and a.deposit(25), what is b.balance (the default balance is 0)?", "options": ["25", "100", "0", "125"], "answer": 2, "explanation": "Each object keeps its own attributes. Changing a does not touch b.", "concept": "oop"},
+      {"id": "q4", "prompt": "Inside a method, what does `balance += amount` (without self.) do when balance is an attribute?", "options": ["Updates the attribute", "Raises an UnboundLocalError", "Creates a new attribute", "Does nothing"], "answer": 1, "explanation": "Without self. Python treats balance as a local variable that has no value yet. Attributes are reached through self.", "concept": "oop"},
+      {"id": "q5", "prompt": "A function written inside a class is called a...", "options": ["method", "module", "package", "attribute"], "answer": 0, "explanation": "Functions defined inside a class are methods. Data stored on an object is an attribute.", "concept": "oop"}
+    ]
+  },
+  {
+    "slug": "build-an-account",
+    "title": "Build an Account class",
+    "kind": "code",
+    "instructions": "Write a class `Account`:\n\n- `Account(owner, balance=0)` stores `owner` and `balance`.\n- `deposit(amount)` adds to the balance.\n- `withdraw(amount)` takes money out and returns `True`, but if the balance is too small it changes nothing and returns `False`.\n\nThere is nothing to print. Your class is tested directly.",
+    "concepts": ["oop", "functions"],
+    "pass_score": 100,
+    "starter_code": "class Account:\n    pass\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "balance", "description": "Account('Ada', 100) starts with a balance of 100", "type": "return", "call": "Account('Ada', 100).balance", "expected": 100},
+      {"id": "default", "description": "the balance defaults to 0", "type": "return", "call": "Account('Ada').balance", "expected": 0},
+      {"id": "owner", "description": "the owner is stored", "type": "return", "call": "Account('Ada').owner", "expected": "Ada"},
+      {"id": "deposit", "description": "depositing 50 into 100 gives 150", "type": "return", "call": "(lambda a: (a.deposit(50), a.balance)[1])(Account('Ada', 100))", "expected": 150},
+      {"id": "withdraw_ok", "description": "withdrawing 30 from 100 returns True and leaves 70", "type": "return", "call": "(lambda a: [a.withdraw(30), a.balance])(Account('Ada', 100))", "expected": [true, 70]},
+      {"id": "withdraw_too_much", "description": "withdrawing 500 from 100 returns False and leaves 100", "type": "return", "call": "(lambda a: [a.withdraw(500), a.balance])(Account('Ada', 100))", "expected": [false, 100]}
+    ]
+  }
+]

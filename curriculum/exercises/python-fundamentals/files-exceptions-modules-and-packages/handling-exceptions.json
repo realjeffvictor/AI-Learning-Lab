@@ -1,0 +1,45 @@
+[
+  {
+    "slug": "exceptions-check",
+    "title": "Exceptions check",
+    "kind": "quiz",
+    "instructions": "Five questions on try, except and raise.",
+    "concepts": ["files-exceptions", "debugging"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does `int('abc')` raise?", "options": ["TypeError", "ValueError", "KeyError", "SyntaxError"], "answer": 1, "explanation": "The text cannot be converted to a number, so Python raises a ValueError.", "concept": "files-exceptions"},
+      {"id": "q2", "prompt": "In a try block, an error happens on line 2 of 4. What happens to lines 3 and 4?", "options": ["They run anyway", "They are skipped, and Python jumps to a matching except", "The program restarts", "They run twice"], "answer": 1, "explanation": "The rest of the try block is abandoned as soon as the exception is raised.", "concept": "files-exceptions"},
+      {"id": "q3", "prompt": "When does a finally block run?", "options": ["Only if there was an error", "Only if there was no error", "Always", "Never automatically"], "answer": 2, "explanation": "finally runs whether or not an exception happened, which makes it the place for clean-up.", "concept": "files-exceptions"},
+      {"id": "q4", "prompt": "Why is `except Exception: pass` usually a bad idea?", "options": ["It is a SyntaxError", "It hides real bugs, because errors vanish without a trace", "It makes the program slower", "It only works once"], "answer": 1, "explanation": "Silencing every error means you never find out something is broken. Handle specific errors and say something useful.", "concept": "debugging"},
+      {"id": "q5", "prompt": "What does `raise ValueError('bad')` do?", "options": ["Prints bad and carries on", "Raises a ValueError with that message", "Returns the text bad", "Catches a ValueError"], "answer": 1, "explanation": "raise creates and throws the exception yourself, so your function can refuse bad input.", "concept": "files-exceptions"}
+    ]
+  },
+  {
+    "slug": "safe-helpers",
+    "title": "Safe helpers",
+    "kind": "code",
+    "instructions": "Write two functions that never crash:\n\n- `safe_int(text, default=0)` returns `int(text)`, or `default` if the text is not a valid number.\n- `safe_divide(a, b)` returns `a / b`, or `None` if `b` is zero.\n\nCatch only the exceptions you expect. There is nothing to print.",
+    "concepts": ["files-exceptions", "functions", "debugging"],
+    "pass_score": 100,
+    "starter_code": "def safe_int(text, default=0):\n    pass\n\n\ndef safe_divide(a, b):\n    pass\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "int_ok", "description": "safe_int('42') is 42", "type": "return", "call": "safe_int('42')", "expected": 42},
+      {"id": "int_bad", "description": "safe_int('abc') is 0", "type": "return", "call": "safe_int('abc')", "expected": 0},
+      {"id": "int_default", "description": "safe_int('abc', -1) is -1", "type": "return", "call": "safe_int('abc', -1)", "expected": -1},
+      {"id": "div_ok", "description": "safe_divide(10, 4) is 2.5", "type": "return", "call": "safe_divide(10, 4)", "expected": 2.5},
+      {"id": "div_zero", "description": "safe_divide(1, 0) is None", "type": "return", "call": "safe_divide(1, 0)", "expected": null},
+      {"id": "div_zero_other", "description": "safe_divide(0, 5) is 0", "type": "return", "call": "safe_divide(0, 5)", "expected": 0.0}
+    ]
+  },
+  {
+    "slug": "order-the-try",
+    "title": "Order the try block",
+    "kind": "puzzle",
+    "instructions": "Put the lines in order so the program prints `not a number`. The indentation is part of each line.",
+    "concepts": ["files-exceptions", "debugging"],
+    "pass_score": 100,
+    "puzzle_type": "order",
+    "lines": ["try:", "    number = int('abc')", "except ValueError:", "    print('not a number')"]
+  }
+]

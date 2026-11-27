@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "modules-check",
+    "title": "Modules and packages check",
+    "kind": "quiz",
+    "instructions": "Five questions on imports, JSON and packages.",
+    "concepts": ["files-exceptions", "security-awareness"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does `from math import sqrt` allow?", "options": ["Calling sqrt(81) directly", "Only calling math.sqrt(81)", "Nothing, it is a syntax error", "Importing every function in math"], "answer": 0, "explanation": "A from-import brings just that name into your program, so you can use it without the module prefix.", "concept": "files-exceptions"},
+      {"id": "q2", "prompt": "What does json.dumps(data) return?", "options": ["A dictionary", "A string of JSON text", "A file", "None"], "answer": 1, "explanation": "dumps turns Python data into a JSON string. loads goes the other way.", "concept": "files-exceptions"},
+      {"id": "q3", "prompt": "What does `if __name__ == '__main__':` do?", "options": ["Runs its block only when the file is started directly, not when imported", "Runs its block on every import", "Defines the main function", "Is required in every file"], "answer": 0, "explanation": "It lets a file work both as a program and as a module that other files can import.", "concept": "files-exceptions"},
+      {"id": "q4", "prompt": "What marks a folder as a Python package?", "options": ["A file called __init__.py", "A file called package.txt", "The folder name ending in .py", "Nothing, any folder works"], "answer": 0, "explanation": "The __init__.py file tells Python that the folder is a package.", "concept": "files-exceptions"},
+      {"id": "q5", "prompt": "An AI assistant tells you to pip install a package you have never heard of. What is the best first step?", "options": ["Install it, the AI knows best", "Check that it exists on the official index, who maintains it, and that the name is spelled exactly right", "Install it with sudo to be safe", "Ignore every suggestion"], "answer": 1, "explanation": "Assistants sometimes invent names, and attackers publish look-alike packages. Verify before installing, because installed code can do anything on your machine.", "concept": "security-awareness"}
+    ]
+  },
+  {
+    "slug": "json-roundtrip",
+    "title": "JSON round trip",
+    "kind": "code",
+    "instructions": "`data` is set for you. Use the `math` and `json` modules (import them yourself) to create:\n\n- `root`: the square root of 144\n- `text`: `data` converted to a JSON string\n- `restored`: `text` converted back to a dictionary\n- `average`: the average of the scores in `restored`\n\nThen print `average`.",
+    "concepts": ["files-exceptions", "data-structures"],
+    "pass_score": 100,
+    "starter_code": "data = {\"name\": \"Ada\", \"scores\": [90, 85]}\n\n# Import math and json, create root, text, restored and average, then print average\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "root", "description": "root is 12.0", "type": "return", "call": "root", "expected": 12.0},
+      {"id": "text", "description": "text is the JSON string", "type": "return", "call": "text", "expected": "{\"name\": \"Ada\", \"scores\": [90, 85]}"},
+      {"id": "restored", "description": "restored equals data", "type": "return", "call": "restored", "expected": {"name": "Ada", "scores": [90, 85]}},
+      {"id": "average", "description": "average is 87.5", "type": "return", "call": "average", "expected": 87.5},
+      {"id": "printed", "description": "the program prints 87.5", "type": "stdout", "expected_stdout": "87.5"}
+    ]
+  }
+]

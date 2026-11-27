@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "inheritance-check",
+    "title": "Inheritance check",
+    "kind": "quiz",
+    "instructions": "Five questions on inheritance and special methods.",
+    "concepts": ["oop"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "In `class Dog(Animal):`, what is Animal?", "options": ["The base class that Dog builds on", "An attribute of Dog", "A module", "A function"], "answer": 0, "explanation": "The class in parentheses is the base class. Dog inherits its methods and can override them.", "concept": "oop"},
+      {"id": "q2", "prompt": "Dog does not define __init__, but Animal does. What happens when you write Dog('Rex')?", "options": ["A TypeError", "Animal's __init__ runs", "Nothing is stored", "Python creates an empty object"], "answer": 1, "explanation": "A subclass inherits everything it does not override, including __init__.", "concept": "oop"},
+      {"id": "q3", "prompt": "What does super().__init__(name) do inside a subclass?", "options": ["Deletes the base class", "Calls the base class's __init__", "Creates a second object", "Raises an error"], "answer": 1, "explanation": "super() reaches the base class, so you can reuse its setup and then add more.", "concept": "oop"},
+      {"id": "q4", "prompt": "Which special method controls what print(obj) shows?", "options": ["__init__", "__str__", "__print__", "__show__"], "answer": 1, "explanation": "print uses __str__. Without it you get an unhelpful default like <__main__.Dog object at 0x...>.", "concept": "oop"},
+      {"id": "q5", "prompt": "A Car has an Engine. Which design fits best?", "options": ["class Car(Engine)", "Car stores an Engine object as an attribute", "class Engine(Car)", "Make them both modules"], "answer": 1, "explanation": "Inheritance means is-a. A car has an engine, so store the engine as an attribute.", "concept": "oop"}
+    ]
+  },
+  {
+    "slug": "dog-and-cat",
+    "title": "Dog and Cat",
+    "kind": "code",
+    "instructions": "The base class `Animal` is already written. Write two subclasses:\n\n- `Dog`: `speak()` returns `\"Woof\"`.\n- `Cat`: `speak()` returns `\"Meow\"`.\n\nDo not copy `__init__` or `__str__`. Then print `Dog(\"Rex\")` and, on the next line, `Cat(\"Tom\")`:\n\n```text\nRex says Woof\nTom says Meow\n```",
+    "concepts": ["oop"],
+    "pass_score": 100,
+    "starter_code": "class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        return \"...\"\n\n    def __str__(self):\n        return f\"{self.name} says {self.speak()}\"\n\n\n# Write Dog and Cat below, then print the two animals\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "dog_speak", "description": "Dog('Rex').speak() is Woof", "type": "return", "call": "Dog('Rex').speak()", "expected": "Woof"},
+      {"id": "cat_speak", "description": "Cat('Tom').speak() is Meow", "type": "return", "call": "Cat('Tom').speak()", "expected": "Meow"},
+      {"id": "is_animal", "description": "a Dog is an Animal", "type": "return", "call": "isinstance(Dog('Rex'), Animal)", "expected": true},
+      {"id": "str_dog", "description": "str(Dog('Rex')) is Rex says Woof", "type": "return", "call": "str(Dog('Rex'))", "expected": "Rex says Woof"},
+      {"id": "printed", "description": "the program prints both animals", "type": "stdout", "expected_stdout": "Rex says Woof\nTom says Meow"}
+    ]
+  }
+]

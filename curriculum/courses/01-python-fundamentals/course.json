@@ -381,12 +381,126 @@
     {
       "slug": "object-oriented-programming",
       "title": "Object-oriented programming",
-      "lessons": []
+      "lessons": [
+        {
+          "slug": "classes-and-objects",
+          "title": "Classes and objects",
+          "summary": "Bundle data and behaviour into classes, create objects, and understand self, attributes and methods.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "oop",
+            "functions",
+            "reviewing-ai-code"
+          ],
+          "objectives": [
+            "Define a class with __init__ and methods",
+            "Explain what self refers to",
+            "Show that objects keep separate data",
+            "Judge when a class is worth using"
+          ]
+        },
+        {
+          "slug": "inheritance-and-printing-objects",
+          "title": "Inheritance and printing objects",
+          "summary": "Build subclasses that reuse and override behaviour, extend __init__ with super(), and make objects print usefully.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "oop",
+            "tradeoff-analysis",
+            "reviewing-ai-code"
+          ],
+          "objectives": [
+            "Write a subclass that overrides a method",
+            "Use super() to extend __init__",
+            "Define __str__",
+            "Choose between is-a and has-a designs"
+          ]
+        }
+      ],
+      "summary": "Model things as classes with data and behaviour."
     },
     {
       "slug": "files-exceptions-modules-and-packages",
       "title": "Files, exceptions, modules and packages",
-      "lessons": []
+      "lessons": [
+        {
+          "slug": "reading-and-writing-files",
+          "title": "Reading and writing files",
+          "summary": "Save and load text with open and with, choose the right mode, and read files line by line.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "files-exceptions",
+            "loops",
+            "debugging"
+          ],
+          "objectives": [
+            "Write and append to a file",
+            "Read a file line by line",
+            "Explain why mode w can lose data",
+            "Check generated file code for mode, with and missing files"
+          ]
+        },
+        {
+          "slug": "handling-exceptions",
+          "title": "Handling exceptions",
+          "summary": "Catch the errors you expect with try and except, use else and finally, raise your own errors, and avoid silencing bugs.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "files-exceptions",
+            "debugging",
+            "root-cause-diagnosis"
+          ],
+          "objectives": [
+            "Write try and except blocks for specific errors",
+            "Explain what else and finally do",
+            "Raise an exception with a clear message",
+            "Spot a swallowed error in generated code"
+          ]
+        },
+        {
+          "slug": "modules-and-packages",
+          "title": "Modules and packages",
+          "summary": "Import standard modules, convert data with json, organise your own code in modules and packages, and vet third-party packages.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "files-exceptions",
+            "git-version-control",
+            "security-awareness"
+          ],
+          "objectives": [
+            "Import from the standard library",
+            "Convert data to and from JSON",
+            "Explain modules, packages and __name__",
+            "Check a package an AI suggests before installing it"
+          ]
+        }
+      ],
+      "summary": "Save data, handle failure, and organise code into modules."
     }
   ]
 }
