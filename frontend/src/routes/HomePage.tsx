@@ -1,3 +1,4 @@
+import type { MouseEvent } from "react";
 import { Link } from "react-router-dom";
 
 import { useAuth } from "../features/auth/AuthContext";
@@ -49,6 +50,17 @@ const ENGINEER_TOMORROW = [
     summary: "Adapt to new technologies, learn continuously and stay capable in an industry that never stands still.",
   },
 ] as const;
+
+function handleFooterAnchorClick(event: MouseEvent<HTMLAnchorElement>) {
+  const target = document.getElementById(event.currentTarget.hash.slice(1));
+  if (!target) return;
+
+  event.preventDefault();
+  window.history.replaceState(window.history.state, "", event.currentTarget.hash);
+  target.scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+  });
+}
 
 export function HomePage() {
   const { status } = useAuth();
@@ -225,6 +237,65 @@ export function HomePage() {
           )}
         </div>
       </section>
+
+      <footer className="bg-[#121622] px-6 py-14 text-white sm:px-12 lg:px-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 md:grid-cols-[1.4fr_1fr]">
+            <section aria-label="AI Learning Lab contact information">
+              <Link to="/" className="flex w-fit items-center gap-3 text-white no-underline">
+                <svg viewBox="0 0 48 40" className="h-9 w-11 shrink-0 text-[#E06346]" fill="currentColor" aria-hidden="true">
+                  <path d="M24 2 1 13l23 11 18-8.6V29h4V13L24 2Zm-15 17v9c0 5 7 9 15 9s15-4 15-9v-9l-15 7-15-7Z" />
+                  <circle cx="44" cy="31" r="3" />
+                </svg>
+                <span className="text-lg font-semibold tracking-[-0.02em]">AI Learning Lab</span>
+              </Link>
+              <p className="mt-4 max-w-md text-sm leading-6 text-[#B5BECE]">
+                From Python Foundations to Intelligent Automation. Practical AI engineering training for builders.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-[#94A3B8]">
+                <a
+                  href="https://wa.me/2348063789600"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  +234 806 378 9600
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-white"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </section>
+
+            <nav aria-label="Footer" className="md:justify-self-end md:w-full md:max-w-[220px]">
+              <h2 className="text-[15px] font-semibold text-white">Quick Links</h2>
+              <ul className="mt-4 space-y-2.5 text-sm text-[#B5BECE]">
+                <li><Link to="/about" className="transition-colors hover:text-[#E06346]">About Us</Link></li>
+                <li><Link to="/contact" className="transition-colors hover:text-[#E06346]">Contact Us</Link></li>
+                <li><a href="#curriculum-highlights" onClick={handleFooterAnchorClick} className="transition-colors hover:text-[#E06346]">Curriculum</a></li>
+                <li><a href="#learning-pillars" onClick={handleFooterAnchorClick} className="transition-colors hover:text-[#E06346]">The 5 Pillars</a></li>
+                <li><Link to="/register" className="transition-colors hover:text-[#E06346]">Create an Account</Link></li>
+                <li><Link to="/login" className="transition-colors hover:text-[#E06346]">Student Sign In</Link></li>
+              </ul>
+            </nav>
+          </div>
+
+          <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-[#2D3548] pt-6 text-xs text-[#7F8BA1] sm:flex-row">
+            <p>© 2026 Light City. All rights reserved.</p>
+            <p>
+              Powered by{" "}
+              <Link to="/about" className="font-semibold text-white transition-colors hover:underline">
+                Light City
+              </Link>
+            </p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
