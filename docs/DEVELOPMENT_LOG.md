@@ -123,3 +123,9 @@
 - Every code exercise and the puzzle were run against reference solutions before seeding; starter code was confirmed to fail.
 - Content was written by the assistant and should be read by a human before learners rely on it.
 - Still planned in Stage 1: object-oriented programming (batch 1c), files, exceptions, modules and packages (batch 1c), and the two planned lessons in the first two modules.
+
+## Content batch 1c: object-oriented programming, files, exceptions and modules (2026-11-27)
+- Added 5 written lessons (classes and objects, inheritance and printing objects, reading and writing files, handling exceptions, modules and packages) and 12 exercises (5 quizzes, 5 code, 1 puzzle... plus the order-the-try puzzle).
+- Every code exercise and the puzzle were run against reference solutions before seeding; starter code was confirmed to fail. The file exercise uses /tmp inside the browser's in-memory file system.
+- This completes the module outline for Stage 1. The two planned lessons in the first two modules (reading error messages, numbers strings and booleans) remain planned.
+- Content was written by the assistant and should be read by a human before learners rely on it.
