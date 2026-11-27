@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "conditionals-check",
+    "title": "Conditionals check",
+    "kind": "quiz",
+    "instructions": "Five questions on if, elif and else.",
+    "concepts": ["conditionals"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "With x = 5, the chain is: if x > 3 prints a, elif x > 1 prints b, else prints c. What is printed?", "options": ["a", "a and b", "b", "c"], "answer": 0, "explanation": "Only the first true branch runs. x > 3 is true, so a is printed and the rest are skipped.", "concept": "conditionals"},
+      {"id": "q2", "prompt": "What does print(bool([])) show?", "options": ["True", "False", "None", "An error"], "answer": 1, "explanation": "An empty list counts as False. A list with any item, even [0], counts as True.", "concept": "conditionals"},
+      {"id": "q3", "prompt": "Which line is a mistake when you want to check whether x is 5?", "options": ["if x == 5:", "if x = 5:", "if x != 5:", "if x >= 5:"], "answer": 1, "explanation": "A single = assigns, so this is a SyntaxError. Comparing uses ==.", "concept": "conditionals"},
+      {"id": "q4", "prompt": "score = 95. The chain first checks `if score >= 70` (sets C) and only then `elif score >= 90` (sets A). What does it set?", "options": ["A", "C", "Both A and C", "An error"], "answer": 1, "explanation": "95 is at least 70, so the first branch wins and the A branch is never reached. Check the strictest condition first.", "concept": "conditionals"},
+      {"id": "q5", "prompt": "What must come right after an if line, which ends with a colon?", "options": ["An indented block of code", "A closing bracket", "The word then", "Nothing"], "answer": 0, "explanation": "The indented lines are the body. Python uses indentation to know which lines belong to the if.", "concept": "conditionals"}
+    ]
+  },
+  {
+    "slug": "grade-and-parity",
+    "title": "Grade and parity",
+    "kind": "code",
+    "instructions": "`score` and `number` are set for you.\n\n1. Create `grade` from `score` using `if`, `elif` and `else`: 90 or more is `\"A\"`, 80 or more is `\"B\"`, 70 or more is `\"C\"`, anything lower is `\"F\"`.\n2. Create `parity`: `\"even\"` if `number` is even, otherwise `\"odd\"`.\n3. Print `grade`, then print `parity` on the next line.",
+    "concepts": ["conditionals", "operators-expressions"],
+    "pass_score": 100,
+    "starter_code": "score = 80\nnumber = 7\n\n# Create grade and parity, then print both\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "grade", "description": "grade is B for a score of exactly 80", "type": "return", "call": "grade", "expected": "B"},
+      {"id": "parity", "description": "parity is odd for 7", "type": "return", "call": "parity", "expected": "odd"},
+      {"id": "printed", "description": "the program prints B and then odd", "type": "stdout", "expected_stdout": "B\nodd"}
+    ]
+  }
+]

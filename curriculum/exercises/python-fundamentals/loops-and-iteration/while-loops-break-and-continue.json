@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "while-loops-check",
+    "title": "While, break and continue check",
+    "kind": "quiz",
+    "instructions": "Five questions on while loops, break and continue.",
+    "concepts": ["loops"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "After `count = 0` and `while count < 3: count += 1`, what does print(count) show?", "options": ["0", "2", "3", "4"], "answer": 2, "explanation": "The loop runs while count is below 3 and stops the moment count reaches 3.", "concept": "loops"},
+      {"id": "q2", "prompt": "What does break do?", "options": ["Skips to the next pass", "Ends the loop immediately", "Stops the whole program", "Restarts the loop"], "answer": 1, "explanation": "break leaves the loop at once, even if items or passes remain.", "concept": "loops"},
+      {"id": "q3", "prompt": "What does continue do?", "options": ["Ends the loop", "Skips the rest of this pass and starts the next one", "Repeats this pass", "Does nothing"], "answer": 1, "explanation": "continue abandons the current pass and moves on to the next.", "concept": "loops"},
+      {"id": "q4", "prompt": "`while True:` has no break and nothing changes. What happens?", "options": ["It runs once", "It runs forever until stopped", "A SyntaxError", "It ends after 100 passes"], "answer": 1, "explanation": "The condition is always true, so the loop never ends. The playground stops such code after 10 seconds.", "concept": "loops"},
+      {"id": "q5", "prompt": "After `for n in range(10): if n == 3: break`, what is n?", "options": ["2", "3", "9", "10"], "answer": 1, "explanation": "The loop stops as soon as n is 3, and n keeps that value after the loop.", "concept": "loops"}
+    ]
+  },
+  {
+    "slug": "doubling-and-search",
+    "title": "Doubling and search",
+    "kind": "code",
+    "instructions": "`amount` and `values` are set for you.\n\n1. Use a **while loop** to double `amount` until it is **at least 1000**. Count the doublings in `steps`.\n2. Use a **for loop with break** to find `first_big`: the first number in `values` that is greater than 50.\n3. Print `steps`, then print `first_big` on the next line.",
+    "concepts": ["loops", "conditionals"],
+    "pass_score": 100,
+    "starter_code": "amount = 1\nvalues = [12, 40, 55, 70, 9]\n\n# Do the three steps\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "amount", "description": "amount ends at 1024", "type": "return", "call": "amount", "expected": 1024},
+      {"id": "steps", "description": "steps is 10", "type": "return", "call": "steps", "expected": 10},
+      {"id": "first_big", "description": "first_big is 55", "type": "return", "call": "first_big", "expected": 55},
+      {"id": "printed", "description": "the program prints 10 and then 55", "type": "stdout", "expected_stdout": "10\n55"}
+    ]
+  }
+]

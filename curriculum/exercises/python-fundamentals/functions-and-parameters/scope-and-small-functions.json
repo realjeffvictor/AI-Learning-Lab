@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "scope-check",
+    "title": "Scope and testing check",
+    "kind": "quiz",
+    "instructions": "Four questions on scope, shared lists and assert.",
+    "concepts": ["functions", "testing"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "A function creates a variable `total` inside its body. What happens when code outside the function runs print(total)?", "options": ["It prints the value", "A NameError", "It prints None", "It prints 0"], "answer": 1, "explanation": "Variables created inside a function are local. They do not exist outside it.", "concept": "functions"},
+      {"id": "q2", "prompt": "x = 5 outside. A function sets x = 10 inside and is called once. What does print(x) show afterwards?", "options": ["5", "10", "None", "An error"], "answer": 0, "explanation": "Assigning inside a function creates a new local x. The outside x is untouched.", "concept": "functions"},
+      {"id": "q3", "prompt": "A function appends an item to a list it was given. What happens to the caller's list?", "options": ["Nothing, the function got a copy", "It also gains the item, because the list is shared", "An error", "It is emptied"], "answer": 1, "explanation": "Lists are not copied when passed in, so changes inside the function are visible outside.", "concept": "functions"},
+      {"id": "q4", "prompt": "What does `assert 1 == 2` do?", "options": ["Prints False", "Raises an AssertionError", "Does nothing", "Returns None"], "answer": 1, "explanation": "assert raises an AssertionError when its condition is false, which makes it a tiny test.", "concept": "testing"}
+    ]
+  },
+  {
+    "slug": "stats-helpers",
+    "title": "Stats helpers",
+    "kind": "code",
+    "instructions": "Write two functions. Their stubs are in the editor.\n\n- `average(numbers)` returns the sum divided by how many there are. For an **empty list** it returns `0` instead of crashing.\n- `count_evens(numbers)` returns how many numbers in the list are even. Use a loop.\n\nThere is nothing to print. Your functions are tested directly.",
+    "concepts": ["functions", "loops", "testing"],
+    "pass_score": 100,
+    "starter_code": "def average(numbers):\n    pass\n\n\ndef count_evens(numbers):\n    pass\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "avg_normal", "description": "average([2, 4, 6]) is 4", "type": "return", "call": "average([2, 4, 6])", "expected": 4.0, "concept": "functions"},
+      {"id": "avg_fraction", "description": "average([1, 2]) is 1.5", "type": "return", "call": "average([1, 2])", "expected": 1.5, "concept": "functions"},
+      {"id": "avg_empty", "description": "average([]) is 0", "type": "return", "call": "average([])", "expected": 0, "concept": "testing"},
+      {"id": "evens_normal", "description": "count_evens([1, 2, 3, 4, 6]) is 3", "type": "return", "call": "count_evens([1, 2, 3, 4, 6])", "expected": 3, "concept": "loops"},
+      {"id": "evens_empty", "description": "count_evens([]) is 0", "type": "return", "call": "count_evens([])", "expected": 0, "concept": "testing"}
+    ]
+  }
+]

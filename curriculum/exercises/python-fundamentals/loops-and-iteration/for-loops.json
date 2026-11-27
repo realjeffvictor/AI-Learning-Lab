@@ -1,0 +1,43 @@
+[
+  {
+    "slug": "for-loops-check",
+    "title": "For loops check",
+    "kind": "quiz",
+    "instructions": "Five questions on for loops and range.",
+    "concepts": ["loops"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does `for n in range(1, 4): print(n)` print?", "options": ["1 2 3", "0 1 2 3", "1 2 3 4", "1 2"], "answer": 0, "explanation": "range(1, 4) starts at 1 and stops before 4, so the values are 1, 2 and 3.", "concept": "loops"},
+      {"id": "q2", "prompt": "What is the last number that range(5) produces?", "options": ["5", "4", "6", "0"], "answer": 1, "explanation": "range(5) gives 0, 1, 2, 3, 4. The stop value is never included.", "concept": "loops"},
+      {"id": "q3", "prompt": "After `total = 0` and `for n in [2, 4]: total = total + n`, what is total?", "options": ["2", "4", "6", "0"], "answer": 2, "explanation": "total goes from 0 to 2 and then to 6.", "concept": "loops"},
+      {"id": "q4", "prompt": "How many times does the body run in `for x in [10, 20, 30]:`?", "options": ["1", "2", "3", "10"], "answer": 2, "explanation": "The body runs once for each item, and the list has three items.", "concept": "loops"},
+      {"id": "q5", "prompt": "What does `for k in {'a': 1, 'b': 2}:` give k on each pass?", "options": ["The values 1 and 2", "The keys 'a' and 'b'", "Pairs like ('a', 1)", "An error"], "answer": 1, "explanation": "Looping over a dictionary gives its keys. Use .items() to get keys and values together.", "concept": "loops"}
+    ]
+  },
+  {
+    "slug": "sum-and-squares",
+    "title": "Sum and squares",
+    "kind": "code",
+    "instructions": "`numbers` is set for you. Use a **for loop** (not `sum()`) to create:\n\n- `total`: the sum of the numbers\n- `squares`: a new list with each number squared, in the same order\n- `evens`: how many of the numbers are even\n\nThen print `total`.",
+    "concepts": ["loops", "data-structures"],
+    "pass_score": 100,
+    "starter_code": "numbers = [3, 1, 4, 1, 5]\n\n# Create total, squares and evens with a loop, then print total\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "total", "description": "total is 14", "type": "return", "call": "total", "expected": 14},
+      {"id": "squares", "description": "squares is [9, 1, 16, 1, 25]", "type": "return", "call": "squares", "expected": [9, 1, 16, 1, 25]},
+      {"id": "evens", "description": "evens is 1", "type": "return", "call": "evens", "expected": 1},
+      {"id": "printed", "description": "the program prints 14", "type": "stdout", "expected_stdout": "14"}
+    ]
+  },
+  {
+    "slug": "order-the-total",
+    "title": "Order the loop",
+    "kind": "puzzle",
+    "instructions": "Put the lines in order so the program prints `6`. The indentation is part of each line.",
+    "concepts": ["loops", "data-flow-state"],
+    "pass_score": 100,
+    "puzzle_type": "order",
+    "lines": ["total = 0", "for n in [1, 2, 3]:", "    total = total + n", "print(total)"]
+  }
+]

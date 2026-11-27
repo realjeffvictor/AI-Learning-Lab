@@ -250,17 +250,133 @@
     {
       "slug": "conditional-statements",
       "title": "Conditional statements",
-      "lessons": []
+      "lessons": [
+        {
+          "slug": "making-decisions-with-if",
+          "title": "Making decisions with if",
+          "summary": "Run code only when a condition holds, with if, elif and else, and see why the order of checks matters.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "D",
+            "V"
+          ],
+          "concepts": [
+            "conditionals",
+            "programming-logic",
+            "reviewing-ai-code"
+          ],
+          "objectives": [
+            "Write if, elif and else chains with correct indentation",
+            "Explain why only the first true branch runs",
+            "Predict which values count as True or False",
+            "Test a chain on both sides of each boundary"
+          ]
+        }
+      ],
+      "summary": "Make programs choose between paths."
     },
     {
       "slug": "loops-and-iteration",
       "title": "Loops and iteration",
-      "lessons": []
+      "lessons": [
+        {
+          "slug": "for-loops",
+          "title": "For loops",
+          "summary": "Repeat code once per item or a set number of times with for and range, and build results with the accumulator pattern.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V"
+          ],
+          "concepts": [
+            "loops",
+            "algorithms",
+            "data-structures"
+          ],
+          "objectives": [
+            "Loop over lists, strings and dictionaries",
+            "Use range with start, stop and step",
+            "Build a total or a list with an accumulator",
+            "Trace a loop by hand"
+          ]
+        },
+        {
+          "slug": "while-loops-break-and-continue",
+          "title": "While loops, break and continue",
+          "summary": "Repeat until a condition changes, leave early with break, skip a pass with continue, and avoid infinite loops.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "loops",
+            "debugging",
+            "reviewing-ai-code"
+          ],
+          "objectives": [
+            "Write a while loop that is guaranteed to end",
+            "Use break to stop a search",
+            "Use continue to skip items",
+            "Say what makes a loop stop"
+          ]
+        }
+      ],
+      "summary": "Repeat work over sequences or until a condition changes."
     },
     {
       "slug": "functions-and-parameters",
       "title": "Functions and parameters",
-      "lessons": []
+      "lessons": [
+        {
+          "slug": "writing-functions",
+          "title": "Writing functions",
+          "summary": "Define functions with parameters, defaults and return values, and learn the difference between return and print.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "D",
+            "V"
+          ],
+          "concepts": [
+            "functions",
+            "prompting-for-development",
+            "ai-code-generation"
+          ],
+          "objectives": [
+            "Define and call a function",
+            "Explain why a function gives back None",
+            "Use default and keyword arguments",
+            "Describe a function precisely enough for an AI to write it"
+          ]
+        },
+        {
+          "slug": "scope-and-small-functions",
+          "title": "Scope and small functions",
+          "summary": "Understand local names, the shared-list trap, how to split work into small functions, and how to check them with assert.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "functions",
+            "testing",
+            "ai-test-generation",
+            "reviewing-ai-code"
+          ],
+          "objectives": [
+            "Explain what a local variable is",
+            "Predict when a function changes a list it was given",
+            "Split work into one-job functions",
+            "Check a function with assert"
+          ]
+        }
+      ],
+      "summary": "Package behaviour behind a name."
     },
     {
       "slug": "object-oriented-programming",

@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "functions-check",
+    "title": "Functions check",
+    "kind": "quiz",
+    "instructions": "Five questions on defining and calling functions.",
+    "concepts": ["functions"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "With `def f(x): x * 2` (no return), what does print(f(4)) show?", "options": ["8", "None", "4", "An error"], "answer": 1, "explanation": "Without a return statement, a function gives back None. The value 8 was worked out and thrown away.", "concept": "functions"},
+      {"id": "q2", "prompt": "With `def power(base, exponent=2): return base ** exponent`, what is power(5)?", "options": ["10", "25", "5", "An error"], "answer": 1, "explanation": "exponent was left out, so it uses its default of 2. 5 to the power of 2 is 25.", "concept": "functions"},
+      {"id": "q3", "prompt": "What is the difference between return and print inside a function?", "options": ["None, they do the same thing", "return gives a value back to the caller; print only displays it", "print gives a value back; return only displays it", "return can only be used once in a program"], "answer": 1, "explanation": "return hands a value back so the caller can use it. print just shows text on the screen.", "concept": "functions"},
+      {"id": "q4", "prompt": "With `def min_max(nums): return min(nums), max(nums)`, what is the type of min_max([4, 9, 2])?", "options": ["list", "tuple", "int", "dict"], "answer": 1, "explanation": "Returning several values separated by commas gives a tuple, which can be unpacked.", "concept": "functions"},
+      {"id": "q5", "prompt": "With `def power(base, exponent=2): return base ** exponent`, what is power(exponent=3, base=2)?", "options": ["9", "6", "8", "An error"], "answer": 2, "explanation": "With named arguments the order does not matter. 2 to the power of 3 is 8.", "concept": "functions"}
+    ]
+  },
+  {
+    "slug": "write-two-functions",
+    "title": "Write two functions",
+    "kind": "code",
+    "instructions": "Write these two functions:\n\n- `square(n)` returns `n` multiplied by itself.\n- `greet(name, punctuation=\"!\")` returns `Hello, ` followed by the name and then the punctuation, for example `Hello, Ada!`.\n\nThen print `square(7)` and, on the next line, `greet(\"Ada\")`.",
+    "concepts": ["functions", "strings"],
+    "pass_score": 100,
+    "starter_code": "# Write square and greet below, then print the two results\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "square7", "description": "square(7) is 49", "type": "return", "call": "square(7)", "expected": 49},
+      {"id": "square_neg", "description": "square(-3) is 9", "type": "return", "call": "square(-3)", "expected": 9},
+      {"id": "greet_default", "description": "greet('Ada') is Hello, Ada!", "type": "return", "call": "greet('Ada')", "expected": "Hello, Ada!"},
+      {"id": "greet_custom", "description": "greet('Ada', '?') is Hello, Ada?", "type": "return", "call": "greet('Ada', '?')", "expected": "Hello, Ada?"},
+      {"id": "printed", "description": "the program prints 49 and then Hello, Ada!", "type": "stdout", "expected_stdout": "49\nHello, Ada!"}
+    ]
+  }
+]
