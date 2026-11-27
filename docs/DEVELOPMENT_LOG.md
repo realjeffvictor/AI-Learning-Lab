@@ -109,3 +109,11 @@
 - Known limitations: see docs/SECURITY_CHECKLIST.md (IP spoofing behind proxies, report-only CSP, no password reset, MFA, account export or deletion, no frontend component or end-to-end tests).
   Deployment was written from documentation and has not been exercised on Render or Vercel by the author.
 - Pending: user confirmation that Phase 8 works locally, then a first real deployment.
+
+## Content batch 1a: Stage 1 operators, strings and collections (2026-11-27)
+- Phase 8 status: verified by the user (395 backend tests, 37 frontend tests, restore drill OK).
+- Added 7 written lessons (arithmetic, comparisons and logic, strings, string methods and f-strings, lists, tuples and sets, dictionaries) and 15 exercises (7 quizzes, 7 code, 1 puzzle).
+- Every code exercise was checked by running a reference solution against its tests (and confirming the starter code fails) before seeding.
+- Added backend/tests/test_real_curriculum.py: validates the real files and requires a quiz for every written lesson.
+- Content was written by the assistant and should be read by a human before learners rely on it.
+- Still planned in Stage 1: conditional statements, loops, functions, object-oriented programming, files and exceptions, and the two planned lessons in earlier modules.
