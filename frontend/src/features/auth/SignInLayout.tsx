@@ -5,6 +5,19 @@ type Pillar = "Understand" | "Direct" | "Build" | "Verify" | "Own";
 
 const PILLARS: Pillar[] = ["Understand", "Direct", "Build", "Verify", "Own"];
 
+const PILLAR_SUMMARIES: Record<Pillar, string> = {
+  Understand:
+    "Master core Python, system architecture, and how LLMs reason—so you never rely on blind copy-pasting.",
+  Direct:
+    "Decompose complex problems, engineer rich context, and steer AI coding agents with clear specifications.",
+  Build:
+    "Ship real-world Python applications, APIs, RAG pipelines, and autonomous workflows from scratch.",
+  Verify:
+    "Audit, test, and debug AI-generated code with precision to catch hallucinations, security flaws, and edge cases.",
+  Own:
+    "Deploy, monitor, and maintain production-grade software with full architectural accountability.",
+};
+
 interface SignInLayoutProps {
   title: string;
   subtitle: string;
@@ -71,7 +84,7 @@ function CursorIcon() {
 }
 
 export function SignInLayout({ title, subtitle, footer, children }: SignInLayoutProps) {
-  const [activePillar, setActivePillar] = useState<Pillar>("Direct");
+  const [activePillar, setActivePillar] = useState<Pillar | null>(null);
 
   return (
     <main className="grid min-h-screen bg-[#FAFAFA] lg:grid-cols-[55fr_45fr]">
@@ -90,15 +103,18 @@ export function SignInLayout({ title, subtitle, footer, children }: SignInLayout
         <ul aria-label="The five learning pillars" className="relative my-auto w-full max-w-[340px] space-y-3 py-12 lg:py-0">
           {PILLARS.map((pillar) => {
             const active = activePillar === pillar;
+            const summaryId = `pillar-summary-${pillar.toLowerCase()}`;
             return (
               <li key={pillar} className="relative">
                 <button
                   type="button"
                   aria-pressed={active}
-                  aria-describedby={active && pillar === "Direct" ? "direct-tooltip" : undefined}
+                  aria-describedby={active ? summaryId : undefined}
                   onMouseEnter={() => setActivePillar(pillar)}
                   onFocus={() => setActivePillar(pillar)}
                   onClick={() => setActivePillar(pillar)}
+                  onMouseLeave={() => setActivePillar((current) => current === pillar ? null : current)}
+                  onBlur={() => setActivePillar((current) => current === pillar ? null : current)}
                   className={`relative flex h-[56px] w-full items-center gap-4 rounded-2xl px-3 text-left transition-colors ${
                     active ? "bg-[#1E2638] text-white" : "text-[#94A3B8] hover:bg-[#1E2638]/70"
                   }`}
@@ -109,16 +125,19 @@ export function SignInLayout({ title, subtitle, footer, children }: SignInLayout
                   <span className="text-[17px] font-medium">{pillar}</span>
                   {active && pillar === "Direct" && <CursorIcon />}
                 </button>
-                {active && pillar === "Direct" && (
-                  <div
-                    id="direct-tooltip"
-                    role="tooltip"
-                    className="relative mt-2 max-w-[240px] rounded-xl border border-[#334155] bg-[#1B2130] px-4 py-3 text-[13px] leading-[1.55] text-white shadow-[0_12px_30px_rgba(0,0,0,0.28)] lg:absolute lg:left-[calc(100%+1rem)] lg:top-0 lg:mt-0 lg:w-[240px]"
-                  >
-                    <span className="absolute -top-1.5 left-5 h-3 w-3 rotate-45 border-l border-t border-[#334155] bg-[#1B2130] lg:left-[-7px] lg:top-5 lg:border-l lg:border-b-0 lg:border-t" />
-                    Structure prompts, set guardrails, and guide AI agents with clear intent.
-                  </div>
-                )}
+                <div
+                  id={summaryId}
+                  role="tooltip"
+                  aria-hidden={!active}
+                  className={`absolute left-[calc(100%+14px)] top-1/2 z-20 w-[260px] -translate-y-1/2 rounded-[12px] border border-[#334155] bg-[#1B2130] p-[12px_16px] text-[13px] leading-[1.55] text-white shadow-[0_10px_25px_rgba(0,0,0,0.35)] transition-[opacity,transform,visibility] duration-150 pointer-events-none ${
+                    active
+                      ? "visible translate-x-0 opacity-100 max-md:static max-md:mt-2 max-md:w-full max-md:translate-y-0"
+                      : "invisible translate-x-1 opacity-0 max-md:absolute max-md:left-0 max-md:top-full max-md:mt-2"
+                  }`}
+                >
+                  <span className="absolute -left-[7px] top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 border-b border-l border-[#334155] bg-[#1B2130] max-md:hidden" />
+                  {PILLAR_SUMMARIES[pillar]}
+                </div>
               </li>
             );
           })}
