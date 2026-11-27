@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "lists-check",
+    "title": "Lists check",
+    "kind": "quiz",
+    "instructions": "Five questions on lists.",
+    "concepts": ["data-structures"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "After nums = [1, 2, 3] and nums.append(4), what does print(len(nums)) show?", "options": ["3", "4", "5", "An error"], "answer": 1, "explanation": "append adds one item to the end, so the list now has four items.", "concept": "data-structures"},
+      {"id": "q2", "prompt": "What is x after x = [3, 1, 2].sort()?", "options": ["[1, 2, 3]", "None", "[3, 1, 2]", "An error"], "answer": 1, "explanation": "sort() sorts the list in place and returns None. Use sorted() to get a new sorted list.", "concept": "data-structures"},
+      {"id": "q3", "prompt": "After a = [1, 2], b = a and b.append(3), what does print(a) show?", "options": ["[1, 2]", "[1, 2, 3]", "[3]", "An error"], "answer": 1, "explanation": "b = a does not copy the list. Both names refer to the same list, so a changed too.", "concept": "data-structures"},
+      {"id": "q4", "prompt": "What does [10, 20, 30][-1] give?", "options": ["10", "20", "30", "An error"], "answer": 2, "explanation": "-1 is the last item.", "concept": "data-structures"},
+      {"id": "q5", "prompt": "What does [10, 20, 30, 40][1:3] give?", "options": ["[10, 20, 30]", "[20, 30]", "[20, 30, 40]", "[10, 20]"], "answer": 1, "explanation": "The slice starts at index 1 and stops before index 3, so it takes the items at 1 and 2.", "concept": "data-structures"}
+    ]
+  },
+  {
+    "slug": "score-board",
+    "title": "Score board",
+    "kind": "code",
+    "instructions": "`scores` starts as `[70, 95, 82]`. Do the following:\n\n1. Add 88 to the end of `scores`.\n2. Create `ranked`: a new list of the scores from highest to lowest. `scores` itself must stay in its original order.\n3. Create `best`: the highest score.\n4. Create `average`: the sum of the scores divided by how many there are.\n5. Print `ranked`.",
+    "concepts": ["data-structures"],
+    "pass_score": 100,
+    "starter_code": "scores = [70, 95, 82]\n\n# Do the five steps, then print ranked\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "scores", "description": "scores is [70, 95, 82, 88], still in its original order", "type": "return", "call": "scores", "expected": [70, 95, 82, 88]},
+      {"id": "ranked", "description": "ranked is [95, 88, 82, 70]", "type": "return", "call": "ranked", "expected": [95, 88, 82, 70]},
+      {"id": "best", "description": "best is 95", "type": "return", "call": "best", "expected": 95},
+      {"id": "average", "description": "average is 83.75", "type": "return", "call": "average", "expected": 83.75},
+      {"id": "printed", "description": "the program prints the ranked list", "type": "stdout", "expected_stdout": "[95, 88, 82, 70]"}
+    ]
+  }
+]

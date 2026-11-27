@@ -11,18 +11,47 @@
       "summary": "What programming is, and how a Python program runs.",
       "lessons": [
         {
-          "slug": "what-is-programming", "title": "What is programming?",
+          "slug": "what-is-programming",
+          "title": "What is programming?",
           "summary": "Programs are exact instructions. Learn to turn a problem into steps before touching syntax.",
-          "minutes": 8, "principles": ["U"], "concepts": ["programming-logic", "algorithms"],
-          "objectives": ["Explain what a program is", "Break a small problem into ordered steps", "Trace an algorithm by hand"]
+          "minutes": 8,
+          "principles": [
+            "U"
+          ],
+          "concepts": [
+            "programming-logic",
+            "algorithms"
+          ],
+          "objectives": [
+            "Explain what a program is",
+            "Break a small problem into ordered steps",
+            "Trace an algorithm by hand"
+          ]
         },
         {
-          "slug": "your-first-python-program", "title": "Your first Python program",
+          "slug": "your-first-python-program",
+          "title": "Your first Python program",
           "summary": "Write and read a few lines of Python, and see what common mistakes look like.",
-          "minutes": 10, "principles": ["U", "D", "V"], "concepts": ["python-syntax", "debugging"],
-          "objectives": ["Use print to display text and numbers", "Explain what a comment is", "Recognise a SyntaxError and a NameError"]
+          "minutes": 10,
+          "principles": [
+            "U",
+            "D",
+            "V"
+          ],
+          "concepts": [
+            "python-syntax",
+            "debugging"
+          ],
+          "objectives": [
+            "Use print to display text and numbers",
+            "Explain what a comment is",
+            "Recognise a SyntaxError and a NameError"
+          ]
         },
-        {"slug": "reading-error-messages", "title": "Reading error messages"}
+        {
+          "slug": "reading-error-messages",
+          "title": "Reading error messages"
+        }
       ]
     },
     {
@@ -31,21 +60,217 @@
       "summary": "Names, values and the basic kinds of data.",
       "lessons": [
         {
-          "slug": "variables-and-names", "title": "Variables and names",
+          "slug": "variables-and-names",
+          "title": "Variables and names",
           "summary": "A variable is a name attached to a value. Learn assignment, reassignment and the four basic types.",
-          "minutes": 12, "principles": ["U", "V"], "concepts": ["variables-data-types", "data-flow-state"],
-          "objectives": ["Create and reassign variables", "Name the four basic types and check one with type()", "Explain why adding a string to a number fails"]
+          "minutes": 12,
+          "principles": [
+            "U",
+            "V"
+          ],
+          "concepts": [
+            "variables-data-types",
+            "data-flow-state"
+          ],
+          "objectives": [
+            "Create and reassign variables",
+            "Name the four basic types and check one with type()",
+            "Explain why adding a string to a number fails"
+          ]
         },
-        {"slug": "numbers-strings-and-booleans", "title": "Numbers, strings and booleans"}
+        {
+          "slug": "numbers-strings-and-booleans",
+          "title": "Numbers, strings and booleans"
+        }
       ]
     },
-    {"slug": "operators-and-expressions", "title": "Operators and expressions", "lessons": []},
-    {"slug": "strings-and-string-manipulation", "title": "Strings and string manipulation", "lessons": []},
-    {"slug": "lists-tuples-sets-and-dictionaries", "title": "Lists, tuples, sets and dictionaries", "lessons": []},
-    {"slug": "conditional-statements", "title": "Conditional statements", "lessons": []},
-    {"slug": "loops-and-iteration", "title": "Loops and iteration", "lessons": []},
-    {"slug": "functions-and-parameters", "title": "Functions and parameters", "lessons": []},
-    {"slug": "object-oriented-programming", "title": "Object-oriented programming", "lessons": []},
-    {"slug": "files-exceptions-modules-and-packages", "title": "Files, exceptions, modules and packages", "lessons": []}
+    {
+      "slug": "operators-and-expressions",
+      "title": "Operators and expressions",
+      "lessons": [
+        {
+          "slug": "arithmetic-and-expressions",
+          "title": "Arithmetic and expressions",
+          "summary": "Use Python as a calculator: the arithmetic operators, order of evaluation and the surprises of integer and float maths.",
+          "minutes": 12,
+          "principles": [
+            "U",
+            "V"
+          ],
+          "concepts": [
+            "operators-expressions",
+            "variables-data-types",
+            "reviewing-ai-code"
+          ],
+          "objectives": [
+            "Use the seven arithmetic operators",
+            "Predict the result of an expression using operator precedence",
+            "Split a number with // and %",
+            "Explain why 0.1 + 0.2 is not exactly 0.3"
+          ]
+        },
+        {
+          "slug": "comparisons-and-logic",
+          "title": "Comparisons and logic",
+          "summary": "Ask yes-or-no questions with comparisons and combine the answers with and, or and not.",
+          "minutes": 12,
+          "principles": [
+            "U",
+            "D",
+            "V"
+          ],
+          "concepts": [
+            "operators-expressions",
+            "programming-logic"
+          ],
+          "objectives": [
+            "Tell = from ==",
+            "Combine conditions with and, or and not",
+            "Predict how and and or are ordered",
+            "Test a rule on both sides of each limit"
+          ]
+        }
+      ],
+      "summary": "Combine values with arithmetic, comparison and logical operators."
+    },
+    {
+      "slug": "strings-and-string-manipulation",
+      "title": "Strings and string manipulation",
+      "lessons": [
+        {
+          "slug": "working-with-strings",
+          "title": "Working with strings",
+          "summary": "Read characters by index, cut text with slices, join strings, and see why strings cannot be changed in place.",
+          "minutes": 12,
+          "principles": [
+            "U",
+            "V"
+          ],
+          "concepts": [
+            "strings",
+            "variables-data-types"
+          ],
+          "objectives": [
+            "Index and slice a string",
+            "Join, repeat and convert text",
+            "Explain why a string cannot be edited in place",
+            "Spot an off-by-one slice"
+          ]
+        },
+        {
+          "slug": "string-methods-and-f-strings",
+          "title": "String methods and f-strings",
+          "summary": "Clean and transform text with string methods, and build messages with f-strings.",
+          "minutes": 12,
+          "principles": [
+            "U",
+            "D",
+            "V"
+          ],
+          "concepts": [
+            "strings",
+            "prompting-for-development"
+          ],
+          "objectives": [
+            "Use common string methods",
+            "Chain methods on a result",
+            "Build text with f-strings and number formats",
+            "Give an AI one real example of messy input and the output you want"
+          ]
+        }
+      ],
+      "summary": "Work with text: indexing, slicing, methods and formatting."
+    },
+    {
+      "slug": "lists-tuples-sets-and-dictionaries",
+      "title": "Lists, tuples, sets and dictionaries",
+      "lessons": [
+        {
+          "slug": "working-with-lists",
+          "title": "Lists",
+          "summary": "Create, change, sort and copy lists, and avoid the traps of in-place changes and shared names.",
+          "minutes": 12,
+          "principles": [
+            "U",
+            "V"
+          ],
+          "concepts": [
+            "data-structures",
+            "debugging"
+          ],
+          "objectives": [
+            "Add, remove and change list items",
+            "Tell sorted() from sort()",
+            "Explain why two names can share one list",
+            "Slice a list"
+          ]
+        },
+        {
+          "slug": "tuples-and-sets",
+          "title": "Tuples and sets",
+          "summary": "Use tuples for fixed groups of values and sets for unique values, and choose between lists, tuples and sets.",
+          "minutes": 12,
+          "principles": [
+            "U",
+            "B"
+          ],
+          "concepts": [
+            "data-structures"
+          ],
+          "objectives": [
+            "Create and unpack a tuple",
+            "Remove duplicates with a set",
+            "Combine sets with |, & and -",
+            "Choose the right container for a job"
+          ]
+        },
+        {
+          "slug": "dictionaries",
+          "title": "Dictionaries",
+          "summary": "Store and look up values by key, handle missing keys safely, and read nested data.",
+          "minutes": 12,
+          "principles": [
+            "U",
+            "V"
+          ],
+          "concepts": [
+            "data-structures",
+            "apis-http"
+          ],
+          "objectives": [
+            "Add, update and remove keys",
+            "Use .get() for missing keys",
+            "Read nested dictionaries",
+            "Count things with a dictionary"
+          ]
+        }
+      ],
+      "summary": "Store several values together, and choose the right container."
+    },
+    {
+      "slug": "conditional-statements",
+      "title": "Conditional statements",
+      "lessons": []
+    },
+    {
+      "slug": "loops-and-iteration",
+      "title": "Loops and iteration",
+      "lessons": []
+    },
+    {
+      "slug": "functions-and-parameters",
+      "title": "Functions and parameters",
+      "lessons": []
+    },
+    {
+      "slug": "object-oriented-programming",
+      "title": "Object-oriented programming",
+      "lessons": []
+    },
+    {
+      "slug": "files-exceptions-modules-and-packages",
+      "title": "Files, exceptions, modules and packages",
+      "lessons": []
+    }
   ]
 }

@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "string-methods-check",
+    "title": "String methods check",
+    "kind": "quiz",
+    "instructions": "Five questions on string methods and f-strings.",
+    "concepts": ["strings"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does 'a,b,c'.split(',') give?", "options": ["['a', 'b', 'c']", "'abc'", "['a,b,c']", "('a', 'b', 'c')"], "answer": 0, "explanation": "split cuts the string at every comma and returns a list of the pieces.", "concept": "strings"},
+      {"id": "q2", "prompt": "What does 'banana'.count('a') give?", "options": ["2", "3", "1", "6"], "answer": 1, "explanation": "There are three letter a's in banana.", "concept": "strings"},
+      {"id": "q3", "prompt": "After s = 'hi' and the line s.upper(), what does print(s) show?", "options": ["HI", "hi", "None", "An error"], "answer": 1, "explanation": "Strings cannot be changed. upper() returns a new string, and the result was thrown away, so s is still 'hi'.", "concept": "strings"},
+      {"id": "q4", "prompt": "What does f'{2.5:.2f}' give?", "options": ["'2.5'", "'2.50'", "'2.500'", "An error"], "answer": 1, "explanation": ".2f formats a float with exactly two decimal places.", "concept": "strings"},
+      {"id": "q5", "prompt": "What does 'banana'.find('x') give?", "options": ["0", "-1", "None", "An error"], "answer": 1, "explanation": "find returns -1 when the text is not found. Note that 0 would mean it was found at the very start.", "concept": "strings"}
+    ]
+  },
+  {
+    "slug": "clean-greeting",
+    "title": "Clean greeting",
+    "kind": "code",
+    "instructions": "`raw` holds messy text. Create `clean` by removing the extra spaces and fixing the capitals so it reads `Ada Lovelace`. Then create `message` using an **f-string** so it reads `Hello, Ada Lovelace!`, and print `message`.",
+    "concepts": ["strings"],
+    "pass_score": 100,
+    "starter_code": "raw = \"  ada LOVELACE  \"\n\n# Create clean and message, then print message\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "clean", "description": "clean is Ada Lovelace", "type": "return", "call": "clean", "expected": "Ada Lovelace"},
+      {"id": "message", "description": "message is Hello, Ada Lovelace!", "type": "return", "call": "message", "expected": "Hello, Ada Lovelace!"},
+      {"id": "printed", "description": "the program prints the message", "type": "stdout", "expected_stdout": "Hello, Ada Lovelace!"}
+    ]
+  },
+  {
+    "slug": "order-the-cleanup",
+    "title": "Order the cleanup",
+    "kind": "puzzle",
+    "instructions": "Put the lines in order so the program prints `Hello, Ada Lovelace`.",
+    "concepts": ["strings", "data-flow-state"],
+    "pass_score": 100,
+    "puzzle_type": "order",
+    "lines": ["raw = '  ada lovelace  '", "clean = raw.strip()", "name = clean.title()", "print(f'Hello, {name}')"]
+  }
+]

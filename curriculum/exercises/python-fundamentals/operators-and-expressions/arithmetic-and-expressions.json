@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "arithmetic-check",
+    "title": "Arithmetic check",
+    "kind": "quiz",
+    "instructions": "Answer all four questions. You need 70 to pass, and you can retry as often as you like.",
+    "concepts": ["operators-expressions"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does print(7 // 2) show?", "options": ["3.5", "3", "4", "3.0"], "answer": 1, "explanation": "// divides and rounds down, so 7 // 2 is 3. Plain / would give 3.5.", "concept": "operators-expressions"},
+      {"id": "q2", "prompt": "What does print(10 % 3) show?", "options": ["3", "1", "0", "3.33"], "answer": 1, "explanation": "% gives the remainder. 10 = 3 x 3 + 1, so the remainder is 1.", "concept": "operators-expressions"},
+      {"id": "q3", "prompt": "What does print(2 + 3 * 4) show?", "options": ["20", "14", "24", "9"], "answer": 1, "explanation": "Multiplication happens before addition: 3 * 4 is 12, then 2 + 12 is 14.", "concept": "operators-expressions"},
+      {"id": "q4", "prompt": "What does print(8 / 2) show?", "options": ["4", "4.0", "2", "An error"], "answer": 1, "explanation": "The / operator always gives a float, even when the answer is a whole number.", "concept": "operators-expressions"}
+    ]
+  },
+  {
+    "slug": "minutes-to-hours",
+    "title": "Minutes to hours",
+    "kind": "code",
+    "instructions": "`total_minutes` is already set to 135. Create `hours` and `minutes` so that 135 becomes 2 hours and 15 minutes, using `//` and `%`. Then print them on one line:\n\n```text\n2 15\n```",
+    "concepts": ["operators-expressions", "variables-data-types"],
+    "pass_score": 100,
+    "starter_code": "total_minutes = 135\n\n# Create hours and minutes, then print them\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "total", "description": "total_minutes is still 135", "type": "return", "call": "total_minutes", "expected": 135},
+      {"id": "hours", "description": "hours is 2", "type": "return", "call": "hours", "expected": 2},
+      {"id": "minutes", "description": "minutes is 15", "type": "return", "call": "minutes", "expected": 15},
+      {"id": "printed", "description": "the program prints 2 15", "type": "stdout", "expected_stdout": "2 15"}
+    ]
+  }
+]

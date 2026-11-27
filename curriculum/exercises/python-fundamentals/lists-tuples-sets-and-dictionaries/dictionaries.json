@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "dictionaries-check",
+    "title": "Dictionaries check",
+    "kind": "quiz",
+    "instructions": "Five questions on dictionaries.",
+    "concepts": ["data-structures"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "With d = {'a': 1}, what does print(d.get('b')) show?", "options": ["0", "None", "KeyError", "'b'"], "answer": 1, "explanation": "get returns None for a missing key unless you give it a default.", "concept": "data-structures"},
+      {"id": "q2", "prompt": "With d = {'a': 1}, what happens when Python runs print(d['b'])?", "options": ["Prints None", "Prints 0", "A KeyError", "Prints b"], "answer": 2, "explanation": "Square brackets raise a KeyError for a missing key. That is why get() exists.", "concept": "data-structures"},
+      {"id": "q3", "prompt": "With d = {'x': 1}, after d['y'] = 2, what is len(d)?", "options": ["1", "2", "An error", "0"], "answer": 1, "explanation": "Assigning to a new key adds a pair, so the dictionary has two.", "concept": "data-structures"},
+      {"id": "q4", "prompt": "What happens when Python runs {[1, 2]: 'a'}?", "options": ["It works fine", "A TypeError, because a list cannot be a key", "A KeyError", "A ValueError"], "answer": 1, "explanation": "Keys must be unchangeable. A list can change, so it is unhashable. A tuple would work.", "concept": "data-structures"},
+      {"id": "q5", "prompt": "What does 1 in {'a': 1} give?", "options": ["True", "False", "An error", "1"], "answer": 1, "explanation": "The in operator checks the keys, not the values. The only key is 'a'.", "concept": "data-structures"}
+    ]
+  },
+  {
+    "slug": "inventory-update",
+    "title": "Inventory update",
+    "kind": "code",
+    "instructions": "`inventory` maps fruit to how many are in stock. Do the following:\n\n1. Add `\"plums\"` with a count of 7.\n2. Change `\"pears\"` to 4.\n3. Increase `\"apples\"` by 1 using its current value.\n4. Create `missing`: the count for `\"kiwis\"`, or 0 if there is no such key. Use `.get()`.\n5. Create `total`: the sum of all counts.\n6. Print `total`.",
+    "concepts": ["data-structures"],
+    "pass_score": 100,
+    "starter_code": "inventory = {\"apples\": 5, \"pears\": 2}\n\n# Do the six steps\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "inventory", "description": "inventory is {'apples': 6, 'pears': 4, 'plums': 7}", "type": "return", "call": "inventory", "expected": {"apples": 6, "pears": 4, "plums": 7}},
+      {"id": "missing", "description": "missing is 0", "type": "return", "call": "missing", "expected": 0},
+      {"id": "total", "description": "total is 17", "type": "return", "call": "total", "expected": 17},
+      {"id": "printed", "description": "the program prints 17", "type": "stdout", "expected_stdout": "17"}
+    ]
+  }
+]

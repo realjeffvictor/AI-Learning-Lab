@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "strings-check",
+    "title": "Strings check",
+    "kind": "quiz",
+    "instructions": "Five questions on indexing, slicing and immutability.",
+    "concepts": ["strings"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does 'Python'[1:4] give?", "options": ["'Pyt'", "'yth'", "'ytho'", "'yt'"], "answer": 1, "explanation": "A slice starts at index 1 and stops before index 4, so it takes the characters at 1, 2 and 3: y, t, h.", "concept": "strings"},
+      {"id": "q2", "prompt": "What does 'Python'[-1] give?", "options": ["'P'", "'n'", "'o'", "IndexError"], "answer": 1, "explanation": "A negative index counts from the end, so -1 is the last character.", "concept": "strings"},
+      {"id": "q3", "prompt": "What is len('a b')?", "options": ["2", "3", "1", "An error"], "answer": 1, "explanation": "The space is a character too, so the string has three characters.", "concept": "strings"},
+      {"id": "q4", "prompt": "What does 'ab' * 3 give?", "options": ["'ababab'", "'ab3'", "'aabbab'", "TypeError"], "answer": 0, "explanation": "Multiplying text by a whole number repeats it.", "concept": "strings"},
+      {"id": "q5", "prompt": "After word = 'cat', what happens when Python runs word[0] = 'b'?", "options": ["word becomes 'bat'", "A TypeError, because strings cannot be changed", "An IndexError", "Nothing happens"], "answer": 1, "explanation": "Strings are immutable. To get 'bat' you build a new string, for example 'b' + word[1:].", "concept": "strings"}
+    ]
+  },
+  {
+    "slug": "initials",
+    "title": "Initials",
+    "kind": "code",
+    "instructions": "`name` is set to `\"Ada Lovelace\"`. Using **indexing and slicing** (do not type the answers), create:\n\n- `first`: the first name, `Ada`\n- `last`: the last name, `Lovelace`\n- `initials`: the first letter of each name, `AL`\n\nThen print `initials`.",
+    "concepts": ["strings"],
+    "pass_score": 100,
+    "starter_code": "name = \"Ada Lovelace\"\n\n# Create first, last and initials, then print initials\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "first", "description": "first is Ada", "type": "return", "call": "first", "expected": "Ada"},
+      {"id": "last", "description": "last is Lovelace", "type": "return", "call": "last", "expected": "Lovelace"},
+      {"id": "initials", "description": "initials is AL", "type": "return", "call": "initials", "expected": "AL"},
+      {"id": "printed", "description": "the program prints AL", "type": "stdout", "expected_stdout": "AL"}
+    ]
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "slug": "logic-check",
+    "title": "Logic check",
+    "kind": "quiz",
+    "instructions": "Four questions on comparisons and logical operators.",
+    "concepts": ["operators-expressions"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What does print(5 == '5') show?", "options": ["True", "False", "TypeError", "5"], "answer": 1, "explanation": "A number is never equal to text, so the comparison is simply False. It does not raise an error.", "concept": "operators-expressions"},
+      {"id": "q2", "prompt": "What does print(not (3 > 2)) show?", "options": ["True", "False", "3", "An error"], "answer": 1, "explanation": "3 > 2 is True, and not flips it to False.", "concept": "operators-expressions"},
+      {"id": "q3", "prompt": "What does print(True or False and False) show?", "options": ["True", "False", "None", "An error"], "answer": 0, "explanation": "and is worked out before or: (False and False) is False, then True or False is True.", "concept": "operators-expressions"},
+      {"id": "q4", "prompt": "What does print(0.1 + 0.2 == 0.3) show?", "options": ["True", "False", "An error", "0.3"], "answer": 1, "explanation": "Floats are approximate. 0.1 + 0.2 is 0.30000000000000004, which is not exactly 0.3.", "concept": "operators-expressions"}
+    ]
+  },
+  {
+    "slug": "comfortable-day",
+    "title": "Comfortable day",
+    "kind": "code",
+    "instructions": "`temperature` and `humidity` are set for you. Create a variable `comfortable` that is `True` when the temperature is from 18 to 26 inclusive **and** the humidity is below 60. Then print `comfortable`.",
+    "concepts": ["operators-expressions"],
+    "pass_score": 100,
+    "starter_code": "temperature = 24\nhumidity = 40\n\n# Create comfortable, then print it\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "comfortable", "description": "comfortable is True for 24 degrees and 40 percent", "type": "return", "call": "comfortable", "expected": true},
+      {"id": "printed", "description": "the program prints True", "type": "stdout", "expected_stdout": "True"}
+    ]
+  }
+]
