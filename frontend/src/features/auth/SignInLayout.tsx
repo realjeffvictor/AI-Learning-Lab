@@ -89,7 +89,45 @@ export function SignInLayout({ title, subtitle, footer, children }: SignInLayout
   return (
     <main className="grid min-h-screen bg-[#FAFAFA] lg:grid-cols-[55fr_45fr]">
       <section className="relative flex min-h-[560px] flex-col overflow-hidden bg-[#121622] px-7 py-10 text-white sm:px-12 sm:py-12 lg:min-h-screen lg:px-[clamp(3rem,6vw,6rem)] lg:py-14">
-        <Link to="/" className="flex w-fit items-center gap-4 rounded-sm text-white no-underline">
+        <svg
+          viewBox="0 0 900 280"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[220px] w-full sm:h-[250px] lg:h-[230px]"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="sidebar-wave-navy" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#1B2940" />
+              <stop offset="0.55" stopColor="#182238" />
+              <stop offset="1" stopColor="#111827" />
+            </linearGradient>
+            <linearGradient id="sidebar-wave-orange" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#E66B3F" />
+              <stop offset="0.48" stopColor="#D95D39" />
+              <stop offset="1" stopColor="#A84435" />
+            </linearGradient>
+            <linearGradient id="sidebar-wave-highlight" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stopColor="#FF956B" stopOpacity="0.65" />
+              <stop offset="0.6" stopColor="#F17A56" stopOpacity="0.32" />
+              <stop offset="1" stopColor="#E06346" stopOpacity="0.08" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M-20 204 C130 174 222 244 372 243 C530 242 640 174 772 145 C828 133 875 134 920 142 L920 300 L-20 300 Z"
+            fill="url(#sidebar-wave-navy)"
+          />
+          <path
+            d="M-20 168 C84 132 164 166 266 198 C380 234 474 235 588 190 C704 144 805 104 920 112 L920 159 C802 153 708 197 594 228 C478 263 374 267 258 230 C150 195 80 164 -20 248 L-20 300 L0 300 L0 238 Z"
+            fill="url(#sidebar-wave-orange)"
+          />
+          <path
+            d="M-10 174 C88 140 164 174 270 205 C383 238 478 239 591 195 C703 152 806 112 910 118"
+            fill="none"
+            stroke="url(#sidebar-wave-highlight)"
+            strokeWidth="3"
+          />
+        </svg>
+        <Link to="/" className="relative z-10 flex w-fit items-center gap-4 rounded-sm text-white no-underline">
           <svg viewBox="0 0 48 40" className="h-10 w-12 shrink-0 text-[#E06346]" fill="currentColor" aria-hidden="true">
             <path d="M24 2 1 13l23 11 18-8.6V29h4V13L24 2Zm-15 17v9c0 5 7 9 15 9s15-4 15-9v-9l-15 7-15-7Z" />
             <circle cx="44" cy="31" r="3" />
@@ -100,7 +138,7 @@ export function SignInLayout({ title, subtitle, footer, children }: SignInLayout
           </span>
         </Link>
 
-        <ul aria-label="The five learning pillars" className="relative my-auto w-full max-w-[340px] space-y-3 py-12 lg:py-0">
+        <ul aria-label="The five learning pillars" className="relative z-10 my-auto w-full max-w-[340px] space-y-3 py-12 lg:py-0">
           {PILLARS.map((pillar) => {
             const active = activePillar === pillar;
             const summaryId = `pillar-summary-${pillar.toLowerCase()}`;
