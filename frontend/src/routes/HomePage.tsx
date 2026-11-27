@@ -27,6 +27,34 @@ const CURRICULUM_STAGES = [
   },
 ] as const;
 
+const ENGINEER_TOMORROW = [
+  {
+    number: "01",
+    title: "THINK BEYOND CODE",
+    summary: "Understand the principles behind software, not just the syntax used to create it.",
+  },
+  {
+    number: "02",
+    title: "WORK WITH AI",
+    summary: "Use AI to accelerate development, explore solutions and improve productivity without surrendering technical understanding.",
+  },
+  {
+    number: "03",
+    title: "BUILD REAL SYSTEMS",
+    summary: "Turn ideas into functional applications, connect technologies and solve problems that matter.",
+  },
+  {
+    number: "04",
+    title: "VERIFY AND TAKE OWNERSHIP",
+    summary: "Test, debug, evaluate and understand every system you build, whether AI helped create it or not.",
+  },
+  {
+    number: "05",
+    title: "KEEP EVOLVING",
+    summary: "Adapt to new technologies, learn continuously and stay capable in an industry that never stands still.",
+  },
+] as const;
+
 export function HomePage() {
   const { status } = useAuth();
   const authenticated = status === "authenticated";
@@ -109,57 +137,48 @@ export function HomePage() {
         </section>
 
         <section
-          aria-labelledby="learning-path-preview"
-          className="flex min-h-[600px] items-center justify-center px-6 py-14 sm:px-12 lg:min-h-screen lg:px-14 lg:py-4 xl:px-20"
+          aria-labelledby="future-engineering-heading"
+          className="flex min-h-[600px] items-center justify-center px-6 py-12 sm:px-12 lg:min-h-screen lg:px-14 lg:py-6 xl:px-20"
         >
-          <div className="w-full max-w-[460px]">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#D95D39]">The learning path</p>
-            <h2 id="learning-path-preview" className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[#0F172A]">
-              Build capability, one stage at a time.
+          <div className="w-full max-w-[480px]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D95D39]">
+              THE FUTURE IS BEING BUILT NOW
+            </p>
+            <h2 id="future-engineering-heading" className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.03em] text-[#0F172A]">
+              Software engineering is evolving. Are you ready?
             </h2>
-            <p className="mt-2 text-sm leading-6 text-[#64748B]">
-              Start with Python, then progress through data, APIs, AI models and automation.
+            <p className="mt-3 text-[13px] leading-[1.65] text-[#475569]">
+              AI is changing how software is designed, developed and delivered. The next generation of engineers won&apos;t
+              just write code. They&apos;ll understand systems, direct intelligent tools, solve complex problems and take
+              responsibility for what they build.
             </p>
 
-            <div className="mt-6 overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white shadow-[0_12px_36px_rgba(15,23,42,0.06)]">
-              <ol aria-label="Five curriculum stages" className="relative space-y-1 px-5 py-5 sm:px-6">
-                <span aria-hidden="true" className="absolute bottom-10 left-[39px] top-10 w-px bg-[#E2E8F0] sm:left-[43px]" />
-                {CURRICULUM_STAGES.map((stage, index) => (
-                  <li key={stage.title} className="relative flex gap-4 py-2">
-                    <span className="z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#F2C8BC] bg-[#FFF6F2] font-mono text-[10px] font-semibold text-[#D95D39]">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0 pt-0.5">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#94A3B8]">
-                        Stage {index + 1}
-                      </p>
-                      <h3 className="mt-0.5 text-sm font-semibold text-[#0F172A]">{stage.title}</h3>
-                      <p className="mt-1 line-clamp-1 text-xs leading-5 text-[#64748B]">{stage.summary}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
+            <h3 className="mt-5 text-[13px] font-semibold text-[#0F172A]">
+              The engineer of tomorrow will know how to:
+            </h3>
+            <ol aria-label="Skills of the engineer of tomorrow" className="mt-3 space-y-3">
+              {ENGINEER_TOMORROW.map((item) => (
+                <li key={item.number}>
+                  <h4 className="text-[11px] font-semibold tracking-[0.06em] text-[#0F172A]">
+                    <span className="font-mono text-[#D95D39]">{item.number} — </span>
+                    {item.title}
+                  </h4>
+                  <p className="mt-0.5 text-xs leading-[1.5] text-[#64748B]">{item.summary}</p>
+                </li>
+              ))}
+            </ol>
 
-              <div className="border-t border-[#E2E8F0] bg-[#F8FAFC] px-5 py-4 sm:px-6">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-[#D95D39]">
-                  Runs alongside every stage
-                </p>
-                <h3 className="mt-1 text-sm font-semibold text-[#0F172A]">AI-Assisted Software Engineering</h3>
-                <p className="mt-1 text-xs leading-5 text-[#64748B]">
-                  Learn to direct AI well and take ownership of the software you build.
-                </p>
-              </div>
+            <div className="mt-5 border-t border-[#E2E8F0] pt-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D95D39]">
+                THE AI LEARNING LAB APPROACH
+              </p>
+              <p className="mt-2 text-[13px] font-semibold leading-5 text-[#0F172A]">
+                Learn the fundamentals. Master the tools. Build with intelligence. Own the outcome.
+              </p>
+              <p className="mt-2 border-l-2 border-[#D95D39] pl-3 text-xs italic leading-5 text-[#64748B]">
+                Don&apos;t just learn to code for today&apos;s technology. Develop the ability to build for what comes next.
+              </p>
             </div>
-
-            <a
-              href="#curriculum-highlights"
-              className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#D95D39] underline underline-offset-4 hover:text-[#B9482B]"
-            >
-              Explore all curriculum highlights
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" />
-              </svg>
-            </a>
           </div>
         </section>
       </div>
