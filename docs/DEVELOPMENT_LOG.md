@@ -129,3 +129,10 @@
 - Every code exercise and the puzzle were run against reference solutions before seeding; starter code was confirmed to fail. The file exercise uses /tmp inside the browser's in-memory file system.
 - This completes the module outline for Stage 1. The two planned lessons in the first two modules (reading error messages, numbers strings and booleans) remain planned.
 - Content was written by the assistant and should be read by a human before learners rely on it.
+
+## Content batch 2a: AI-Assisted Software Engineering track, part 1 (2026-11-27)
+- Added 5 written lessons (how AI coding assistants work, writing prompts that work, reading code you did not write, debugging with an AI partner, design before you build) and 12 exercises (5 quizzes, 6 code, 1 prose puzzle).
+- Every code exercise was run against a reference solution before seeding; starter code was confirmed to fail. The prose puzzle's order was not machine-checked.
+- Lessons are tool-agnostic on purpose: specific AI products and features change quickly.
+- Still planned in the track (batch 2b): AI-assisted system architecture, testing, documentation, code review and quality control, Git and collaborative development, building and maintaining complete systems.
+- Content was written by the assistant and should be read by a human before learners rely on it.
