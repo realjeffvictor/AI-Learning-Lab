@@ -89,7 +89,7 @@ export function LessonPage() {
         {course.data && <Outline course={course.data} currentSlug={data.slug} moduleSlug={data.module_slug} />}
       </aside>
 
-      <article className="bg-[#FAFAFA] p-5 sm:p-7">
+      <article>
         <nav aria-label="Breadcrumb" className="font-mono text-xs text-ink-muted">
           <Link to="/courses" className="hover:text-ink">
             Curriculum
