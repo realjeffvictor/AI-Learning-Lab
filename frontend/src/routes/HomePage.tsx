@@ -57,7 +57,7 @@ const ENGINEER_TOMORROW = [
 
 export function HomePage() {
   const { status } = useAuth();
-  const authenticated = status === "authenticated";
+ // const authenticated = status === "authenticated";
 
   return (
     <main className="bg-[#FAFAFA]">
@@ -89,10 +89,10 @@ export function HomePage() {
             </Link>
             {status !== "loading" && (
               <Link
-                to={authenticated ? "/dashboard" : "/login"}
+                to="/login"
                 className="rounded-lg border border-[#394154] px-4 py-2 text-sm font-medium text-white transition-colors hover:border-[#94A3B8] hover:bg-[#1E2436]"
               >
-                {authenticated ? "Dashboard" : "Sign in"}
+                Sign in
               </Link>
             )}
           </header>
@@ -108,10 +108,10 @@ export function HomePage() {
             <div className="mt-9 flex flex-wrap items-center gap-3">
               {status !== "loading" && (
                 <Link
-                  to={authenticated ? "/dashboard" : "/register"}
+                  to="/register"
                   className="inline-flex h-11 items-center justify-center rounded-lg bg-[#D95D39] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#c84f2f]"
                 >
-                  {authenticated ? "Open dashboard" : "Create an account"}
+                  Create an account
                 </Link>
               )}
               <a
@@ -224,10 +224,10 @@ export function HomePage() {
           {status !== "loading" && (
             <div className="mt-8">
               <Link
-                to={authenticated ? "/dashboard" : "/register"}
+                to="/register"
                 className="inline-flex h-11 items-center justify-center rounded-lg bg-[#D95D39] px-5 text-sm font-semibold text-white transition-colors hover:bg-[#c84f2f]"
               >
-                {authenticated ? "Open dashboard" : "Start learning"}
+                Start learning
               </Link>
             </div>
           )}
