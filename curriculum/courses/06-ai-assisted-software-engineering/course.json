@@ -10,24 +10,203 @@
       "summary": "How the work of a developer changes with AI, and what does not change.",
       "lessons": [
         {
-          "slug": "the-five-principles", "title": "The five principles",
+          "slug": "the-five-principles",
+          "title": "The five principles",
           "summary": "Understand, Direct, Build, Verify, Own: the habits that make AI a multiplier instead of a crutch.",
-          "minutes": 10, "principles": ["U", "D", "B", "V", "O"],
-          "concepts": ["ai-era-developer-mindset", "reviewing-ai-code", "prompting-for-development"],
-          "objectives": ["Name the five principles and what each asks of you", "Explain why AI output must be verified", "Describe the three categories of technical competence"]
+          "minutes": 10,
+          "principles": [
+            "U",
+            "D",
+            "B",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "ai-era-developer-mindset",
+            "reviewing-ai-code",
+            "prompting-for-development"
+          ],
+          "objectives": [
+            "Name the five principles and what each asks of you",
+            "Explain why AI output must be verified",
+            "Describe the three categories of technical competence"
+          ]
         }
       ]
     },
-    {"slug": "working-with-ai-coding-assistants", "title": "Working with AI coding assistants", "lessons": []},
-    {"slug": "prompting-for-software-development", "title": "Prompting for software development", "lessons": []},
-    {"slug": "reading-and-understanding-ai-generated-code", "title": "Reading and understanding AI-generated code", "lessons": []},
-    {"slug": "ai-assisted-debugging", "title": "AI-assisted debugging", "lessons": []},
-    {"slug": "ai-assisted-software-design", "title": "AI-assisted software design", "lessons": []},
-    {"slug": "ai-assisted-system-architecture", "title": "AI-assisted system architecture", "lessons": []},
-    {"slug": "ai-assisted-testing", "title": "AI-assisted testing", "lessons": []},
-    {"slug": "ai-assisted-documentation", "title": "AI-assisted documentation", "lessons": []},
-    {"slug": "code-review-and-quality-control", "title": "Code review and quality control", "lessons": []},
-    {"slug": "git-and-collaborative-development", "title": "Git and collaborative development", "lessons": []},
-    {"slug": "building-and-maintaining-complete-systems", "title": "Building and maintaining complete systems", "lessons": []}
+    {
+      "slug": "working-with-ai-coding-assistants",
+      "title": "Working with AI coding assistants",
+      "lessons": [
+        {
+          "slug": "how-ai-coding-assistants-work",
+          "title": "How AI coding assistants work",
+          "summary": "Understand what an assistant really does, where it goes wrong, how to protect what you paste, and the working loop that keeps you in charge.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "ai-era-developer-mindset",
+            "ai-code-generation",
+            "security-awareness"
+          ],
+          "objectives": [
+            "Explain that an assistant predicts likely text and does not run or check code",
+            "Name four ways assistants go wrong",
+            "Keep secrets and personal data out of prompts",
+            "Apply the Understand, Direct, Build, Verify, Own loop"
+          ]
+        }
+      ],
+      "summary": "What assistants are, where they fail, and how to use them safely."
+    },
+    {
+      "slug": "prompting-for-software-development",
+      "title": "Prompting for software development",
+      "lessons": [
+        {
+          "slug": "writing-prompts-that-work",
+          "title": "Writing prompts that work",
+          "summary": "Turn a vague request into a small specification with a goal, context, constraints, an example and a format, and learn to ask for a plan first.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "D",
+            "V"
+          ],
+          "concepts": [
+            "prompting-for-development",
+            "ai-code-generation"
+          ],
+          "objectives": [
+            "Write a prompt with the five parts",
+            "Use an example input and output as a test",
+            "Ask for a plan before code",
+            "Report a wrong answer in a way that helps"
+          ]
+        }
+      ],
+      "summary": "Give assistants instructions they can act on."
+    },
+    {
+      "slug": "reading-and-understanding-ai-generated-code",
+      "title": "Reading and understanding AI-generated code",
+      "lessons": [
+        {
+          "slug": "reading-code-you-did-not-write",
+          "title": "Reading code you did not write",
+          "summary": "A routine for reviewing generated code: state its purpose, trace an example, try to break its assumptions, check that what it uses is real, and look for security smells.",
+          "minutes": 15,
+          "principles": [
+            "U",
+            "V",
+            "O"
+          ],
+          "concepts": [
+            "reviewing-ai-code",
+            "ai-code-explanation",
+            "security-awareness"
+          ],
+          "objectives": [
+            "Trace generated code by hand on a small input",
+            "List and test the assumptions in a function",
+            "Check that imports and functions actually exist",
+            "Recognise SQL injection and fix it with a parameterized query"
+          ]
+        }
+      ],
+      "summary": "Review code you did not write before you keep it."
+    },
+    {
+      "slug": "ai-assisted-debugging",
+      "title": "AI-assisted debugging",
+      "lessons": [
+        {
+          "slug": "debugging-with-an-ai-partner",
+          "title": "Debugging with an AI partner",
+          "summary": "Reproduce and shrink a bug, give an assistant a precise report, ask for hypotheses you can test, and tell a root-cause fix from one that hides the symptom.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "D",
+            "V"
+          ],
+          "concepts": [
+            "ai-debugging-assistance",
+            "debugging",
+            "root-cause-diagnosis"
+          ],
+          "objectives": [
+            "Reproduce and shrink a bug",
+            "Write a bug report an assistant can use",
+            "Distinguish a symptom from a root cause",
+            "Confirm a fix by rerunning the original failing case"
+          ]
+        }
+      ],
+      "summary": "Debug with an assistant as a partner, not an oracle."
+    },
+    {
+      "slug": "ai-assisted-software-design",
+      "title": "AI-assisted software design",
+      "lessons": [
+        {
+          "slug": "design-before-you-build",
+          "title": "Design before you build",
+          "summary": "Settle the data shape and the function interfaces first, prefer pure functions, ask for alternatives and trade-offs, and build in small verified steps.",
+          "minutes": 14,
+          "principles": [
+            "U",
+            "D",
+            "O"
+          ],
+          "concepts": [
+            "system-architecture",
+            "tradeoff-analysis",
+            "prompting-for-development"
+          ],
+          "objectives": [
+            "Define the data shape before the functions",
+            "Write function interfaces and examples first",
+            "Explain what a pure function is",
+            "Compare two designs by their trade-offs"
+          ]
+        }
+      ],
+      "summary": "Decide the shape of a program before generating code."
+    },
+    {
+      "slug": "ai-assisted-system-architecture",
+      "title": "AI-assisted system architecture",
+      "lessons": []
+    },
+    {
+      "slug": "ai-assisted-testing",
+      "title": "AI-assisted testing",
+      "lessons": []
+    },
+    {
+      "slug": "ai-assisted-documentation",
+      "title": "AI-assisted documentation",
+      "lessons": []
+    },
+    {
+      "slug": "code-review-and-quality-control",
+      "title": "Code review and quality control",
+      "lessons": []
+    },
+    {
+      "slug": "git-and-collaborative-development",
+      "title": "Git and collaborative development",
+      "lessons": []
+    },
+    {
+      "slug": "building-and-maintaining-complete-systems",
+      "title": "Building and maintaining complete systems",
+      "lessons": []
+    }
   ]
 }

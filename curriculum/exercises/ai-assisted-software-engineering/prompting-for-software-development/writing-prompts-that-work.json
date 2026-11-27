@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "prompting-check",
+    "title": "Prompting check",
+    "kind": "quiz",
+    "instructions": "Five questions on writing prompts for software work.",
+    "concepts": ["prompting-for-development", "ai-code-generation"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "Which prompt is most likely to give you something useful?", "options": ["Make a login", "Write a Python function check_password(password) that returns True for at least 10 characters including a digit, standard library only. Example: check_password('abcdefghi1') returns True", "Write good code for passwords", "Passwords, quickly"], "answer": 1, "explanation": "It states the goal, the language, a constraint and an example, so both you and the assistant can tell whether the result is right.", "concept": "prompting-for-development"},
+      {"id": "q2", "prompt": "Why include an example input and its expected output?", "options": ["It makes the prompt longer", "It tells the assistant what you mean and gives you a test to run on the result", "Assistants require it", "It speeds up the reply"], "answer": 1, "explanation": "The example removes ambiguity and doubles as a check you can run yourself.", "concept": "prompting-for-development"},
+      {"id": "q3", "prompt": "The first answer crashes on an empty list. What is the best next message?", "options": ["That is wrong, try again", "Give the input, the full error, what you expected, and ask for the cause and the smallest fix", "Start a new chat and repeat the first prompt", "Accept it and handle empty lists later"], "answer": 1, "explanation": "The input, actual result, expected result and exact error are the most useful things you can supply.", "concept": "prompting-for-development"},
+      {"id": "q4", "prompt": "What is the main benefit of asking for a plan before any code?", "options": ["Plans are shorter than code", "You can catch a wrong approach in seconds, before it becomes a lot of code", "The assistant writes faster code afterwards", "It is required by Python"], "answer": 1, "explanation": "Reading a short plan is cheap, and a wrong direction is much cheaper to correct before code exists.", "concept": "ai-code-generation"},
+      {"id": "q5", "prompt": "Which of these belongs in the constraints part of a prompt?", "options": ["Use only the standard library and do not change the function signature", "Please be nice", "Write about programming", "Use a lot of comments everywhere"], "answer": 0, "explanation": "Constraints are the limits the answer must respect, such as which libraries are allowed and what must not change.", "concept": "prompting-for-development"}
+    ]
+  },
+  {
+    "slug": "build-a-prompt",
+    "title": "Build a prompt",
+    "kind": "code",
+    "instructions": "Write `build_prompt(goal, context, constraints, example)` that assembles a prompt as text. `constraints` is a list. The result must have exactly these lines, joined with newline characters (no newline at the very end):\n\n```text\nGoal: <goal>\nContext: <context>\nConstraints:\n- <first constraint>\n- <second constraint>\nExample: <example>\n```\n\nWith no constraints, the `Constraints:` line is still there, followed directly by the `Example:` line. There is nothing to print.",
+    "concepts": ["prompting-for-development", "strings", "loops"],
+    "pass_score": 100,
+    "starter_code": "def build_prompt(goal, context, constraints, example):\n    pass\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "full", "description": "builds the full prompt with two constraints", "type": "return", "call": "build_prompt('Sort names', 'Python list of str', ['use sorted', 'no loops'], 'b,a -> a,b')", "expected": "Goal: Sort names\nContext: Python list of str\nConstraints:\n- use sorted\n- no loops\nExample: b,a -> a,b", "concept": "prompting-for-development"},
+      {"id": "one", "description": "builds the prompt with one constraint", "type": "return", "call": "build_prompt('G', 'C', ['only one'], 'E')", "expected": "Goal: G\nContext: C\nConstraints:\n- only one\nExample: E", "concept": "strings"},
+      {"id": "none", "description": "keeps the Constraints line when there are none", "type": "return", "call": "build_prompt('G', 'C', [], 'E')", "expected": "Goal: G\nContext: C\nConstraints:\nExample: E", "concept": "loops"}
+    ]
+  }
+]

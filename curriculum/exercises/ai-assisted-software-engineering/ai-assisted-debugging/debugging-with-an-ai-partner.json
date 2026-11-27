@@ -1,0 +1,43 @@
+[
+  {
+    "slug": "debugging-check",
+    "title": "Debugging with AI check",
+    "kind": "quiz",
+    "instructions": "Five questions on debugging with an AI partner.",
+    "concepts": ["ai-debugging-assistance", "debugging", "root-cause-diagnosis"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What should you include when you ask an assistant to help with a bug?", "options": ["Only the words 'it does not work'", "The full error message, the smallest code that shows the problem, what you expected and what happened", "Your whole project and no description", "Nothing, assistants can see your computer"], "answer": 1, "explanation": "A precise report is the best input. Assistants cannot see anything you do not give them.", "concept": "ai-debugging-assistance"},
+      {"id": "q2", "prompt": "What is the root cause of a bug?", "options": ["The line where the error message appears", "The underlying reason the program does the wrong thing", "The last line you edited", "The slowest part of the program"], "answer": 1, "explanation": "The error shows where a problem became visible. The root cause is why it happened.", "concept": "root-cause-diagnosis"},
+      {"id": "q3", "prompt": "An assistant suggests wrapping the failing code in try / except: pass. What is wrong with that?", "options": ["Nothing, the error disappears", "It hides the error instead of fixing it, so the bug remains and now nobody can see it", "It makes the program slower", "It is not valid Python"], "answer": 1, "explanation": "Silencing an error is not a fix. The wrong behaviour is still there, with the evidence removed.", "concept": "debugging"},
+      {"id": "q4", "prompt": "What should you do before asking anyone for help with a bug?", "options": ["Rewrite the program", "Reproduce it with an input that fails every time, and shrink it if you can", "Restart your computer", "Delete the tests"], "answer": 1, "explanation": "A bug you can repeat on a small example can be investigated and its fix can be checked.", "concept": "debugging"},
+      {"id": "q5", "prompt": "After applying a fix, what is the right check?", "options": ["Assume it worked", "Rerun the original failing input, rerun your other tests, and make sure you understand why it works", "Ask the assistant if it worked", "Delete the failing test"], "answer": 1, "explanation": "Confirm the original failure is gone, confirm nothing else broke, and be able to explain the fix.", "concept": "root-cause-diagnosis"}
+    ]
+  },
+  {
+    "slug": "fix-the-sum",
+    "title": "Fix the off-by-one",
+    "kind": "code",
+    "instructions": "`sum_to(n)` should return the sum of the whole numbers from 1 to `n`, so `sum_to(5)` is `15`. The version in the editor returns `10`. Find the **root cause** and fix it. Do not just add something to the result.\n\nThere is nothing to print. Your function is tested directly.",
+    "concepts": ["debugging", "root-cause-diagnosis", "loops"],
+    "pass_score": 100,
+    "starter_code": "def sum_to(n):\n    total = 0\n    for i in range(n):\n        total += i\n    return total\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "five", "description": "sum_to(5) is 15", "type": "return", "call": "sum_to(5)", "expected": 15, "concept": "debugging"},
+      {"id": "one", "description": "sum_to(1) is 1", "type": "return", "call": "sum_to(1)", "expected": 1, "concept": "root-cause-diagnosis"},
+      {"id": "zero", "description": "sum_to(0) is still 0", "type": "return", "call": "sum_to(0)", "expected": 0, "concept": "root-cause-diagnosis"},
+      {"id": "hundred", "description": "sum_to(100) is 5050", "type": "return", "call": "sum_to(100)", "expected": 5050, "concept": "loops"}
+    ]
+  },
+  {
+    "slug": "order-the-debugging-steps",
+    "title": "Order the debugging steps",
+    "kind": "puzzle",
+    "instructions": "Put the steps of a careful debugging session in the best order.",
+    "concepts": ["debugging", "root-cause-diagnosis"],
+    "pass_score": 100,
+    "puzzle_type": "order",
+    "lines": ["Reproduce the bug with a small input", "Read the error message and find the failing line", "List possible causes and rank them", "Test the most likely cause with a small experiment", "Fix the cause and rerun the original failing case"]
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "reading-code-check",
+    "title": "Reading generated code check",
+    "kind": "quiz",
+    "instructions": "Five questions on reviewing code you did not write.",
+    "concepts": ["reviewing-ai-code", "security-awareness", "ai-code-explanation"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What is the best first technique for finding out what unfamiliar generated code really does?", "options": ["Trust the comments", "Trace it by hand on a small input, writing down the variables after each line", "Count the lines", "Ask the assistant if it is correct"], "answer": 1, "explanation": "Tracing an example shows the hidden assumptions and finds bugs that reading alone misses.", "concept": "reviewing-ai-code"},
+      {"id": "q2", "prompt": "Generated code imports a package called fastjsonx that you have never heard of. What should you do?", "options": ["Install it immediately", "Check that it exists on the official package index, who maintains it, and that the name is spelled exactly right", "Install it with administrator rights", "Assume it is part of Python"], "answer": 1, "explanation": "Assistants can invent names, and attackers publish look-alikes. Installing runs someone else's code on your machine.", "concept": "security-awareness"},
+      {"id": "q3", "prompt": "Which line is the biggest red flag in generated code?", "options": ["cursor.execute(f\"SELECT * FROM users WHERE name = '{name}'\")", "cursor.execute(\"SELECT * FROM users WHERE name = ?\", (name,))", "total = 0", "print(len(items))"], "answer": 0, "explanation": "Pasting user input into the query text allows SQL injection. The second line, with a placeholder, is the safe pattern.", "concept": "security-awareness"},
+      {"id": "q4", "prompt": "What does a parameterized query do?", "options": ["Makes the query run faster", "Keeps the user's data separate from the command, so the data cannot change what the query does", "Encrypts the database", "Removes the need for a database"], "answer": 1, "explanation": "The database treats parameters only as values, never as part of the command.", "concept": "security-awareness"},
+      {"id": "q5", "prompt": "The assistant's code worked on the example it showed. What does that prove?", "options": ["That it is correct for all inputs", "Only that it works for that one input, so edge cases still need checking", "That it is secure", "That it is efficient"], "answer": 1, "explanation": "One working example says nothing about empty input, capitals, large values or missing data.", "concept": "reviewing-ai-code"}
+    ]
+  },
+  {
+    "slug": "fix-the-palindrome",
+    "title": "Fix the generated palindrome check",
+    "kind": "code",
+    "instructions": "An assistant wrote this check. It fails on `'Racecar'` and on sentences with spaces and capitals.\n\nRewrite `is_palindrome(text)` so that it **ignores capitals, spaces and punctuation** and only compares the letters. Return `True` or `False`.\n\n```text\nis_palindrome('A man a plan a canal Panama')  ->  True\nis_palindrome('hello')  ->  False\n```\n\nThere is nothing to print. Your function is tested directly.",
+    "concepts": ["reviewing-ai-code", "strings"],
+    "pass_score": 100,
+    "starter_code": "def is_palindrome(text):\n    return text == text[::-1]\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "capital", "description": "'Racecar' is a palindrome", "type": "return", "call": "is_palindrome('Racecar')", "expected": true, "concept": "reviewing-ai-code"},
+      {"id": "sentence", "description": "'A man a plan a canal Panama' is a palindrome", "type": "return", "call": "is_palindrome('A man a plan a canal Panama')", "expected": true, "concept": "reviewing-ai-code"},
+      {"id": "punctuation", "description": "'No lemon, no melon' is a palindrome", "type": "return", "call": "is_palindrome('No lemon, no melon')", "expected": true, "concept": "strings"},
+      {"id": "not", "description": "'hello' is not a palindrome", "type": "return", "call": "is_palindrome('hello')", "expected": false, "concept": "strings"},
+      {"id": "empty", "description": "the empty string counts as a palindrome", "type": "return", "call": "is_palindrome('')", "expected": true, "concept": "reviewing-ai-code"}
+    ]
+  },
+  {
+    "slug": "parameterize-the-query",
+    "title": "Make the query safe",
+    "kind": "code",
+    "instructions": "An assistant built this query by pasting the name into the text, which allows SQL injection. Write `safe_query(name)` the safe way. It must return a tuple of two things:\n\n1. the SQL text, exactly `SELECT * FROM users WHERE name = ?`\n2. a tuple of parameters containing the name\n\nThe name must **never** appear inside the SQL text. There is nothing to print.",
+    "concepts": ["security-awareness", "reviewing-ai-code"],
+    "pass_score": 100,
+    "starter_code": "def safe_query(name):\n    pass\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "sql", "description": "the SQL text uses a ? placeholder", "type": "return", "call": "safe_query('Ada')[0]", "expected": "SELECT * FROM users WHERE name = ?", "concept": "security-awareness"},
+      {"id": "params", "description": "the parameters contain the name", "type": "return", "call": "list(safe_query('Ada')[1])", "expected": ["Ada"], "concept": "security-awareness"},
+      {"id": "no_inject_sql", "description": "a malicious name never reaches the SQL text", "type": "return", "call": "'DROP' in safe_query(\"x'; DROP TABLE users;--\")[0]", "expected": false, "concept": "reviewing-ai-code"},
+      {"id": "no_inject_param", "description": "a malicious name is kept as plain data in the parameters", "type": "return", "call": "list(safe_query(\"x'; DROP TABLE users;--\")[1])", "expected": ["x'; DROP TABLE users;--"], "concept": "reviewing-ai-code"}
+    ]
+  }
+]

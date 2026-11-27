@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "assistants-check",
+    "title": "AI assistants check",
+    "kind": "quiz",
+    "instructions": "Five questions on what assistants are, where they fail, and how to use them safely.",
+    "concepts": ["ai-era-developer-mindset", "ai-code-generation", "security-awareness"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "What is a coding assistant fundamentally doing when it writes code?", "options": ["Running your program to check it works", "Producing the text most likely to follow your prompt, based on patterns it learned", "Looking up the single correct answer in a database", "Understanding your whole project automatically"], "answer": 1, "explanation": "A language model predicts likely text. It does not run your code or know the one correct answer unless it is given tools to do so.", "concept": "ai-code-generation"},
+      {"id": "q2", "prompt": "An assistant answers in a very confident tone. What does that tell you about whether the answer is correct?", "options": ["It is probably correct", "Nothing, because the tone is the same whether it is right or wrong", "It was verified by experts", "It was checked by running it"], "answer": 1, "explanation": "Fluent, confident writing is what the model produces either way. Only checking tells you whether it is correct.", "concept": "ai-era-developer-mindset"},
+      {"id": "q3", "prompt": "Which of these is the safest to paste into an AI chat?", "options": ["Your database password", "A function where the real API key has been replaced with YOUR_API_KEY", "Your .env file", "A list of customer email addresses"], "answer": 1, "explanation": "Replace secrets and personal data with placeholders first. Anything real that you paste should be treated as shared.", "concept": "security-awareness"},
+      {"id": "q4", "prompt": "What does the context window limit?", "options": ["How many files you can store on disk", "How much text the assistant can take into account at once", "How fast your internet connection is", "How many people can use the assistant"], "answer": 1, "explanation": "The assistant can only consider a limited amount of text at a time. Anything you did not include, or that fell out of a long conversation, is not seen.", "concept": "ai-code-generation"},
+      {"id": "q5", "prompt": "An assistant wrote a function and you commit it to your project. Who is responsible for it?", "options": ["You", "The assistant", "The company that made the assistant", "Nobody, it was generated"], "answer": 0, "explanation": "The person who accepts and ships the code owns it. That is why you read, test and understand it first.", "concept": "ai-era-developer-mindset"}
+    ]
+  },
+  {
+    "slug": "redact-secrets",
+    "title": "Redact secrets before pasting",
+    "kind": "code",
+    "instructions": "Write `redact(text)`. It returns the text with every word that **starts with `sk-`** replaced by `[REDACTED]`. Words are separated by single spaces, and everything else stays exactly as it was.\n\n```text\nredact('key is sk-abc123 ok')  ->  'key is [REDACTED] ok'\n```\n\nThere is nothing to print. Your function is tested directly.",
+    "concepts": ["security-awareness", "strings"],
+    "pass_score": 100,
+    "starter_code": "def redact(text):\n    pass\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "one_key", "description": "redacts a single key", "type": "return", "call": "redact('key is sk-abc123 ok')", "expected": "key is [REDACTED] ok", "concept": "security-awareness"},
+      {"id": "two_keys", "description": "redacts two keys", "type": "return", "call": "redact('sk-1 and sk-2')", "expected": "[REDACTED] and [REDACTED]", "concept": "security-awareness"},
+      {"id": "no_key", "description": "leaves text without a key unchanged", "type": "return", "call": "redact('nothing here')", "expected": "nothing here", "concept": "strings"},
+      {"id": "empty", "description": "handles empty text", "type": "return", "call": "redact('')", "expected": "", "concept": "strings"}
+    ]
+  }
+]

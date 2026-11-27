@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "design-check",
+    "title": "Design before you build check",
+    "kind": "quiz",
+    "instructions": "Five questions on designing before generating code.",
+    "concepts": ["system-architecture", "tradeoff-analysis", "prompting-for-development"],
+    "pass_score": 70,
+    "questions": [
+      {"id": "q1", "prompt": "Why decide the shape of your data before asking an assistant for the functions that use it?", "options": ["Assistants cannot work with data", "So every function uses the same shape, instead of each one inventing its own", "It makes the code shorter", "It is required by Python"], "answer": 1, "explanation": "A settled data shape keeps the pieces consistent and makes them fit together.", "concept": "system-architecture"},
+      {"id": "q2", "prompt": "What does a pure function make easier?", "options": ["Writing longer code", "Testing and reasoning about it, because it does not change its inputs and gives the same result for the same input", "Using more memory", "Avoiding functions altogether"], "answer": 1, "explanation": "No hidden changes and predictable results make a function easy to test and to trust.", "concept": "system-architecture"},
+      {"id": "q3", "prompt": "What is a good way to use an assistant when choosing between designs?", "options": ["Accept its first idea", "Ask for two different approaches and a comparison of their trade-offs, then choose and explain why", "Let it choose without telling you", "Ask for the longest design"], "answer": 1, "explanation": "Alternatives and trade-offs let you exercise judgment. The decision stays with you.", "concept": "tradeoff-analysis"},
+      {"id": "q4", "prompt": "How big should each request to an assistant be?", "options": ["The whole application at once", "A small step you can read, test and replace", "As vague as possible", "One word"], "answer": 1, "explanation": "Small slices are easy to verify. A whole application at once is something you did not design and cannot easily check.", "concept": "prompting-for-development"},
+      {"id": "q5", "prompt": "Why write a couple of expected examples before the code exists?", "options": ["They make the code run faster", "They tell you when generated code is right", "They replace documentation forever", "They are required by assistants"], "answer": 1, "explanation": "Examples are the first tests. Without them you cannot tell whether the result is correct.", "concept": "prompting-for-development"}
+    ]
+  },
+  {
+    "slug": "task-list-design",
+    "title": "A small to-do module",
+    "kind": "code",
+    "instructions": "A task is a dictionary like `{'title': 'write report', 'done': False}`, and the list is a list of tasks. Write three **pure** functions. They must **not change** the list they are given.\n\n- `add_task(tasks, title)` returns a new list with a new not-done task added at the end.\n- `complete_task(tasks, title)` returns a new list where the task with that title is marked done. Other tasks stay as they are.\n- `pending(tasks)` returns a list of the titles of the tasks that are not done, in order.\n\nThere is nothing to print.",
+    "concepts": ["system-architecture", "functions", "data-structures"],
+    "pass_score": 100,
+    "starter_code": "def add_task(tasks, title):\n    pass\n\n\ndef complete_task(tasks, title):\n    pass\n\n\ndef pending(tasks):\n    pass\n",
+    "timeout_seconds": 5,
+    "tests": [
+      {"id": "add", "description": "add_task adds a not-done task", "type": "return", "call": "add_task([], 'write')", "expected": [{"title": "write", "done": false}], "concept": "data-structures"},
+      {"id": "no_mutation", "description": "add_task does not change the list it was given", "type": "return", "call": "(lambda t: [add_task(t, 'b'), t])([])", "expected": [[{"title": "b", "done": false}], []], "concept": "system-architecture"},
+      {"id": "complete", "description": "complete_task marks only the named task done", "type": "return", "call": "complete_task([{'title': 'a', 'done': False}, {'title': 'b', 'done': False}], 'a')", "expected": [{"title": "a", "done": true}, {"title": "b", "done": false}], "concept": "functions"},
+      {"id": "pending", "description": "pending lists the titles that are not done", "type": "return", "call": "pending([{'title': 'a', 'done': True}, {'title': 'b', 'done': False}])", "expected": ["b"], "concept": "functions"}
+    ]
+  }
+]
