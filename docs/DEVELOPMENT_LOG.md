@@ -117,3 +117,9 @@
 - Added backend/tests/test_real_curriculum.py: validates the real files and requires a quiz for every written lesson.
 - Content was written by the assistant and should be read by a human before learners rely on it.
 - Still planned in Stage 1: conditional statements, loops, functions, object-oriented programming, files and exceptions, and the two planned lessons in earlier modules.
+
+## Content batch 1b: conditionals, loops and functions (2026-11-27)
+- Added 5 written lessons (making decisions with if, for loops, while loops with break and continue, writing functions, scope and small functions) and 11 exercises (5 quizzes, 5 code, 1 puzzle).
+- Every code exercise and the puzzle were run against reference solutions before seeding; starter code was confirmed to fail.
+- Content was written by the assistant and should be read by a human before learners rely on it.
+- Still planned in Stage 1: object-oriented programming (batch 1c), files, exceptions, modules and packages (batch 1c), and the two planned lessons in the first two modules.
