@@ -3,9 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import { AppShell } from "../features/auth/AppShell";
 import { RequireAuth } from "../features/auth/RequireAuth";
 import { AdminUsersPage } from "../routes/AdminUsersPage";
+import { AboutPage } from "../routes/AboutPage";
 import { AssistantPage } from "../routes/AssistantPage";
 import { CourseDetailPage } from "../routes/CourseDetailPage";
 import { CoursesPage } from "../routes/CoursesPage";
+import { ContactPage } from "../routes/ContactPage";
 import { DashboardPage } from "../routes/DashboardPage";
 import { ExerciseEditorPage } from "../routes/ExerciseEditorPage";
 import { HomePage } from "../routes/HomePage";
@@ -34,6 +36,8 @@ export function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/verify/:code" element={<VerifyCertificatePage />} />
